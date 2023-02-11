@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1592379485 source:c:\users\mariajose.dominguez\documents\codeblocks\proyecto0\main.cpp
+	<iostream>
+	<conio.h>
+	<string.h>
+	"Fraccion.h"
+
+1632913523 h"
+
+1592379485 c:\users\mariajose.dominguez\documents\codeblocks\proyecto0\include\fraccion.h
+	<iostream>
+	<conio.h>
+	<cmath>
+
+1632913523 
+
+1592379485 source:c:\users\mariajose.dominguez\documents\codeblocks\proyecto0\src\fraccion.cpp
+	"Fraccion.h"
+
+1592379485 source:c:\users\mariajose.dominguez\documents\codeblocks\proyecto ej fracciones\proyecto0\main.cpp
+	<iostream>
+	<conio.h>
+	<string.h>
+	"Fraccion.h"
+
+1632913523 c:\users\mariajose.dominguez\documents\codeblocks\proyecto ej fracciones\proyecto0\include\fraccion.h
+	<iostream>
+	<conio.h>
+	<cmath>
+
+1632913523 source:c:\users\mariajose.dominguez\documents\codeblocks\proyecto ej fracciones\proyecto0\src\fraccion.cpp
+	"Fraccion.h"
+
+1632913523 source:/home/rufo/Documentos/codeBlock/fracciones/src/Fraccion.cpp
+	"Fraccion.h"
+
+1632913523 /home/rufo/Documentos/codeBlock/fracciones/include/Fraccion.h
+	<iostream>
+	<conio.h>
+	<cmath>
+

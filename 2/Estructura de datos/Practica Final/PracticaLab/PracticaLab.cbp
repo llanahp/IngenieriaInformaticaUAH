@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PracticaLab" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="PracticaLab/" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PracticaLab" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PracticaLab" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../Principal.cpp" />
+		<Unit filename="ArbolBinario.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ArbolBinario.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Cliente.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Cliente.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Cola.cpp" />
+		<Unit filename="Cola.h" />
+		<Unit filename="Entrada.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Entrada.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Gestor.cpp" />
+		<Unit filename="Gestor.h" />
+		<Unit filename="Lista.cpp" />
+		<Unit filename="Lista.h" />
+		<Unit filename="ListaEntrada.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ListaEntrada.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="NodoArbol.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="NodoArbol.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="NodoCola.cpp" />
+		<Unit filename="NodoCola.h" />
+		<Unit filename="NodoLista.cpp" />
+		<Unit filename="NodoLista.h" />
+		<Unit filename="NodoListaEntrada.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="NodoListaEntrada.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="NodoPila.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="NodoPila.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Pila.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Pila.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

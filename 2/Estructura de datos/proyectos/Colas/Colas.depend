@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1634940318 source:/home/rufo/Documentos/codeBlock/Colas/main.cpp
+	<iostream>
+	"Cola.h"
+
+1634627863 source:/home/rufo/Documentos/codeBlock/Colas/src/nodoCola.cpp
+	"nodoCola.h"
+	<iostream>
+
+1634627858 /home/rufo/Documentos/codeBlock/Colas/include/nodoCola.h
+	<iostream>
+
+1634940193 /home/rufo/Documentos/codeBlock/Colas/include/Cola.h
+	"nodoCola.h"
+	<iostream>
+
+1634940289 source:/home/rufo/Documentos/codeBlock/Colas/src/Cola.cpp
+	"Cola.h"
+	<iostream>
+	"nodoCola.h"
+

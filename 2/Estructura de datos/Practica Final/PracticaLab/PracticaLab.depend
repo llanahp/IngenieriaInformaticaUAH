@@ -1,0 +1,646 @@
+# depslib dependency file v1.0
+1635192584 source:d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\main.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+	"Cliente.h"
+	"NodoPila.h"
+	"Pila.h"
+	"Pila.cpp"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\entrada.h
+	<string>
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\entrada.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\cliente.h
+	<string>
+	"Entrada.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\cliente.cpp
+	<iostream>
+	<string>
+	<stdio.h>
+	"Cliente.h"
+	"Entrada.h"
+	"Entrada.cpp"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodopila.h
+	"Cliente.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\pila.h
+	"NodoPila.h"
+
+1638446802 source:d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodocola.cpp
+	<iostream>
+	"NodoCola.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodocola.h
+	<iostream>
+	"Cliente.h"
+
+1638446802 source:d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\cola.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Cola.h"
+	"NodoCola.h"
+	"Cliente.h"
+	"Cliente.cpp"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\cola.h
+	"NodoCola.h"
+	<iostream>
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\pila.cpp
+	<iostream>
+	"Pila.h"
+	"NodoPila.h"
+	"NodoPila.cpp"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodopila.cpp
+	<iostream>
+	"NodoPila.h"
+
+1636128268 source:c:\users\pablo\downloads\ventaentradas-main\practicalab\cola.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Cola.h"
+	"NodoCola.h"
+	"Cliente.h"
+	"Cliente.cpp"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\cola.h
+	"NodoCola.h"
+	<iostream>
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\nodocola.h
+	<iostream>
+	"Cliente.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\cliente.h
+	<string>
+	"Entrada.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\entrada.h
+	<string>
+
+1636128268 source:c:\users\pablo\downloads\ventaentradas-main\practicalab\nodocola.cpp
+	<iostream>
+	"NodoCola.h"
+
+1636128268 source:c:\users\pablo\downloads\ventaentradas-main\practicalab\lista.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Lista.h"
+	"Cliente.h"
+	"NodoLista.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\lista.h
+	"NodoLista.h"
+	"Cliente.h"
+	<iostream>
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\nodolista.h
+	<iostream>
+	"Cliente.h"
+
+1636128268 source:c:\users\pablo\downloads\ventaentradas-main\practicalab\nodolista.cpp
+	<iostream>
+	"NodoLista.h"
+
+1635524859 source:c:\users\pablo\downloads\ventaentradas-main\practicalab\main.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+	"Cliente.h"
+	"NodoPila.h"
+	"Pila.h"
+	"Pila.cpp"
+	"Cola.h"
+	"Lista.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\nodopila.h
+	"Cliente.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\pila.h
+	"NodoPila.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\pila.cpp
+	<iostream>
+	"Pila.h"
+	"NodoPila.h"
+	"NodoPila.cpp"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\nodopila.cpp
+	<iostream>
+	"NodoPila.h"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\cliente.cpp
+	<iostream>
+	<string>
+	<stdio.h>
+	"Cliente.h"
+	"Entrada.h"
+	"Entrada.cpp"
+
+1636128268 c:\users\pablo\downloads\ventaentradas-main\practicalab\entrada.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+
+1635525253 source:c:\users\pablo\downloads\ventaentradas-main\practicalab\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	"Entrada.h"
+	"Cliente.h"
+	"Pila.h"
+	"Cola.h"
+	"Lista.h"
+
+1635839136 source:f:\pl\código\practicalab\cola.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Cola.h"
+	"NodoCola.h"
+	"Cliente.h"
+	"Cliente.cpp"
+
+1635839006 f:\pl\código\practicalab\cola.h
+	"NodoCola.h"
+	<iostream>
+
+1635839022 f:\pl\código\practicalab\nodocola.h
+	<iostream>
+	"Cliente.h"
+
+1635838798 f:\pl\código\practicalab\cliente.h
+	<string>
+	"Entrada.h"
+
+1635843584 f:\pl\código\practicalab\entrada.h
+	<string>
+
+1635838970 f:\pl\código\practicalab\cliente.cpp
+	<iostream>
+	<string>
+	<stdio.h>
+	"Cliente.h"
+	"Entrada.h"
+	"Entrada.cpp"
+
+1635843714 f:\pl\código\practicalab\entrada.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+
+1635839698 source:f:\pl\código\practicalab\lista.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Lista.h"
+	"Cliente.h"
+	"NodoLista.h"
+
+1635839340 f:\pl\código\practicalab\lista.h
+	"NodoLista.h"
+	"Cliente.h"
+	<iostream>
+
+1635839356 f:\pl\código\practicalab\nodolista.h
+	<iostream>
+	"Cliente.h"
+
+1635839136 source:f:\pl\código\practicalab\nodocola.cpp
+	<iostream>
+	"NodoCola.h"
+
+1635839710 source:f:\pl\código\practicalab\nodolista.cpp
+	<iostream>
+	"NodoLista.h"
+
+1635839800 source:f:\pl\código\practicalab\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	"Entrada.h"
+	"Cliente.h"
+	"Pila.h"
+	"Pila.cpp"
+	"Cola.h"
+	"Lista.h"
+
+1635787832 f:\pl\código\practicalab\pila.h
+	"NodoPila.h"
+
+1635839314 f:\pl\código\practicalab\nodopila.h
+	"Cliente.h"
+
+1635839314 f:\pl\código\practicalab\pila.cpp
+	<iostream>
+	"Pila.h"
+	"NodoPila.h"
+	"NodoPila.cpp"
+
+1635839800 f:\pl\código\practicalab\nodopila.cpp
+	<iostream>
+	"NodoPila.h"
+
+1636451494 source:c:\users\pablo\downloads\ventaentradas-main\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	"PracticaLab/Entrada.h"
+	"PracticaLab/Cliente.h"
+	"PracticaLab/Pila.h"
+	"PracticaLab/Pila.cpp"
+	"PracticaLab/Cola.h"
+	"PracticaLab/Lista.h"
+
+1636451494 source:c:\users\pablo\desktop\pl\código\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	"PracticaLab/Entrada.h"
+	"PracticaLab/Cliente.h"
+	"PracticaLab/Pila.h"
+	"PracticaLab/Pila.cpp"
+	"PracticaLab/Cola.h"
+	"PracticaLab/Lista.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\entrada.h
+	<string>
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\cliente.h
+	<string>
+	"Entrada.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\pila.h
+	"NodoPila.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodopila.h
+	"Cliente.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\pila.cpp
+	<iostream>
+	"Pila.h"
+	"NodoPila.h"
+	"NodoPila.cpp"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodopila.cpp
+	<iostream>
+	"NodoPila.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\cola.h
+	"NodoCola.h"
+	<iostream>
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodocola.h
+	<iostream>
+	"Cliente.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\lista.h
+	"NodoLista.h"
+	"Cliente.h"
+	<iostream>
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodolista.h
+	<iostream>
+	"Cliente.h"
+
+1639467732 source:c:\users\pablo\desktop\pl\código\practicalab\cola.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Cola.h"
+	"NodoCola.h"
+	"Cliente.h"
+	"Cliente.cpp"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\cliente.cpp
+	<iostream>
+	<string>
+	<stdio.h>
+	"Cliente.h"
+	"Entrada.h"
+	"Entrada.cpp"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\entrada.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+
+1639467732 source:c:\users\pablo\desktop\pl\código\practicalab\nodocola.cpp
+	<iostream>
+	"NodoCola.h"
+
+1639467732 source:c:\users\pablo\desktop\pl\código\practicalab\nodolista.cpp
+	<iostream>
+	"NodoLista.h"
+
+1639467732 source:c:\users\pablo\desktop\pl\código\practicalab\lista.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Lista.h"
+	"Cliente.h"
+	"NodoLista.h"
+
+1638701769 source:c:\users\rufo\desktop\ed_ventas-main\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	<windows.h>
+	"PracticaLab/Entrada.h"
+	"PracticaLab/Cliente.h"
+	"PracticaLab/Pila.h"
+	"PracticaLab/Pila.cpp"
+	"PracticaLab/Cola.h"
+	"PracticaLab/Lista.h"
+	"PracticaLab/ArbolBinario.h"
+	"PracticaLab/ArbolBinario.cpp"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\entrada.h
+	<string>
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\cliente.h
+	<string>
+	"Entrada.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\pila.h
+	"NodoPila.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodopila.h
+	"Cliente.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\pila.cpp
+	<iostream>
+	"Pila.h"
+	"NodoPila.h"
+	"NodoPila.cpp"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodopila.cpp
+	<iostream>
+	"NodoPila.h"
+
+1639867356 c:\users\rufo\desktop\ed_ventas-main\practicalab\cola.h
+	"NodoCola.h"
+	<iostream>
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodocola.h
+	<iostream>
+	"Cliente.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\lista.h
+	"NodoLista.h"
+	"Cliente.h"
+	<iostream>
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodolista.h
+	<iostream>
+	"Cliente.h"
+
+1639867568 source:c:\users\rufo\desktop\ed_ventas-main\practicalab\cola.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Cola.h"
+	"NodoCola.h"
+	"Cliente.h"
+	"Cliente.cpp"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\cliente.cpp
+	<iostream>
+	<string>
+	<stdio.h>
+	"Cliente.h"
+	"Entrada.h"
+	"Entrada.cpp"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\entrada.cpp
+	<iostream>
+	<string>
+	"Entrada.h"
+
+1639905934 source:c:\users\rufo\desktop\ed_ventas-main\practicalab\lista.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Lista.h"
+	"Cliente.h"
+	"NodoLista.h"
+
+1639468471 source:c:\users\rufo\desktop\ed_ventas-main\practicalab\nodocola.cpp
+	<iostream>
+	"NodoCola.h"
+
+1639468471 source:c:\users\rufo\desktop\ed_ventas-main\practicalab\nodolista.cpp
+	<iostream>
+	"NodoLista.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\arbolbinario.h
+	"Lista.h"
+	"NodoArbol.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodoarbol.h
+	"Cliente.h"
+	"ListaEntrada.h"
+
+1639905934 c:\users\rufo\desktop\ed_ventas-main\practicalab\arbolbinario.cpp
+	<iostream>
+	<string>
+	"ArbolBinario.h"
+	"NodoArbol.cpp"
+	"Cliente.h"
+	"NodoArbol.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodoarbol.cpp
+	"NodoArbol.h"
+	"ListaEntrada.cpp"
+
+1638638556 source:d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	<windows.h>
+	"PracticaLab/Entrada.h"
+	"PracticaLab/Cliente.h"
+	"PracticaLab/Pila.h"
+	"PracticaLab/Pila.cpp"
+	"PracticaLab/Cola.h"
+	"PracticaLab/Lista.h"
+	"PracticaLab/ArbolBinario.h"
+	"PracticaLab/ArbolBinario.cpp"
+	"PracticaLab/ListaEntrada.h"
+	"PracticaLab/ListaEntrada.cpp"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\lista.h
+	"NodoLista.h"
+	"Cliente.h"
+	<iostream>
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodolista.h
+	<iostream>
+	"Cliente.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\arbolbinario.h
+	"Lista.h"
+	"NodoArbol.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodoarbol.h
+	"Cliente.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\arbolbinario.cpp
+	<iostream>
+	<string>
+	"ArbolBinario.h"
+	"NodoArbol.cpp"
+	"Cliente.h"
+	"NodoArbol.h"
+
+1638446802 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodoarbol.cpp
+	"NodoArbol.h"
+
+1638446802 source:d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\lista.cpp
+	<iostream>
+	<string>
+	<sstream>
+	"Lista.h"
+	"Cliente.h"
+	"NodoLista.h"
+
+1638446802 source:d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodolista.cpp
+	<iostream>
+	"NodoLista.h"
+
+1638636724 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\listaentrada.h
+	"NodoListaEntrada.h"
+
+1638625670 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodolistaentrada.h
+
+1638638884 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\listaentrada.cpp
+	"ListaEntrada.h"
+	"NodoListaEntrada.h"
+	"NodoListaEntrada.cpp"
+
+1638625804 d:\documentos\uah\curso 2021 - 2022\cuatrimestre 1\estructuras de datos\laboratorio\pl\código\practicalab\nodolistaentrada.cpp
+	<iostream>
+	"NodoListaEntrada.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\listaentrada.h
+	"NodoListaEntrada.h"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodolistaentrada.h
+
+1639682581 c:\users\rufo\desktop\ed_ventas-main\practicalab\listaentrada.cpp
+	"ListaEntrada.h"
+	"NodoListaEntrada.h"
+	"NodoListaEntrada.cpp"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\nodolistaentrada.cpp
+	<iostream>
+	"NodoListaEntrada.h"
+
+1639468471 source:c:\users\rufo\desktop\ed_ventas-main\principal.cpp
+	"PracticaLab/Gestor.h"
+	<iostream>
+	<string>
+
+1638704885 c:\users\rufo\desktop\ed_ventas-main\gestor.h
+	"PracticaLab/Pila.h"
+	"PracticaLab/Cola.h"
+	"PracticaLab/Lista.h"
+	"PracticaLab/ArbolBinario.h"
+
+1638704919 c:\users\rufo\desktop\ed_ventas-main\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	<windows.h>
+	"PracticaLab/Entrada.h"
+	"PracticaLab/Cliente.h"
+
+1639468471 source:c:\users\rufo\desktop\ed_ventas-main\practicalab\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	<windows.h>
+	"Gestor.h"
+	"Pila.h"
+	"Pila.cpp"
+	"Cola.h"
+	"Lista.h"
+	"ArbolBinario.h"
+	"ArbolBinario.cpp"
+
+1639468471 c:\users\rufo\desktop\ed_ventas-main\practicalab\gestor.h
+	"Pila.h"
+	"Cola.h"
+	"Lista.h"
+	"ArbolBinario.h"
+
+1639467732 source:c:\users\pablo\desktop\pl\código\principal.cpp
+	"PracticaLab/Gestor.h"
+	<iostream>
+	<string>
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\gestor.h
+	"Pila.h"
+	"Cola.h"
+	"Lista.h"
+	"ArbolBinario.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\arbolbinario.h
+	"Lista.h"
+	"NodoArbol.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodoarbol.h
+	"Cliente.h"
+	"ListaEntrada.h"
+
+1639467827 c:\users\pablo\desktop\pl\código\practicalab\listaentrada.h
+	"NodoListaEntrada.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodolistaentrada.h
+
+1639467732 source:c:\users\pablo\desktop\pl\código\practicalab\gestor.cpp
+	<ctime>
+	<iostream>
+	<string>
+	<windows.h>
+	"Gestor.h"
+	"Pila.h"
+	"Pila.cpp"
+	"Cola.h"
+	"Lista.h"
+	"ArbolBinario.h"
+	"ArbolBinario.cpp"
+
+1639468284 c:\users\pablo\desktop\pl\código\practicalab\arbolbinario.cpp
+	<iostream>
+	<string>
+	"ArbolBinario.h"
+	"NodoArbol.cpp"
+	"Cliente.h"
+	"NodoArbol.h"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodoarbol.cpp
+	"NodoArbol.h"
+	"ListaEntrada.cpp"
+
+1639468040 c:\users\pablo\desktop\pl\código\practicalab\listaentrada.cpp
+	"ListaEntrada.h"
+	"NodoListaEntrada.h"
+	"NodoListaEntrada.cpp"
+
+1639467732 c:\users\pablo\desktop\pl\código\practicalab\nodolistaentrada.cpp
+	<iostream>
+	"NodoListaEntrada.h"
+

@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1634140691 source:/home/rufo/Documentos/codeBlock/Clases/main.cpp
+	<iostream>
+	"Pila.h"
+
+1632815318 /home/rufo/Documentos/codeBlock/Clases/include/Cine.h
+
+1632813939 source:/home/rufo/Documentos/codeBlock/Clases/src/Persona.cpp
+	"Persona.h"
+
+1632813939 /home/rufo/Documentos/codeBlock/Clases/include/Persona.h
+
+1632816564 source:/home/rufo/Documentos/codeBlock/Clases/src/Cine.cpp
+	"Cine.h"
+	<iostream>
+
+1633415459 source:/home/rufo/Documentos/codeBlock/Clases/src/NodoPila.cpp
+	"NodoPila.h"
+
+1633415379 /home/rufo/Documentos/codeBlock/Clases/include/NodoPila.h
+	<iostream>
+
+1634139888 /home/rufo/Documentos/codeBlock/Clases/include/Pila.h
+	"NodoPila.h"
+
+1634140618 source:/home/rufo/Documentos/codeBlock/Clases/src/Pila.cpp
+	"Pila.h"
+	"NodoPila.h"
+
