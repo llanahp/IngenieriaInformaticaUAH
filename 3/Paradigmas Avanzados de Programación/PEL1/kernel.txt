@@ -1,0 +1,200 @@
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+#include <stdio.h>
+
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+constexpr float CONSTANTE_DIFUSION = 8.418e-5;
+constexpr int MATRIX_WIDTH = 16;
+
+__global__ void Funcion(float matriz_a[16][16], float matriz_b[16][16], const float nueva_medicion[16][16],
+	float temp_max[16][16], float temp_min[16][16], float densidades[16][16],
+	float conduccion_calor[16][16]) {
+
+	// Coordenadas del hilo.
+	int x = blockIdx.x * blockDim.x + threadIdx.x;
+	int y = blockIdx.y * blockDim.y + threadIdx.y;
+
+	// Tenemos dos matrices que iremos cambiando como anerior y posterior.
+	// La matriz procesada de una iteracion se convierte en la matriz
+	// 'anterior' en la siguiente iteracion.
+	auto matriz_anterior = matriz_a;
+	auto matriz_nueva = matriz_b;
+
+	if (x > 0 && x < MATRIX_WIDTH - 1 && y > 0 && y < MATRIX_WIDTH - 1) {
+		// Estabilización de la temperatura.
+		for (int i = 0; i < 10; i++) {
+			int seleccion_matriz = i % 2;
+
+			if (seleccion_matriz == 0) {
+				matriz_anterior = matriz_b;
+				matriz_nueva = matriz_a;
+			}
+
+			// Media de las temperaturas de alrededor.
+			float media = 0.0f;
+			for (int nx = -1; nx < 2; nx++)
+				for (int ny = -1; ny < 2; ny++)
+					media += matriz_anterior[x + nx][y + ny];
+			matriz_nueva[x][y] = (media + nueva_medicion[x][y]) / 10;
+
+			// Registro de máximos y mínimos.
+			if (matriz_nueva[x][y] > temp_max[x][y])
+				temp_max[x][y] = matriz_nueva[x][y];
+			if (matriz_nueva[x][y] < temp_min[x][y])
+				temp_min[x][y] = matriz_nueva[x][y];
+		}
+	}
+	else {
+		temp_max[x][y] = matriz_a[x][y];
+		temp_min[x][y] = matriz_a[x][y];
+	}
+
+	__syncthreads();
+
+
+	if (x > 0 && x < MATRIX_WIDTH && y > 0 && y < MATRIX_WIDTH) {
+		// Matriz de densidad
+		densidades[x][y] = 0.0f;
+		if (matriz_nueva[x][y] >= 80 && matriz_nueva[x][y] < 88)
+			densidades[x][y] = 0;//amarillo
+		if (matriz_nueva[x][y] >= 88 && matriz_nueva[x][y] < 91)
+			densidades[x][y] = 1;//naranja
+		if (matriz_nueva[x][y] >= 91 && matriz_nueva[x][y] < 95)
+			densidades[x][y] = 2;//
+
+		// Nos aseguramos de que la matriz nueva esté guardada en la matriz A.
+		if (matriz_a != matriz_nueva)
+			matriz_a[x][y] = matriz_nueva[x][y];
+
+		conduccion_calor[x][y] = matriz_nueva[x][y] + CONSTANTE_DIFUSION * (matriz_nueva[x - 1][y] - 2 * matriz_nueva[x][y] + matriz_nueva[x - 1][y]
+			+ matriz_nueva[x][y + 1] - 2 * matriz_nueva[x][y] + matriz_nueva[x][y - 1]);
+	}
+	else {
+		conduccion_calor[x][y] = matriz_nueva[x][y];
+		densidades[x][y] = 0.0f;
+	}
+
+	__syncthreads();
+}
+
+int main() {
+	//declaracion de matrices
+	float matrizInicial[MATRIX_WIDTH][MATRIX_WIDTH]; //matriz 0
+	float matrizMedicion[MATRIX_WIDTH][MATRIX_WIDTH]; // matirz aux1
+	float matrizResultado[MATRIX_WIDTH][MATRIX_WIDTH]; //densidad
+	float matrizMaxima[MATRIX_WIDTH][MATRIX_WIDTH]; //maxima
+	float matrizMinima[MATRIX_WIDTH][MATRIX_WIDTH]; //minima
+	float matrizDensidad[MATRIX_WIDTH][MATRIX_WIDTH]; //densidad
+
+	//Declaracion de semilla aleatoria con la hora local para el generador de numeros aleatorios
+	srand(time(NULL));
+
+	//relleno las matrices
+
+	for (int i = 0; i < MATRIX_WIDTH; i++) {
+		for (int j = 0; j < MATRIX_WIDTH; j++) {
+			matrizInicial[i][j] = rand() % 15 + 80;
+			matrizMedicion[i][j] = matrizInicial[i][j];
+		}
+	}
+
+	// generar matriz de medicion1
+
+	for (int i = 0; i < 150; i++) {
+		int x = rand() % MATRIX_WIDTH;
+		int y = rand() % MATRIX_WIDTH;
+
+		float reduccion = rand() % 4 - 2;
+		matrizMedicion[x][y] = matrizInicial[x][y] + reduccion;
+
+
+	}
+
+	// Ponesmos valores grandes para que sean mayores que los minimos.
+	for (int x = 0; x < MATRIX_WIDTH; x++)
+		for (int y = 0; y < MATRIX_WIDTH; y++)
+			matrizMinima[x][y] = 1000.f;
+
+
+	float(*matriz_a_dev)[MATRIX_WIDTH];
+	float(*matriz_b_dev)[MATRIX_WIDTH];
+	float(*matrizMedicion_dev)[MATRIX_WIDTH];
+	float(*matrizMaxima_dev)[MATRIX_WIDTH];
+	float(*matrizMinima_dev)[MATRIX_WIDTH];
+	float(*matrizDensidad_dev)[MATRIX_WIDTH];
+	float(*matrizResultado_dev)[MATRIX_WIDTH];
+
+	cudaError result = cudaSuccess;
+
+	result = cudaMalloc(&matrizResultado_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+	result = cudaMalloc(&matrizMaxima_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+	result = cudaMalloc(&matrizMinima_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+	result = cudaMalloc(&matrizDensidad_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+	result = cudaMalloc(&matrizMedicion_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+	result = cudaMalloc(&matriz_a_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+	result = cudaMalloc(&matriz_b_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float));
+
+	result = cudaMemcpy(matriz_a_dev, &matrizInicial, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+	result = cudaMemcpy(matriz_b_dev, &matrizInicial, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+	result = cudaMemcpy(matrizMedicion_dev, &matrizMedicion, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+	result = cudaMemcpy(matrizMaxima_dev, &matrizMaxima, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+	result = cudaMemcpy(matrizMinima_dev, &matrizMinima, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+	result = cudaMemcpy(matrizDensidad_dev, &matrizDensidad, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+	result = cudaMemcpy(matrizResultado_dev, &matrizResultado, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyHostToDevice);//maximo
+
+
+
+
+	dim3 dimGrid(2, 2);
+	dim3 dimBlock(8, 8);
+	//matrizInicial,matrizMedicion,matrizMedicion2,matrizResultado
+	//llamada 
+	Funcion << <dimGrid, dimBlock >> > (matriz_a_dev, matriz_b_dev, matrizMedicion_dev, matrizMaxima_dev, matrizMinima_dev, matrizDensidad_dev, matrizResultado_dev);
+
+	//retorno el resultado
+	result = cudaMemcpy(&matrizResultado, matrizResultado_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyDeviceToHost);//conduccion_calor
+	result = cudaMemcpy(&matrizMaxima, matrizMaxima_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyDeviceToHost);//maximo
+	result = cudaMemcpy(&matrizMinima, matrizMinima_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyDeviceToHost);//minimo
+	result = cudaMemcpy(&matrizDensidad, matrizDensidad_dev, MATRIX_WIDTH * MATRIX_WIDTH * sizeof(float), cudaMemcpyDeviceToHost);//densidad
+
+	printf("CONDUCCION CALOR:\n");
+	for (int i = 0; i < MATRIX_WIDTH; i++) {
+		for (int j = 0; j < MATRIX_WIDTH; j++) {
+			printf("%.5f, ", matrizResultado[i][j]);
+
+		}
+		printf("\n");
+	}
+	printf("\nMAXIMOS:\n");
+	for (int i = 0; i < MATRIX_WIDTH; i++) {
+		for (int j = 0; j < MATRIX_WIDTH; j++) {
+			printf("%.2f, ", matrizMaxima[i][j]);
+
+		}
+		printf("\n");
+	}
+	printf("\nMINIMOS:\n");
+
+	for (int i = 0; i < MATRIX_WIDTH; i++) {
+		for (int j = 0; j < MATRIX_WIDTH; j++) {
+			printf("%.2f, ", matrizMinima[i][j]);
+
+		}
+		printf("\n");
+	}
+	printf("\COLORES:\n");
+	for (int i = 0; i < MATRIX_WIDTH; i++) {
+		for (int j = 0; j < MATRIX_WIDTH; j++) {
+			printf("%.2f, ", matrizDensidad[i][j]);
+
+		}
+		printf("\n");
+	}
+	printf("\n\n");
+
+	return 0;
+}
