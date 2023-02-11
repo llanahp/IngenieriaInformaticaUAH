@@ -1,0 +1,20 @@
+function opera_polinomios(poli,numero){
+    let contador = numero;
+    let polinomio = poli;
+    while (contador > 0) {
+        polinomio = polinomio + poli;
+        contador = contador - 1;
+    };
+
+    return polinomio;
+
+};
+
+
+
+function mifun_principal(){
+     let npoli = 5;
+     let a = npoli + 'x^2+2xy+1';
+     print(a);
+
+};

@@ -1,0 +1,6 @@
+Andrés                    } PRESENTACION
+Rodri pc - operadores     } LEXICO
+Leo separadores - skipear } LEXICO
+Raúl expr			      } SINTACTICO
+Lu asignación y el resto  } SINTACTICO
+Alber prueba			 } PRUEBAS

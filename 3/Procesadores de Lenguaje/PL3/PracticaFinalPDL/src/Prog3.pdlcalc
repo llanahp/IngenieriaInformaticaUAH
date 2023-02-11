@@ -1,0 +1,165 @@
+%%% Programa 3 de validación de la práctica
+%%% 3 de intérprete de un lenguaje
+
+%%% Este programa prueba elementos más avanzados.
+
+
+function testea_funciones_integradas(){
+    print("Hola mundo");
+    print( *** y aquí
+    probamos los testea_comentarios
+    multilinea
+    *** "Adios mundo");
+};
+
+
+%%% Ningún comentario debería imprimir nada:
+function testea_comentarios(){
+    ***
+
+    print("Hola mundo");
+
+    ***
+
+    %%% print("Adios mundo");
+};
+
+function testea_tipos(){
+    print ("Inicio de testea_tipos");
+    print ("inicio asignaciones");
+    let va=1;
+    let vb=1.0;
+    let vc="Hola mundo";
+    let vd=1==2; %%% tipo de datos implícito... ¿Lo has definido?
+    let ve=1!=2;
+    let polino='x^2+2x+1';
+
+    print("Salida de datos puros");
+    print(1);
+    print(1.0);
+    print("Hola mundo");
+    print(1==2);
+    print(1!=2);
+    print('x^2+2x+1');
+
+    print("Salida de variables");
+    print(va);
+    print(vb);
+    print(vc);
+    print(vd);
+    print(ve);
+    print(polino);
+
+    print("Fin de testea_tipos");
+};
+
+
+function testea_keywords(){
+    %%% let ya probada previamente
+    let contador = 0;
+    print ("testeando while");
+	while ( contador <= 10)
+		{
+		print (
+            contador
+            );
+        contador = contador + 1;
+		};
+
+    %%% funciones ya testea_funciones_integradas
+
+    return
+    (
+        "fin de testea_keywords"
+    )
+    ;
+
+
+};
+
+
+function testea_operadores_logicos(){
+
+    print ("Hay 11 condiciones:");
+    if (1==1) { print("1- 1==1 es correcto");};
+    if (1!=2) {print("2- 1!=2 es correcto");};
+    if (!(1==2)) {print("3- !(1==2) es correcto");};
+    if (1<2) {print("4- 1<2 es correcto");};
+    if (1<=1) {print("5- 1<=1 es correcto");};
+    if (1>0) {print("6- 1>0 es correcto");};
+    if (1>=1) {print("7- 1>=1 es correcto");};
+    if (1==1 && 2==2) {print("8- 1==1 && 2==2 es correcto");};
+    if (1==1 || 2==3) {print("9- 1==1 || 2==3 es correcto");};
+    if (1==1 ## 2==3) {print("10- 1==1 ## 2==3 es correcto");};
+    if (!((1==1)##(2==2))) {print("11- !(1==1)##(2==2) es correcto");};
+
+};
+
+function testea_operadores_matematicos(){
+    print ("Hay 6 operaciones:");
+    print(1+1);
+    print(1-1);
+    print(1*1);
+    print(1/1);
+    print(10^10);
+    print(10%5);
+};
+
+
+
+function testea_evaluacion_polinomios(){
+    print ("Hay 3 polinomios:");
+    print(val('x^2+2x+1','x',1));
+    print(val('x^2+2x+1','x',2));
+    print(val('y^2+3xy+3','y',3, 'x', 2));
+};
+
+
+function llamadas_recursivas(cuantas){
+    print ("Hay ");
+    print (cuantas);
+    print ("llamadas recursivas pendientes:");
+    if (cuantas>0) {
+        let interna = cuantas + 100;
+        llamadas_recursivas(cuantas-1);
+    };
+    print ("Fin de llamada recursiva: ");
+    print (cuantas);
+};
+
+
+function opera_polinomios(poli,numero){
+    let contador = numero;
+    let polinomio = poli;
+    while (contador > 0) {
+        polinomio = polinomio + poli;
+        contador = contador - 1;
+    };
+
+    return polinomio;
+
+};
+
+
+
+function mifun_principal(repeticiones){
+
+    testea_funciones_integradas();
+    testea_comentarios();
+    testea_tipos();
+    print (testea_keywords());
+    testea_operadores_logicos();
+    testea_operadores_matematicos();
+    testea_evaluacion_polinomios();
+    llamadas_recursivas(10);
+
+    %%% El programa se ejecutará pasando como parámetro el valor 5, que deberá
+    %%% ser pasado desde línea de comandos.
+    let npoli = opera_polinomios('x^2+2xy+1',repeticiones);
+    print (npoli);
+    print (val(npoli, 'x', 1, 'y', 2));
+    print (npoli-'x^2+2xy+1');
+    print (val(npoli-'x^2+2xy+1', 'x', 2, 'y', 3));
+
+
+};
