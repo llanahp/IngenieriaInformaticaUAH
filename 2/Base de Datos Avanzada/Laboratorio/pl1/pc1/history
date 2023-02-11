@@ -1,0 +1,1618 @@
+
+# 2022-02-08 12:19:02.656063
++\l
+
+# 2022-02-08 12:24:07.200747
++\list
+
+# 2022-02-08 12:32:49.138799
++\l
+
+# 2022-02-08 12:36:59.403342
++\c lab
+
+# 2022-02-08 12:37:05.400779
++\d
+
+# 2022-02-08 15:35:52.958677
++exit
+
+# 2022-02-08 18:25:43.681938
++\l labora
+
+# 2022-02-08 18:25:50.225519
++\lsdfr
+
+# 2022-02-08 18:25:52.507442
++exit
+
+# 2022-02-09 13:02:15.811636
++\l
+
+# 2022-02-09 13:03:51.751413
++\d
+
+# 2022-02-09 13:03:57.097966
++\c lab
+
+# 2022-02-09 13:03:59.842495
++\c
+
+# 2022-02-09 13:04:01.614207
++exit
+
+# 2022-02-09 13:05:46.365390
++\c lab
+
+# 2022-02-09 13:05:48.556536
++\l
+
+# 2022-02-09 13:06:47.565674
++\c 
+
+# 2022-02-09 13:06:51.180718
++\c lab
+
+# 2022-02-09 13:07:06.165856
++\d lab
+
+# 2022-02-09 13:07:12.147319
++exut
+
+# 2022-02-09 13:07:13.568458
++exit
+
+# 2022-02-09 13:11:30.107765
++log_destination(hola)
+
+# 2022-02-09 13:11:35.168762
++exit
+
+# 2022-02-09 13:17:23.910488
++\c lab
+
+# 2022-02-09 13:17:55.999634
++\d
+
+# 2022-02-09 13:18:04.294068
++execute
+
+# 2022-02-09 13:18:43.795802
++exit
+
+# 2022-02-09 13:22:21.061727
++\c lab
+
+# 2022-02-09 13:22:25.101916
++\d
+
+# 2022-02-09 13:22:26.174098
++exit
+
+# 2022-02-09 13:22:36.333497
++asd
+
+# 2022-02-09 13:22:37.423800
++exit
+
+# 2022-02-09 13:43:16.464922
++\c lab
+
+# 2022-02-09 13:43:18.425580
++\d 
+
+# 2022-02-09 13:43:20.426337
++exit
+
+# 2022-02-09 13:45:11.784693
++|c lab
+
+# 2022-02-09 13:45:15.443033
++\c lab
+
+# 2022-02-09 13:45:17.644309
++\d
+
+# 2022-02-09 13:45:18.618276
++exit
+
+# 2022-02-09 13:46:31.492248
++|c lab
+
+# 2022-02-09 13:46:34.431058
++\c lab
+
+# 2022-02-09 13:46:36.996319
++\d
+
+# 2022-02-09 13:46:37.870612
++exit
+
+# 2022-02-09 14:49:15.544375
++\c lab
+
+# 2022-02-09 14:49:17.812839
++\d
+
+# 2022-02-09 14:49:21.985674
++exit
+
+# 2022-02-09 14:49:42.200207
++\c lab
+
+# 2022-02-09 14:49:43.964275
++\dad
+
+# 2022-02-09 14:49:45.591582
++exit
+
+# 2022-02-09 14:53:25.384366
++\c template0
+
+# 2022-02-09 14:53:28.594021
++\c template1
+
+# 2022-02-09 14:53:32.222210
++\d
+
+# 2022-02-09 14:53:37.665925
++\c lab
+
+# 2022-02-09 14:53:39.869314
++\d
+
+# 2022-02-09 14:53:41.821579
++\l
+
+# 2022-02-09 14:53:49.848578
++exit
+
+# 2022-02-09 14:54:47.917716
++\c lab
+
+# 2022-02-09 14:54:52.792684
++create user diego
+
+# 2022-02-09 14:54:54.681382
++exit
+
+# 2022-02-09 15:03:09.554515
++create database PL1
+
+# 2022-02-09 15:03:20.334117
++\c pl1
+
+# 2022-02-09 15:03:29.297599
++create table alumno
+
+# 2022-02-09 15:06:16.581439
++create table alumno (
++carnet integer,
++nombre text,
++codigo_de_carrera integer,
++edad integer,
++puntuacion integer
++);
+
+# 2022-02-09 15:06:24.443797
++\d alumno
+
+# 2022-02-09 15:06:33.554415
++exit
+
+# 2022-02-09 15:14:49.497095
++\c pl1
+
+# 2022-02-09 15:14:51.345740
++\d
+
+# 2022-02-09 15:14:54.184900
++\l
+
+# 2022-02-09 15:15:26.429726
++select * from pg_database
+
+# 2022-02-10 09:08:46.018308
++exit
+
+# 2022-02-10 09:09:16.469307
++\c pl1
+
+# 2022-02-10 09:09:18.593372
++\d
+
+# 2022-02-10 09:09:33.221316
++select * from alumno
+
+# 2022-02-10 09:09:34.979740
++exit
+
+# 2022-02-10 09:10:08.337658
++asdf
+
+# 2022-02-10 09:10:09.557082
++exit
+
+# 2022-02-15 08:25:56.648412
++select * from pg_database
+
+# 2022-02-15 08:26:13.606079
++select * from pg_toast.pg_toast_$(16386)
+
+# 2022-02-15 08:26:51.913493
++select * from pg_toast.pg_toast_$(OID)
+
+# 2022-02-15 08:27:06.639650
++select * from pg_toast
+
+# 2022-02-15 08:27:14.623198
++select * from pg_toast_*
+
+# 2022-02-15 08:27:24.751072
++select * from pg_toast.pg_toast_*
+
+# 2022-02-15 08:30:27.942608
++\c pl1
+
+# 2022-02-15 08:30:36.186350
++\d
+
+# 2022-02-15 08:30:44.656583
++drop table alumno
+
+# 2022-02-15 08:31:06.873249
++exit
+
+# 2022-02-15 08:31:34.717389
++\c lab
+
+# 2022-02-15 08:31:36.281306
++\d
+
+# 2022-02-15 08:33:08.269593
++\c lab
+
+# 2022-02-15 08:33:09.413513
++\d
+
+# 2022-02-15 08:33:17.306420
++drop database lab
+
+# 2022-02-15 08:33:28.388683
++\c pl1 
+
+# 2022-02-15 08:33:30.048951
++drop database lab
+
+# 2022-02-15 08:33:50.747371
++\c postgres
+
+# 2022-02-15 08:33:58.486793
++drop database pl1
+
+# 2022-02-15 08:34:18.763138
++create database pl1
+
+# 2022-02-15 08:34:35.982298
++exit
+
+# 2022-02-15 08:35:25.073458
++drop database pl1
+
+# 2022-02-15 08:35:26.629661
++exit
+
+# 2022-02-15 08:36:09.817750
++select * from pg_database
+
+# 2022-02-15 08:36:34.376958
++create database pl1
+
+# 2022-02-15 08:36:50.989324
++select * from pg_database
+
+# 2022-02-15 08:39:08.292005
++\c pl1
+
+# 2022-02-15 08:39:20.910331
++create table alumno (
++carnet integer,
++nombre text,
++codigo_de_carrera integer,
++edad integer,
++puntuacion integer
++);
++ 
+
+# 2022-02-15 08:40:54.695683
++\T double
+
+# 2022-02-15 08:41:20.133289
++select * from pg_class
+
+# 2022-02-15 08:41:48.051822
++\c pl1
+
+# 2022-02-15 08:41:58.878725
++select * from pg_class
+
+# 2022-02-15 08:42:30.105182
++select * from pg_class alumno
+
+# 2022-02-15 08:42:47.303735
++\c pl1
+
+# 2022-02-15 08:42:49.051398
++\d
+
+# 2022-02-15 08:43:54.326823
++select * from pg_class where relname='alumno';
+
+# 2022-02-15 08:44:21.246193
++\T double
+
+# 2022-02-15 08:44:23.885972
++select * from pg_class where relname='alumno';
+
+# 2022-02-15 08:44:51.123881
++\c pl1
+
+# 2022-02-15 08:44:52.582439
++select * from pg_class where relname='alumno';
+
+# 2022-02-15 08:58:27.661823
++oid2name -s
+
+# 2022-02-15 08:58:32.689882
++exit
+
+# 2022-02-15 09:00:33.886178
++oid2name 
+
+# 2022-02-15 09:00:43.475487
++oid2name -help
+
+# 2022-02-15 09:01:44.099415
++\c pl1
+
+# 2022-02-15 09:01:56.342796
++oid2name SELECT *
+
+# 2022-02-15 09:02:00.614853
++oid2name 
+
+# 2022-02-15 09:04:42.107393
++select oid, datname from pl1;
+
+# 2022-02-15 09:04:49.371579
++select oid, datname from pg_database;
+
+# 2022-02-15 09:05:32.744124
++select pg_relation_filepath('alumno');
+
+# 2022-02-15 09:05:36.337085
++\c pl1
+
+# 2022-02-15 09:05:37.377985
++select pg_relation_filepath('alumno');
+
+# 2022-02-15 09:08:01.937507
++exit
+
+# 2022-02-15 09:08:04.719639
++exit
+
+# 2022-02-15 09:11:02.120257
++\T double
+
+# 2022-02-15 09:11:03.424057
++select pg_relation_filepath('alumno');
+
+# 2022-02-15 09:22:52.458125
++exit
+
+# 2022-02-15 09:51:50.606573
++\c pl1
+
+# 2022-02-15 09:53:00.586069
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' delimiter ';';
+
+# 2022-02-15 09:54:20.792114
++\c pl1
+
+# 2022-02-15 09:54:37.918634
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' delimiter ';' ( FORMAT CSV );
+
+# 2022-02-15 09:55:17.542473
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' delimiter ';';
+
+# 2022-02-15 09:56:30.995269
++\c pl1
+
+# 2022-02-15 09:57:12.433130
++copy alumno to '/home/rufo/Descargar/datos_alumno.txt' with delimiter ';';
+
+# 2022-02-21 20:49:23.677938
++\c pl1
+
+# 2022-02-21 20:49:26.022159
++\d
+
+# 2022-02-21 20:50:30.829033
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' delimiter as ';' null as '';
+
+# 2022-02-21 20:52:27.535430
++\c pl1
+
+# 2022-02-21 20:52:30.408161
++\d
+
+# 2022-02-21 20:52:44.098397
++insert into
+
+# 2022-02-21 20:54:09.625684
++\c pl1
+
+# 2022-02-21 20:54:43.337242
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' using delimiter as ';' null as '';
+
+# 2022-02-21 20:55:04.942737
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' using delimiters as ';' null as '';
+
+# 2022-02-21 20:55:11.786305
++copy alumno from '/home/rufo/Descargar/datos_alumno.txt' using delimiters ';' null as '';
+
+# 2022-02-21 20:56:50.807557
++exit
+
+# 2022-02-21 20:59:01.854591
++\c pl1
+
+# 2022-02-21 20:59:10.602326
++copy alumno from '/tmp/datos_alumno.txt' using delimiters ';' null as '';
+
+# 2022-02-21 21:00:14.684955
++select * from alumno
+
+# 2022-02-21 21:00:46.298389
++copy alumno from '/tmp/datos_alumno.txt' using delimiters ';';
+
+# 2022-02-21 21:10:13.425390
++select COUNT(*) from alumno
+
+# 2022-02-21 21:11:35.598680
++delete from alumno 
+
+# 2022-02-21 21:11:53.697763
++select COUNT(*) from alumno
+
+# 2022-02-21 21:15:28.052317
++copy alumno from '/tmp/datos_alumno.txt' using delimiters ';';
+
+# 2022-02-21 21:19:51.917786
++delete from alumno 
+
+# 2022-02-21 21:20:10.424843
++insert into alu
+
+# 2022-02-21 21:21:19.366998
++insert into alumno values 13000314;alumno13000314;1;24;8916
+
+# 2022-02-21 21:22:06.375145
++insert into alumno values ('13000314','alumno13000314','1','24','8916')
+
+# 2022-02-21 21:24:07.394572
++delete from alumno 
+
+# 2022-02-21 21:24:12.802267
++copy alumno from '/tmp/datos_alumno.txt' using delimiters ';';
+
+# 2022-02-21 21:25:15.925611
++select COUNT(*) from alumno
+
+# 2022-02-22 08:09:57.871885
++\c pl1
+
+# 2022-02-22 08:10:08.915141
++select pg_relation_size('alumno');
+
+# 2022-02-22 08:11:38.781210
++select * from alumno where carnet='1'
+
+# 2022-02-22 08:11:58.054332
++select * from alumno
+
+# 2022-02-22 08:15:29.035133
++\c pl1
+
+# 2022-02-22 08:15:33.454994
++select * from alumno
+
+# 2022-02-22 08:34:51.174162
++\c pl1
+
+# 2022-02-22 08:35:33.109568
++select * from PG_BUFFERCACHE
+
+# 2022-02-22 08:36:23.986450
++exit
+
+# 2022-02-22 08:36:28.597214
++select * from PG_BUFFERCACHE
+
+# 2022-02-22 08:36:44.539878
++SELECT * FROM pg_buffercache
+
+# 2022-02-22 08:41:03.726802
++select * from pgstattuple('alumno')
+
+# 2022-02-22 08:41:13.692312
++\c pl1
+
+# 2022-02-22 08:41:20.265717
++select * from pgstattuple('alumno')
+
+# 2022-02-22 08:42:12.978561
++\c pl1
+
+# 2022-02-22 08:45:45.624548
++SELECT * FROM pgstattuple('alumno');
+
+# 2022-02-22 08:45:52.725035
++\c pl1
+
+# 2022-02-22 08:47:59.990988
++create EXTENSION pgstattuple
+
+# 2022-02-22 08:56:55.055535
++\c pl1
+
+# 2022-02-22 08:57:12.661979
++select * from alumno where carnet='24567890'
+
+# 2022-02-22 09:00:23.860612
++SELECT pg_stat_reset();
+
+# 2022-02-22 09:01:03.326727
++EXPLAIN (buffers true, analyze true, format json)
+
+# 2022-02-22 09:01:12.342073
++SELECT pg_stat_reset();
+
+# 2022-02-22 09:01:15.042489
++select * from alumno where carnet='24567890'
+
+# 2022-02-22 09:03:22.269651
++select pg_read_all_stats
+
+# 2022-02-22 09:04:05.520037
++select * from  pg_read_all_stats
+
+# 2022-02-22 09:05:16.972479
++select pg_stat_activity
+
+# 2022-02-22 09:06:18.348203
++ELECT * FROM pg_stat_activity
+
+# 2022-02-22 09:06:50.333866
++select * FROM pg_stat_activity
+
+# 2022-02-22 09:07:18.398903
++\c pl1
+
+# 2022-02-22 09:07:29.475199
++select * FROM pg_stat_activity where datname='pl1'
+
+# 2022-02-22 09:08:03.040664
++\c pl1
+
+# 2022-02-22 09:09:29.684523
++ pg_stat_reset()
+
+# 2022-02-22 09:09:32.540792
++ pg_stat_resetç
+
+# 2022-02-22 09:09:33.737553
++ pg_stat_reset
+
+# 2022-02-22 09:09:38.477533
++ select pg_stat_reset
+
+# 2022-02-22 09:10:04.070791
++ select pg_stat_reset();
+
+# 2022-02-22 09:10:14.444416
++select * from alumno where carnet='24567890'
+
+# 2022-02-22 09:10:48.341884
++select pg_stat_activity();
+
+# 2022-02-22 09:11:18.202404
++\c pl1
+
+# 2022-02-22 09:11:22.977732
++ select pg_stat_reset();
+
+# 2022-02-22 09:11:24.911723
++select * from alumno where carnet='24567890'
+
+# 2022-02-22 09:11:28.756832
++ select pg_stat_reset
+
+# 2022-02-22 09:11:55.920330
++CREATE EXTENSION pg_stat_statements;
++
+
+# 2022-02-22 09:19:25.122133
++\c 
+
+# 2022-02-22 09:19:28.240572
++\c pl1
+
+# 2022-02-22 09:20:05.792751
++ select pg_statio_all_tables();
+
+# 2022-02-22 09:20:40.048818
++\c pl1
+
+# 2022-02-22 09:20:47.288553
++select * from pg_statio_all_tables;
+
+# 2022-02-22 09:21:20.281528
++\c pl1
+
+# 2022-02-22 09:21:34.352676
++select * from pg_statio_all_tables where table='alumno';
+
+# 2022-02-22 09:23:48.305707
++select * from pg_statio_all_tables where relid='16393';
+
+# 2022-02-22 09:24:26.831401
++\c pl1
+
+# 2022-02-22 09:24:39.610387
++
++    SELECT oid, name FROM alumno;
+
+# 2022-02-22 09:24:48.429303
++
++    SELECT oid FROM alumno;
+
+# 2022-02-22 09:25:36.996145
++SELECT * FROM pg_attribute where attrelid='alumno'
+
+# 2022-02-22 09:26:09.989903
++select * from pg_class
+
+# 2022-02-22 09:26:23.257745
++\c pl1
+
+# 2022-02-22 09:26:32.803117
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-02-22 09:27:51.404930
++\c pl1
+
+# 2022-02-22 09:28:00.334415
++select pg_stat_reset();
+
+# 2022-02-22 09:28:02.982625
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-02-22 09:28:19.795633
++\c pl1
+
+# 2022-02-22 09:28:28.755205
++select * from alumno where carnet='24567890'
+
+# 2022-02-22 09:28:32.422975
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-02-22 09:36:00.024207
++\c pl1
+
+# 2022-02-22 09:36:38.380893
++select pg_relation_size(C.oid) / 8192 AS "blocks" from pg_class where relname='alumno';
+
+# 2022-02-22 09:36:48.829498
++select pg_relation_size(oid) / 8192 AS "blocks" from pg_class where relname='alumno';
+
+# 2022-02-22 09:41:56.107340
++select * from pg_class where relname='alumno';
+
+# 2022-02-22 09:47:49.777030
++\c pl1
+
+# 2022-02-22 09:47:52.674104
++select pg_stat_reset();
+
+# 2022-02-22 09:48:15.836551
++select * from alumno where puntuacion='525'
+
+# 2022-02-22 09:51:26.223151
++\c pl1
+
+# 2022-02-22 09:51:28.049617
++select pg_stat_reset();
+
+# 2022-02-22 09:51:35.002028
++select coun* from alumno where puntuacion='525'
+
+# 2022-02-22 09:51:37.706354
++select pg_stat_reset();
+
+# 2022-02-22 09:51:43.950005
++select count(*) from alumno where puntuacion='525'
+
+# 2022-02-22 09:51:56.447564
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-02-22 09:54:56.679514
++\c pl1
+
+# 2022-02-22 09:54:58.725459
++select pg_stat_reset();
+
+# 2022-02-22 09:55:07.021097
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-02-22 09:55:22.742438
++\c pl1
+
+# 2022-02-22 09:55:35.774521
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-02-22 09:55:49.287466
++\c
+
+# 2022-02-22 09:55:51.882080
++\c pl1
+
+# 2022-02-22 09:56:04.769972
++select * from alumno where carnet='24567890'
+
+# 2022-02-22 09:56:09.697108
++select * from pg_statio_all_tables where relid='16394';
+
+# 2022-03-01 08:12:34.739121
++\c pl1
+
+# 2022-03-01 08:34:27.943129
++select pg_
+
+# 2022-03-01 08:34:34.808217
++select pg_stat_reset();
+
+# 2022-03-01 08:35:26.384997
++delete top (2000000) from alumno;
+
+# 2022-03-01 08:39:43.159750
++create table alumno2 (
++	carnet integer,
++	nombre text,
++	codigo_de_carrera integer,
++	edad integer,
++	puntuacion integer
++);
+
+# 2022-03-01 08:40:01.285200
++drop table alumno2
+
+# 2022-03-01 08:42:16.755037
++create table alumno2 (
++	carnet integer,
++	nombre text,
++	codigo_de_carrera integer,
++	edad integer,
++	puntuacion integer
++);
+
+# 2022-03-01 08:44:13.050509
++select * from alumno2
+
+# 2022-03-01 08:44:57.772085
++insert into alumno2 select * from alumno order by puntuacion;
+
+# 2022-03-01 08:48:11.284553
++select pg_stat_reset();
+
+# 2022-03-01 08:48:42.975746
++select * from pg_statio_all_tables where relid>'16394';
+
+# 2022-03-01 08:49:18.929215
++\c pl1
+
+# 2022-03-01 08:49:26.965260
++select pg_stat_reset();
+
+# 2022-03-01 08:49:46.964964
++select * from alumno2 where carnet='24567890';
+
+# 2022-03-01 08:50:13.672548
++select * from pg_statio_all_tables where relid='16404';)
+
+# 2022-03-01 08:53:25.182378
++\c pl1
+
+# 2022-03-01 08:54:12.827374
++DELETE FROM alumnos WHERE carnet IN (
++SELECT carnet FROM alumnos ORDER BY random() LIMIT 2000000
++)
+
+# 2022-03-01 08:54:48.922066
++DELETE FROM alumno WHERE carnet IN (
++SELECT carnet FROM alumno ORDER BY random() LIMIT 2000000
++)
+
+# 2022-03-01 09:07:45.156722
++vacuum full
+
+# 2022-03-01 09:08:05.775602
++;
+
+# 2022-03-01 09:08:33.218532
++select * from alumno
+
+# 2022-03-01 09:09:53.960590
++\c pl1
+
+# 2022-03-01 09:09:55.739537
++vacuum full
+
+# 2022-03-01 09:12:56.325727
++select * from pg_statio_all_tables where relid>='16404';)
+
+# 2022-03-01 09:13:15.519347
++select * from pg_statio_all_tables where relname='alumno';)
+
+# 2022-03-01 09:13:39.119142
++select count(*) from alumno
+
+# 2022-03-01 09:13:45.675370
++\c pl1
+
+# 2022-03-01 09:13:47.350186
++select count(*) from alumno
+
+# 2022-03-01 09:13:54.737339
++\d
+
+# 2022-03-01 09:14:19.643065
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-01 09:42:52.680286
++\c pl1
+
+# 2022-03-01 09:43:03.975117
++create table alumno3(
++	carnet integer,	
++	nombre text,
++	codigo_de_carrera integer,
++	edad integer,
++	puntuacion integer) 
++	PARTITION BY HASH (carnet);
+
+# 2022-03-01 09:44:36.169410
++
++
++
++do
++$$
++declare
++    f record;
++begin
++    for f in 0..29 loop
++    raise notice '% - % ', f.employee_id, f.full_name;
++	CREATE TABLE cust_part'f' PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 'f') ,f,f;
++    end loop;
++end;
++$$;
+
+# 2022-03-01 09:45:00.126775
++
++
++
++do
++$$
++declare
++    f record;
++begin
++    for f in 0..29 loop
++	CREATE TABLE cust_part'%' PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder '%') ,f,f;
++    end loop;
++end;
++$$;
+
+# 2022-03-01 09:45:16.937319
++
++
++
++do
++$$
++declare
++    f record;
++begin
++    for f in 0..29 loop
++	(CREATE TABLE cust_part'%' PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder '%')) ,f,f;
++    end loop;
++end;
++$$;
+
+# 2022-03-01 09:48:10.109647
++CREATE TABLE alumno3_0 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 0);
++CREATE TABLE alumno3_1 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 1);
++CREATE TABLE alumno3_2 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 2);
++CREATE TABLE alumno3_3 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 3);
++CREATE TABLE alumno3_4 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 4);
++CREATE TABLE alumno3_5 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 5);
++CREATE TABLE alumno3_6 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 6);
++CREATE TABLE alumno3_7 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 7);
++CREATE TABLE alumno3_8 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 8);
++CREATE TABLE alumno3_9 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 9);
++CREATE TABLE alumno3_10 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 10);
++CREATE TABLE alumno3_11 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 11);
++CREATE TABLE alumno3_12 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 12);
++CREATE TABLE alumno3_13 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 13);
++CREATE TABLE alumno3_14 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 14);
++CREATE TABLE alumno3_15 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 15);
++CREATE TABLE alumno3_16 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 16);
++CREATE TABLE alumno3_17 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 17);
++CREATE TABLE alumno3_18 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 18);
++CREATE TABLE alumno3_19 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 19);
++CREATE TABLE alumno3_20 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 20);
++CREATE TABLE alumno3_21 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 21);
++CREATE TABLE alumno3_22 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 22);
++CREATE TABLE alumno3_23 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 23);
++CREATE TABLE alumno3_24 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 24);
++CREATE TABLE alumno3_25 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 25);
++CREATE TABLE alumno3_26 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 26);
++CREATE TABLE alumno3_27 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 27);
++CREATE TABLE alumno3_28 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 28);
++CREATE TABLE alumno3_29 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 29);
+
+# 2022-03-01 09:51:46.763874
++exit
+
+# 2022-03-01 17:03:07.250302
++\c pl1
+
+# 2022-03-01 17:03:30.396318
++select * from pg_statio_all_tables where relid>'16404';
+
+# 2022-03-01 17:03:42.758743
++\c pl1
+
+# 2022-03-01 17:04:53.384666
++select * from pg_statio_all_tables where relname='alum%';
+
+# 2022-03-01 17:05:06.270053
++\c pl1
+
+# 2022-03-01 17:05:13.744392
++select * from pg_statio_all_tables where relname='alumno_%%';
+
+# 2022-03-01 17:05:49.691165
++\c pl1
+
+# 2022-03-01 17:05:55.034463
++select * from pg_statio_all_tables where relname like 'alumno_%%';
+
+# 2022-03-01 17:11:04.697289
++\c pl1
+
+# 2022-03-01 17:11:06.458580
++copy alumno3 from '/tmp/datos_alumno.txt' using delimiters ';';
+
+# 2022-03-01 17:14:25.765905
++\c pl1
+
+# 2022-03-01 17:17:24.202263
++select * from pg_statio_all_tables where relname like 'alumno_%
++ %';
+
+# 2022-03-01 17:17:44.985680
++create table borrarTablaTemporal (
++	carnet integer,
++	nombre text,
++	codigo_de_carrera integer,
++	edad integer,
++	puntuacion integer
++);
+
+# 2022-03-01 17:17:58.396534
++select * from pg_statio_all_tables where relname like 'tempo';
+
+# 2022-03-01 17:18:17.089234
++\c pl1
+
+# 2022-03-01 17:18:20.495657
++select * from pg_statio_all_tables where relname like 'borrarTablaTemporal';
+
+# 2022-03-01 17:22:07.190903
++\c pl1
+
+# 2022-03-01 17:22:14.521474
++drop table borrartablatemporal
+
+# 2022-03-01 17:22:17.181090
++exit
+
+# 2022-03-01 17:22:27.348004
++\c pl1
+
+# 2022-03-01 17:24:01.858265
++select * from pg_statio_all_tables where relname like 'alumno3_%%';
+
+# 2022-03-01 17:26:03.385847
++\c pl1
+
+# 2022-03-01 17:26:11.865276
++select count(*) from alumno2
+
+# 2022-03-01 17:26:16.288075
++select count(*) from alumno
+
+# 2022-03-01 17:46:38.670940
++select pg_stat_reset();
+
+# 2022-03-01 17:47:37.427126
++select * from alumno3 where carnet ='24567890';
+
+# 2022-03-01 17:47:47.603909
++select * from alumno3;
+
+# 2022-03-01 17:48:08.817503
++select * from alumno3_0
+
+# 2022-03-01 17:48:15.636674
++select * from alumno3_10
+
+# 2022-03-01 17:48:41.654727
++exit
+
+# 2022-03-01 17:48:46.934516
++\c pl1
+
+# 2022-03-01 17:48:51.289771
++select * from alumno3
+
+# 2022-03-01 17:48:53.063233
++select * from alumno2
+
+# 2022-03-01 17:49:11.040136
++\c pl1
+
+# 2022-03-01 17:49:33.878171
++select * from pg_statio_all_tables where relname like 'alumno3_%%';
+
+# 2022-03-01 17:50:12.764593
++\c pl1
+
+# 2022-03-01 17:50:16.394361
++copy alumno3 from '/tmp/datos_alumno.txt' using delimiters ';';
+
+# 2022-03-01 17:50:35.279994
++\c pl1
+
+# 2022-03-01 17:50:44.961993
++select * from alumno3 where carnet ='24567890';
+
+# 2022-03-01 17:50:52.267365
++select * from alumno3;
+
+# 2022-03-01 17:50:59.153345
++select * from pg_statio_all_tables where relname like 'alumno3_%%';
+
+# 2022-03-01 17:55:28.271416
++\c pl1
+
+# 2022-03-01 17:55:29.762142
++SET constraint_exclusion = on;
+
+# 2022-03-01 17:55:38.964091
++select * from alumno3 where carnet ='24567890';
+
+# 2022-03-01 17:55:45.108748
++select * from pg_statio_all_tables where relname like 'alumno3_%%';
+
+# 2022-03-01 17:56:53.091075
++\c pl1
+
+# 2022-03-01 17:56:55.648285
++\d
+
+# 2022-03-01 17:57:45.334534
++\c pl1
+
+# 2022-03-01 17:57:47.384043
++select distinct inhparent::regclass from pg_inherits;
+
+# 2022-03-01 17:58:06.742371
++select distinct inhparent::regclass from pg_inherits where carnet>'2';
+
+# 2022-03-01 17:58:43.210950
++select oid::regclass::text relation
++from pg_class where relkind = 'r'
++except
++select distinct inhparent::regclass::text
++from pg_inherits
++except
++select distinct inhrelid::regclass::text
++from pg_inherits
++;
+
+# 2022-03-01 17:59:43.074511
++\c pl1
+
+# 2022-03-01 18:01:33.173818
++CREATE VIEW alumno3_view AS 
++ SELECT *
++    FROM alumno3;
++CREATE VIEW
+
+# 2022-03-01 18:02:54.312344
++select * alumno3
+
+# 2022-03-01 18:03:20.719100
++SELECT * sales;
+
+# 2022-03-01 18:05:41.366394
++select * from alumno3_10
+
+# 2022-03-01 18:05:50.721859
++select * from pg_statio_all_tables where relname like 'alumno3_%%';
+
+# 2022-03-01 18:06:18.264528
++\c pl1
+
+# 2022-03-01 18:06:21.137023
++commit;
+
+# 2022-03-01 18:06:38.547844
++select * from alumno3_10
+
+# 2022-03-01 18:06:41.910095
++commit;
+
+# 2022-03-01 18:06:43.850810
++select * from pg_statio_all_tables where relname like 'alumno3_%%';
+
+# 2022-03-01 18:07:00.286158
++\c pl1
+
+# 2022-03-01 18:07:05.219697
++select * from pg_statio_all_tables where relname like 'alumno3%%%';
+
+# 2022-03-01 18:07:35.597434
++\c pl1
+
+# 2022-03-01 18:08:01.026570
++select * from pg_class where relname ='alumno3_10';
+
+# 2022-03-01 18:10:42.298372
++\c pl1
+
+# 2022-03-01 18:10:43.291488
++SET constraint_exclusion = on;
+
+# 2022-03-01 18:10:55.574767
++SELECT count(*) FROM measurement;
+
+# 2022-03-01 18:11:30.163544
++SELECT count(*) FROM alumno3;
+
+# 2022-03-01 18:11:36.765510
++SELECT count(*) FROM alumno3_10;
+
+# 2022-03-01 18:11:52.738654
++analyze alumno3;
+
+# 2022-03-01 18:11:58.126557
++SELECT count(*) FROM alumno3;
+
+# 2022-03-01 18:12:20.720803
++SET constraint_exclusion = off;
+
+# 2022-03-01 18:12:22.301326
++SELECT count(*) FROM alumno3;
+
+# 2022-03-01 18:13:34.668748
++explain analyze select * from alumno3
+
+# 2022-03-01 18:29:54.481812
++\c pl1
+
+# 2022-03-01 18:30:14.280044
++select pg_relation_size('alumno');
+
+# 2022-03-01 18:31:56.179822
++select * from pg_class where relname ='alumno';
+
+# 2022-03-01 18:36:46.168517
++\c pl1
+
+# 2022-03-01 18:36:52.298452
++drop table alumno;
+
+# 2022-03-01 18:36:55.212314
++drop table alumno2;
+
+# 2022-03-01 18:36:58.989510
++clear
+
+# 2022-03-01 18:37:12.610754
++create table alumno (
++	carnet integer primary key,
++	nombre text,
++	codigo_de_carrera integer,
++	edad integer,
++	puntuacion integer
++);
+
+# 2022-03-01 18:37:54.123301
++select * from pg_class where relname ='alumno';
+
+# 2022-03-01 18:41:40.660981
++\c pl1
+
+# 2022-03-01 18:41:48.203490
++drop table alumno;
+
+# 2022-03-01 18:42:17.790713
++create table alumno (
++	carnet integer primary key,
++	nombre text,
++	codigo_de_carrera integer,
++	edad integer,
++	puntuacion integer
++);
++
+
+# 2022-03-01 18:42:24.629185
++commit
+
+# 2022-03-01 18:42:27.253889
++exit
+
+# 2022-03-01 18:45:35.637529
++\c pl1
+
+# 2022-03-01 18:45:37.041036
++select * from pg_class where relname ='alumno';
+
+# 2022-03-01 18:48:58.303858
++\c pl1
+
+# 2022-03-01 18:48:59.291150
++copy alumno from '/tmp/datos_alumno.txt' using delimiters ';'; 
+
+# 2022-03-01 18:53:28.539598
++select count(*) from alumno
+
+# 2022-03-01 18:53:57.499940
++copy alumno from '/tmp/datos_alumno.txt' using delimiters ';'; 
+
+# 2022-03-01 18:57:07.530073
++exit
+
+# 2022-03-02 12:15:40.681300
++\c pl1
+
+# 2022-03-02 12:15:42.067852
++create index indiceArbolCodigo on alumno(codigo);
+
+# 2022-03-02 12:15:57.844036
++create index indiceArbolCodigo on alumno(carnet);
+
+# 2022-03-02 12:20:28.025783
++SELECT
++    tablename,
++    indexname,
++    indexdef
++FROM
++    pg_indexes
++WHERE
++    schemaname = 'public'
++ORDER BY
++    tablename,
++    indexname;
+
+# 2022-03-02 12:20:40.942098
++SELECT
++    *
++FROM
++    pg_indexes
++WHERE
++    schemaname = 'public'
++ORDER BY
++    tablename,
++    indexname;
+
+# 2022-03-02 12:21:27.730110
++select * from pg_class where indexname='indicearbolcodigo';
+
+# 2022-03-02 12:21:51.844455
++drop index indicearbolcodigo
+
+# 2022-03-02 12:22:28.324355
++create index indiceArbolCodigo on alumno(carnet);
+
+# 2022-03-02 12:25:55.635429
++select * from pg_relpages('"indiceArbolCodigo"'::regclass);
+
+# 2022-03-02 12:26:02.429933
++select * from pg_relpages('indiceArbolCodigo'::regclass);
+
+# 2022-03-02 12:26:43.442210
++\c pl1
+
+# 2022-03-02 12:26:53.224936
++select * from pg_relpages;
+
+# 2022-03-02 12:31:37.860306
++select * from pgstatindex('indicearbolcodigo');
+
+# 2022-03-02 12:34:27.849123
++\c pl1
+
+# 2022-03-02 12:36:19.483353
++create extension pgstattuple
+
+# 2022-03-02 12:42:23.534650
++select * from alumno3
+
+# 2022-03-02 12:42:28.065746
++select * from alumno3_10
+
+# 2022-03-02 12:51:42.435070
++select * from pg_stattuple;
+
+# 2022-03-02 12:53:20.929900
++SELECT pg_relation_filenode('alumno'),pg_relation_filepath('alumno');
+
+# 2022-03-02 12:53:47.786197
++SELECT * from pgstattuple('alumno');
+
+# 2022-03-02 12:54:01.442635
++SELECT pgstattuple('alumno');
+
+# 2022-03-02 12:55:08.262747
++create extension "pgstattuple"
+
+# 2022-03-02 12:56:33.900097
++grant all on pl1 to localhost;
+
+# 2022-03-02 12:56:51.852550
++grant all on alumno to localhost;
+
+# 2022-03-02 12:57:04.765608
++grant all on alumno to postgres;
+
+# 2022-03-02 12:57:07.733302
++grant all on alumno3 to postgres;
+
+# 2022-03-02 12:57:14.677366
++grant all on all to postgres;
+
+# 2022-03-02 12:57:20.099530
++grant all  to postgres;
+
+# 2022-03-02 12:57:29.926158
++grant all on all tables to postgres;
+
+# 2022-03-02 12:57:56.773173
++create extension "pgstattuple";
+
+# 2022-03-02 13:00:26.364902
++exit
+
+# 2022-03-02 13:02:03.812964
++\c pl1
+
+# 2022-03-02 13:11:48.377642
++exit
+
+# 2022-03-02 13:35:39.154199
++\c pl1
+
+# 2022-03-02 13:37:10.966669
++create extension "pgstattuple";
+
+# 2022-03-02 13:37:37.480698
++select * from pgstattuple
+
+# 2022-03-02 13:37:45.522638
++select * from  pg_extension
+
+# 2022-03-02 13:38:26.615559
++select * from pg_available_extensions;
+
+# 2022-03-02 13:41:05.468193
++exit
+
+# 2022-03-02 13:48:00.627467
++\c pl1
+
+# 2022-03-02 13:48:34.176208
++create extension "pgstattuple";
+
+# 2022-03-02 13:51:27.031940
++exit
+
+# 2022-03-02 13:55:16.257209
++create extension "pgstattuple";
+
+# 2022-03-02 14:16:02.458410
++exit
+
+# 2022-03-02 14:22:08.183863
++\c pl1
+
+# 2022-03-02 14:22:12.609454
++create extension "pgstattuple";
+
+# 2022-03-02 14:24:48.079620
++\c pl1
+
+# 2022-03-02 14:24:49.043237
++cre
+
+# 2022-03-02 14:24:51.324519
++create extension "pgstattuple";
+
+# 2022-03-02 14:38:41.181082
++select * from pg_class;
+
+# 2022-03-02 14:38:54.324192
++\c pl1
+
+# 2022-03-02 14:39:01.810004
++select * from pg_class where indexname='indicearbolcodigo';
+
+# 2022-03-02 14:39:28.368476
++select * from pg_class where relname='indicearbolcodigo';
+
+# 2022-03-02 14:43:19.296063
++\c pl1
+
+# 2022-03-02 14:43:25.070501
++pg_database.datname,
++pg_size_pretty(pg_database_size(pg_database.datname)) AS size
++FROM pg_database;
+
+# 2022-03-02 14:43:42.660784
++create extension "pgdatabase";
+
+# 2022-03-02 14:44:24.092264
++select relname AS objectname, relkind AS objecttype,
++reltuples AS «#entries», pg_size_pretty(relpages::bigint*8*1024) AS size from pg_class where relname='indicearbolcodigo';
+
+# 2022-03-02 14:45:00.062165
++ SELECT datid,datname from pg_stat_database;
+
+# 2022-03-02 14:46:54.857962
++SELECT * FROM pg_catalog.pg_tables;
+
+# 2022-03-02 14:48:53.624805
++\c testing_internals 
+
+# 2022-03-02 14:49:04.429723
++\c testing_internals
+
+# 2022-03-02 14:51:49.770679
++\c pl1
+
+# 2022-03-02 14:51:54.590557
++create extension pgdatabase;
+
+# 2022-03-02 14:59:11.044665
++\c pl1
+
+# 2022-03-02 14:59:12.883680
++create extension pgdatabase;
+
+# 2022-03-02 14:59:58.263342
++exit
+
+# 2022-03-03 09:04:44.856571
++\c pl1
+
+# 2022-03-03 09:04:53.201249
++select * from pgstattuple;
+
+# 2022-03-03 09:05:06.771378
++create extension pgstattuple;
+
+# 2022-03-03 19:03:43.613694
++\c pl1
+
+# 2022-03-03 19:04:26.201082
++create index indicearbolcarnet on alumno(puntuacion);
+
+# 2022-03-03 19:20:20.146817
++\c pl1
+
+# 2022-03-03 19:20:51.315448
++create index indicehash on alumno using hash(carnet);
+
+# 2022-03-03 19:24:28.377287
++select * from pg_statio_all_index where relname='indicehash';
+
+# 2022-03-03 19:24:51.392305
++select * from pg_statio_all_tables where relname='indicehash';
+
+# 2022-03-03 19:25:11.778757
++\c pl1
+
+# 2022-03-03 19:26:19.556705
++exit
+
+# 2022-03-03 19:30:38.882648
++\c pl1
+
+# 2022-03-03 19:31:23.391735
++create index indicehashcarmet on alumno using hash(carnet);
+
+# 2022-03-04 13:30:45.845018
++exit
+
+# 2022-03-06 12:37:56.256761
++\c pl1
+
+# 2022-03-06 12:38:26.868077
++select oid from pg_class;
+
+# 2022-03-06 12:38:33.687400
++\c pl1
+
+# 2022-03-06 12:38:44.531517
++select oid from pg_class where relname='indicearbolpuntuacion';
+
+# 2022-03-06 12:38:57.130722
++create index indicearbolcarnet on alumno(puntuacion);
+
+# 2022-03-06 12:39:14.109618
++select oid from pg_class where relname='indicearbolpuntuacion';
+
+# 2022-03-06 12:39:39.126854
++create index indicearbolpuntuacion on alumno(puntuacion);
++
+
+# 2022-03-06 12:39:51.750046
++create index indicearbolpuntuacion on alumno(puntuacion);
+
+# 2022-03-06 12:40:04.063472
++select oid from pg_class where relname='indicearbolpuntuacion';
+
+# 2022-03-07 12:32:21.776776
++exi
+
+# 2022-03-07 12:32:22.896133
++exit
+
+# 2022-03-07 12:52:13.123452
++\c pl1
+
+# 2022-03-07 12:52:27.914175
++create index indicehashcarnet on alumno using hash(carnet);
+
+# 2022-03-08 08:13:27.895940
++\c pl1
+
+# 2022-03-08 08:13:43.269337
++\d
+
+# 2022-03-08 08:13:57.896619
++select * from alumno where carnet='24567890';
+
+# 2022-03-08 08:20:35.669142
++exit
+
+# 2022-03-08 08:25:23.463587
++\c pl1
+
+# 2022-03-08 08:25:25.330830
++select 
+
+# 2022-03-08 08:25:29.329419
++select * from alumno where carnet='24567890';

@@ -1,0 +1,2789 @@
+
+# 2022-03-08 09:40:09.867403
++exit
+
+# 2022-03-08 09:50:54.295886
++select pg_reload_conf();
+
+# 2022-03-08 09:50:57.734761
++exit
+
+# 2022-03-08 09:51:54.639702
++\d
+
+# 2022-03-08 09:51:56.125444
++exit
+
+# 2022-03-08 09:53:20.560009
++hola;
+
+# 2022-03-08 09:53:22.060053
++exit
+
+# 2022-03-08 09:54:10.387934
++create table paco(texto text);
+
+# 2022-03-08 09:54:12.341489
++exit
+
+# 2022-03-09 09:22:26.378070
++\c pl1;
+
+# 2022-03-09 09:22:29.097018
++\d
+
+# 2022-03-09 09:22:30.080216
++asdf
+
+# 2022-03-09 09:22:33.221366
++exit
+
+# 2022-03-09 09:23:50.177201
++hola paco que tal;
+
+# 2022-03-09 09:23:51.739102
++exit
+
+# 2022-03-09 09:47:21.483838
++\c pl1;
+
+# 2022-03-09 09:47:38.967858
++select * from alumno where carnet ='paoc';
+
+# 2022-03-09 09:47:45.140970
++select * from alumno where carnet ='22';
+
+# 2022-03-09 09:47:47.139964
++exit
+
+# 2022-03-09 11:38:44.097334
++\c pl1;
+
+# 2022-03-09 11:38:45.286628
++\d
+
+# 2022-03-09 11:38:52.253651
++drop table alumno;
+
+# 2022-03-09 11:38:59.051154
++drop table alumno3;
+
+# 2022-03-09 11:39:01.769772
++\d
+
+# 2022-03-09 11:55:34.927418
++exit
+
+# 2022-03-10 10:03:51.002275
++create table alumno (
+
+# 2022-03-10 10:03:51.049627
++carnet integer primary key,
+
+# 2022-03-10 10:03:51.065312
++nombre text,
+
+# 2022-03-10 10:03:51.096303
++codigo_de_carrera integer,
+
+# 2022-03-10 10:03:51.111998
++edad integer,
+
+# 2022-03-10 10:03:51.127370
++puntuacion integer
+
+# 2022-03-10 10:04:02.627317
++create table alumno (
+
+# 2022-03-10 10:04:29.017640
++create table alumno (carnet integer primary key,nombre text,codigo_de_carrera integer,edad integer,puntuacion integer);
+
+# 2022-03-10 10:04:36.002112
++copy alumno from 'C:\datos_alumno.txt' using delimiters ';';
+
+# 2022-03-10 10:07:11.861436
++create index indicearbolcarnet on alumno(carnet);
+
+# 2022-03-10 10:07:23.986873
++select * from pg_relpages('indicearbolcarnet'::regclass);
+
+# 2022-03-10 10:07:24.159360
++select * from pgstatindex('indicearbolcarnet');
+
+# 2022-03-10 10:08:36.904445
++create extension pgstattuple;
+
+# 2022-03-10 10:08:50.078486
++select * from pg_relpages('indicearbolcarnet'::regclass);
+
+# 2022-03-10 10:08:55.438823
++select * from pgstatindex('indicearbolcarnet');
+
+# 2022-03-10 10:08:56.970318
++select oid from pg_class where relname='indicearbolcarnet';
+
+# 2022-03-10 10:09:17.071150
++
++
+
+# 2022-03-10 10:09:26.467038
++select * from bt_page_stats('indicearbolcarnet',290);
+
+# 2022-03-10 10:09:26.529404
++select * from bt_page_stats('indicearbolcarnet',289);
+
+# 2022-03-10 10:09:26.576887
++select * from bt_page_stats('indicearbolcarnet',280);
+
+# 2022-03-10 10:10:03.699937
++create extension pageinspect;
+
+# 2022-03-10 10:10:30.834535
++select * from bt_page_stats('indicearbolcarnet',290);
+
+# 2022-03-10 10:10:34.317614
++select * from bt_page_stats('indicearbolcarnet',289);
+
+# 2022-03-10 10:10:39.411917
++select * from bt_page_stats('indicearbolcarnet',280);
+
+# 2022-03-10 10:10:43.958525
++select * from bt_page_stats('indicearbolcarnet',290);
+
+# 2022-03-10 10:11:03.115527
++-- This routine converts the hexadecimal data of an btree item in an integer number
++create or replace function hex_to_int(hexval varchar) returns bigint as $$
++DECLARE
++    result  bigint;
++    lenght int;
++    ciclos int;
++    hexval_invertido varchar;
++    hexval_no_spaces varchar;
++    carchar(2);
++BEGIN
++    SELECT replace(hexval,' ','') into hexval_no_spaces;
++--RAISE NOTICE 'hexval_no_invertido %',hexval_no_spaces;
++    lenght:=  char_length (hexval_no_spaces);
++    ciclos:= lenght/2;
++    if ciclos = 0 then
++        return null;
++    end if;
++    FOR i IN 1..ciclos LOOP
++        SELECT substr(hexval_no_spaces, (ciclos-i)*2+1, 2) into car;
++--RAISE NOTICE 'hexval_invertido %',car;
++        select concat(hexval_invertido,car) into hexval_invertido;
++    END LOOP;
++--RAISE NOTICE 'hexval_invertido %',hexval_invertido;
++    EXECUTE 'SELECT x' || quote_literal(hexval_invertido) || '::bigint' INTO result;
++    RETURN result;
++END;
++$$ language 'plpgsql';
+
+# 2022-03-10 10:11:22.479396
++-- This routine converts the hexadecimal data of an btree item in an integer number
++create or replace function hex_to_int(hexval varchar) returns bigint as $$
++DECLARE
++    result  bigint;
++    lenght int;
++    ciclos int;
++    hexval_invertido varchar;
++    hexval_no_spaces varchar;
++    car char(2);
++BEGIN
++    SELECT replace(hexval,' ','') into hexval_no_spaces;
++--RAISE NOTICE 'hexval_no_invertido %',hexval_no_spaces;
++    lenght:=  char_length (hexval_no_spaces);
++    ciclos:= lenght/2;
++    if ciclos = 0 then
++        return null;
++    end if;
++    FOR i IN 1..ciclos LOOP
++        SELECT substr(hexval_no_spaces, (ciclos-i)*2+1, 2) into car;
++--RAISE NOTICE 'hexval_invertido %',car;
++        select concat(hexval_invertido,car) into hexval_invertido;
++    END LOOP;
++--RAISE NOTICE 'hexval_invertido %',hexval_invertido;
++    EXECUTE 'SELECT x' || quote_literal(hexval_invertido) || '::bigint' INTO result;
++    RETURN result;
++END;
++$$ language 'plpgsql';
+
+# 2022-03-10 10:11:33.430466
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',290);
+
+# 2022-03-10 10:11:44.929808
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',38195);
+
+# 2022-03-10 10:11:56.430343
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',38212);
+
+# 2022-03-10 10:12:27.481448
++select * from pg_relpages('indicearbolpuntuacion'::regclass);
+
+# 2022-03-10 10:12:27.497161
++select * from pgstatindex('indicearbolpuntuacion');
+
+# 2022-03-10 10:13:09.119411
++create index indicearbolpuntuacionon alumno(puntuacion);
+
+# 2022-03-10 10:13:21.807006
++create index indicearbolpuntuacionon on alumno(puntuacion);
+
+# 2022-03-10 10:13:46.030434
++select * from pg_relpages('indicearbolpuntuacion'::regclass);
+
+# 2022-03-10 10:13:46.061556
++select * from pgstatindex('indicearbolpuntuacion');
+
+# 2022-03-10 10:14:01.898629
++create index indicearbolpuntuacion on alumno(puntuacion);
+
+# 2022-03-10 10:14:21.001392
++drop index indicearbolpuntuacionon
+
+# 2022-03-10 10:14:29.799850
++select * from pg_relpages('indicearbolpuntuacion'::regclass);
+
+# 2022-03-10 10:14:29.831690
++select * from pgstatindex('indicearbolpuntuacion');
+
+# 2022-03-10 10:14:31.253019
++select oid from pg_class where relname='indicearbolpuntuacion';
+
+# 2022-03-10 10:14:46.770124
++select * from bt_page_stats('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:14:46.832980
++select * from bt_page_stats('indicearbolpuntuacion',213);
+
+# 2022-03-10 10:14:46.895263
++select * from bt_page_stats('indicearbolpuntuacion',210);
+
+# 2022-03-10 10:14:48.348644
++select * form bt_page_items('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:15:32.170024
++select * from bt_page_items('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:15:50.091872
++select *,hex_to_int(data) from bt_page_items('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:15:52.295546
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',424);
+
+# 2022-03-10 10:15:54.045049
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',16);
+
+# 2022-03-10 10:17:13.217726
++create index indicehashcarnet using hash(carnet);
+
+# 2022-03-10 10:17:22.966683
++create index indicehashcarnet on hash(carnet);
+
+# 2022-03-10 10:18:11.588933
++create index indicehashcarnet on hash (carnet);
+
+# 2022-03-10 10:18:32.589510
++create index indicehashcarnet on alumno using hash (carnet);
+
+# 2022-03-10 10:19:09.478909
++select oid from pg_class where='indicehashcarnet';
+
+# 2022-03-10 10:19:39.176020
++select oid from pg_class where relname='indicehashcarnet';
+
+# 2022-03-10 10:19:56.897683
++select relpages from pg_class where='indicehashcarnet';
+
+# 2022-03-10 10:19:56.929391
++select pg_relation_size='indicehashcarnet';
+
+# 2022-03-10 10:19:56.945246
++select * from pgstathashindex(24883);
+
+# 2022-03-10 10:20:19.926799
++select * from hash_page_stats(get_raw_page('indicehashcarnet',2));
+
+# 2022-03-10 10:21:05.910585
++select pg_relation_size ('indicehashcarnet');
+
+# 2022-03-10 10:21:18.708944
++create index indicehashpuntuacion on alumno using hash(puntuacion);
+
+# 2022-03-10 10:22:03.115117
++select oid from pg_class where relname='indicehashpuntuacion';
+
+# 2022-03-10 10:22:03.146640
++select relpages from pg_class where relname='indicehashpuntuacion';
+
+# 2022-03-10 10:22:04.209465
++select pg_relation_size('indicehashpuntuacion');
+
+# 2022-03-10 10:22:19.396430
++select * from pgstathashindex(24884);
+
+# 2022-03-10 10:22:21.803739
++select * from hash_page_stats(get_raw_page('indicehashpuntuacion',300));
+
+# 2022-03-10 10:22:44.646496
++create table alumno3(carnet integer,nombre text,codigo_de_carrera integer,edad integer,puntuacion integer) PARTITION BY HASH (codigo_de_carrera);
+
+# 2022-03-10 10:22:54.881695
++CREATE TABLE alumno3_0 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 0);
+
+# 2022-03-10 10:22:54.928015
++CREATE TABLE alumno3_1 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 1);
+
+# 2022-03-10 10:22:54.975801
++CREATE TABLE alumno3_2 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 2);
+
+# 2022-03-10 10:22:55.022474
++CREATE TABLE alumno3_3 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 3);
+
+# 2022-03-10 10:22:55.052882
++CREATE TABLE alumno3_4 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 4);
+
+# 2022-03-10 10:22:55.100015
++CREATE TABLE alumno3_5 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 5);
+
+# 2022-03-10 10:22:55.146860
++CREATE TABLE alumno3_6 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 6);
+
+# 2022-03-10 10:22:55.178076
++CREATE TABLE alumno3_7 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 7);
+
+# 2022-03-10 10:22:55.240414
++CREATE TABLE alumno3_8 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 8);
+
+# 2022-03-10 10:22:55.287357
++CREATE TABLE alumno3_9 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 9);
+
+# 2022-03-10 10:22:55.318561
++CREATE TABLE alumno3_10 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 10);
+
+# 2022-03-10 10:22:55.381506
++CREATE TABLE alumno3_11 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 11);
+
+# 2022-03-10 10:22:55.443790
++CREATE TABLE alumno3_12 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 12);
+
+# 2022-03-10 10:22:55.506179
++CREATE TABLE alumno3_13 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 13);
+
+# 2022-03-10 10:22:55.568461
++CREATE TABLE alumno3_14 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 14);
+
+# 2022-03-10 10:22:55.646584
++CREATE TABLE alumno3_15 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 15);
+
+# 2022-03-10 10:22:55.740708
++CREATE TABLE alumno3_16 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 16);
+
+# 2022-03-10 10:22:55.866128
++CREATE TABLE alumno3_17 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 17);
+
+# 2022-03-10 10:22:55.927989
++CREATE TABLE alumno3_18 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 18);
+
+# 2022-03-10 10:22:56.053377
++CREATE TABLE alumno3_19 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 19);
+
+# 2022-03-10 10:22:56.116449
++CREATE TABLE alumno3_20 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 20);
+
+# 2022-03-10 10:22:56.193871
++CREATE TABLE alumno3_21 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 21);
+
+# 2022-03-10 10:22:56.256582
++CREATE TABLE alumno3_22 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 22);
+
+# 2022-03-10 10:22:56.319563
++CREATE TABLE alumno3_23 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 23);
+
+# 2022-03-10 10:22:56.412593
++CREATE TABLE alumno3_24 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 24);
+
+# 2022-03-10 10:22:56.521980
++CREATE TABLE alumno3_25 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 25);
+
+# 2022-03-10 10:22:56.584451
++CREATE TABLE alumno3_26 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 26);
+
+# 2022-03-10 10:22:56.725238
++CREATE TABLE alumno3_27 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 27);
+
+# 2022-03-10 10:22:56.803010
++CREATE TABLE alumno3_28 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 28);
+
+# 2022-03-10 10:23:09.474577
++CREATE TABLE alumno3_29 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 29);
+
+# 2022-03-10 10:23:11.146590
++create index indicehashcarnet on alumno using hash(carnet);
+
+# 2022-03-10 10:23:11.178627
++create index indicehashpuntuacion on alumno using hash(puntuacion);
+
+# 2022-03-10 10:23:17.508885
++create index indicearbolpuntuacion on alumno using btree(puntuacion);
+
+# 2022-03-10 10:23:28.197009
++select pg_stat_reset();
+
+# 2022-03-10 10:23:28.227950
++select * from alumno where carnet='23234566';
+
+# 2022-03-10 10:23:29.679903
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:23:36.617635
++select * from pg_statio_all_tables where relname="alumno";
+
+# 2022-03-10 10:23:40.898640
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:22.215337
++select pg_stat_reset();
+
+# 2022-03-10 10:24:22.231081
++select * from alumno where carnet='23234566';
+
+# 2022-03-10 10:24:22.262320
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:24:22.293451
++select pg_stat_reset();
+
+# 2022-03-10 10:24:22.309883
++select * from alumno where puntuacion='3550';
+
+# 2022-03-10 10:24:22.575076
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:22.653034
++select pg_stat_reset();
+
+# 2022-03-10 10:24:22.684013
++select * from alumno where puntuacion<'300';
+
+# 2022-03-10 10:24:26.012169
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:26.090969
++select pg_stat_reset();
+
+# 2022-03-10 10:24:26.121956
++select * from alumno where nombre like '%135678%';
+
+# 2022-03-10 10:24:27.902466
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:27.980951
++select pg_stat_reset();
+
+# 2022-03-10 10:24:28.012677
++update alumno set puntuacion='2' where carnet='23567890';
+
+# 2022-03-10 10:24:34.293962
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:34.372080
++select pg_stat_reset();
+
+# 2022-03-10 10:24:34.403201
++select * from alumno where carnet='23567890' or carnet='21557891';
+
+# 2022-03-10 10:24:34.450481
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:34.512451
++select pg_stat_reset();
+
+# 2022-03-10 10:24:34.544092
++insert into alumno values( '99999999','alumnoXXXXXXXX','20','35','6529');
+
+# 2022-03-10 10:24:49.314998
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:53.674492
++drop index indicehashcarnet;
+
+# 2022-03-10 10:24:55.595872
++drop index indicehashpuntuacion;
+
+# 2022-03-10 10:24:57.720475
++drop index indicearbolpuntuacion;
+
+# 2022-03-10 10:25:03.392405
++create index indicemulti on alumno using btree(carnet,puntuacion);
+
+# 2022-03-10 10:25:34.173392
++select pg_stat_reset();
+
+# 2022-03-10 10:25:34.205498
++select * from alumno where carnet='13933295' or nombre='alumno25';
+
+# 2022-03-10 10:25:34.814496
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:25:34.846367
++select pg_stat_reset();
+
+# 2022-03-10 10:25:34.861612
++select * from alumno where carnet='19886862' and puntuacion='50';
+
+# 2022-03-10 10:25:34.892940
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:34.970920
++select pg_stat_reset();
+
+# 2022-03-10 10:25:35.002037
++select * from alumno where carnet='19886862' or puntuacion='50';
+
+# 2022-03-10 10:25:37.392411
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:37.454989
++select pg_stat_reset();
+
+# 2022-03-10 10:25:37.486541
++select * from alumno where puntuacion='60';
+
+# 2022-03-10 10:25:39.892196
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:41.454621
++select pg_stat_reset();
+
+# 2022-03-10 10:25:41.470893
++select * from alumno where carnet='13933295' or nombre='alumno25';
+
+# 2022-03-10 10:25:42.079972
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:25:42.112316
++select pg_stat_reset();
+
+# 2022-03-10 10:25:42.143056
++select * from alumno where carnet='19886862' and puntuacion='50';
+
+# 2022-03-10 10:25:42.174052
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:42.252489
++select pg_stat_reset();
+
+# 2022-03-10 10:25:42.283739
++select * from alumno where carnet='19886862' or puntuacion='50';
+
+# 2022-03-10 10:25:44.454625
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:44.533222
++select pg_stat_reset();
+
+# 2022-03-10 10:25:44.548948
++select * from alumno where puntuacion='60';
+
+# 2022-03-10 10:25:47.204932
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:26:10.409061
++select pg_stat_reset();
+
+# 2022-03-10 10:26:10.439890
++select * from alumno where carnet='13933295' or nombre='alumno25';
+
+# 2022-03-10 10:26:11.048659
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:26:43.392388
++select pg_stat_reset();
+
+# 2022-03-10 10:26:43.423688
++select * from alumno3 where codigo_de_carrera>12;
+
+# 2022-03-10 10:26:43.455709
++select * from pg_statio_all_tables where relname='alumno3_0';
+
+# 2022-03-10 10:26:43.548983
++select * from pg_statio_all_tables where relname='alumno3_1';
+
+# 2022-03-10 10:26:43.611280
++select * from pg_statio_all_tables where relname='alumno3_2';
+
+# 2022-03-10 10:26:43.673712
++select * from pg_statio_all_tables where relname='alumno3_3';
+
+# 2022-03-10 10:26:43.751517
++select * from pg_statio_all_tables where relname='alumno3_4';
+
+# 2022-03-10 10:26:43.814611
++select * from pg_statio_all_tables where relname='alumno3_5';
+
+# 2022-03-10 10:26:43.893174
++select * from pg_statio_all_tables where relname='alumno3_6';
+
+# 2022-03-10 10:26:43.955506
++select * from pg_statio_all_tables where relname='alumno3_7';
+
+# 2022-03-10 10:26:44.033386
++select * from pg_statio_all_tables where relname='alumno3_8';
+
+# 2022-03-10 10:26:44.111950
++select * from pg_statio_all_tables where relname='alumno3_9';
+
+# 2022-03-10 10:26:44.173690
++select * from pg_statio_all_tables where relname='alumno3_10';
+
+# 2022-03-10 10:26:44.236126
++select * from pg_statio_all_tables where relname='alumno3_11';
+
+# 2022-03-10 10:26:44.314833
++select * from pg_statio_all_tables where relname='alumno3_12';
+
+# 2022-03-10 10:26:44.392938
++select * from pg_statio_all_tables where relname='alumno3_13';
+
+# 2022-03-10 10:26:44.454853
++select * from pg_statio_all_tables where relname='alumno3_14';
+
+# 2022-03-10 10:26:44.533476
++select * from pg_statio_all_tables where relname='alumno3_15';
+
+# 2022-03-10 10:26:44.610993
++select * from pg_statio_all_tables where relname='alumno3_16';
+
+# 2022-03-10 10:26:44.673767
++select * from pg_statio_all_tables where relname='alumno3_17';
+
+# 2022-03-10 10:26:44.752365
++select * from pg_statio_all_tables where relname='alumno3_18';
+
+# 2022-03-10 10:26:44.814520
++select * from pg_statio_all_tables where relname='alumno3_19';
+
+# 2022-03-10 10:26:44.877231
++select * from pg_statio_all_tables where relname='alumno3_20';
+
+# 2022-03-10 10:26:44.939145
++select * from pg_statio_all_tables where relname='alumno3_21';
+
+# 2022-03-10 10:26:45.001541
++select * from pg_statio_all_tables where relname='alumno3_22';
+
+# 2022-03-10 10:26:45.096015
++select * from pg_statio_all_tables where relname='alumno3_23';
+
+# 2022-03-10 10:26:45.174509
++select * from pg_statio_all_tables where relname='alumno3_24';
+
+# 2022-03-10 10:26:45.236291
++select * from pg_statio_all_tables where relname='alumno3_25';
+
+# 2022-03-10 10:26:45.299029
++select * from pg_statio_all_tables where relname='alumno3_26';
+
+# 2022-03-10 10:26:45.361206
++select * from pg_statio_all_tables where relname='alumno3_27';
+
+# 2022-03-10 10:26:45.440574
++select * from pg_statio_all_tables where relname='alumno3_28';
+
+# 2022-03-10 10:26:47.394061
++select * from pg_statio_all_tables where relname='alumno3_29';
+
+# 2022-03-10 10:26:55.189112
++select pg_stat_reset();
+
+# 2022-03-10 10:26:55.220855
++select * from alumno3 where codigo_de_carrera=12 or codigo_de_carrera=6;
+
+# 2022-03-10 10:26:55.252172
++select * from pg_statio_all_tables where relname='alumno3_0';
+
+# 2022-03-10 10:26:55.330073
++select * from pg_statio_all_tables where relname='alumno3_1';
+
+# 2022-03-10 10:26:55.392455
++select * from pg_statio_all_tables where relname='alumno3_2';
+
+# 2022-03-10 10:26:55.455057
++select * from pg_statio_all_tables where relname='alumno3_3';
+
+# 2022-03-10 10:26:55.517362
++select * from pg_statio_all_tables where relname='alumno3_4';
+
+# 2022-03-10 10:26:55.580728
++select * from pg_statio_all_tables where relname='alumno3_5';
+
+# 2022-03-10 10:26:55.642261
++select * from pg_statio_all_tables where relname='alumno3_6';
+
+# 2022-03-10 10:26:55.705158
++select * from pg_statio_all_tables where relname='alumno3_7';
+
+# 2022-03-10 10:26:55.767265
++select * from pg_statio_all_tables where relname='alumno3_8';
+
+# 2022-03-10 10:26:55.862018
++select * from pg_statio_all_tables where relname='alumno3_9';
+
+# 2022-03-10 10:26:55.923795
++select * from pg_statio_all_tables where relname='alumno3_10';
+
+# 2022-03-10 10:26:55.985995
++select * from pg_statio_all_tables where relname='alumno3_11';
+
+# 2022-03-10 10:26:56.065255
++select * from pg_statio_all_tables where relname='alumno3_12';
+
+# 2022-03-10 10:26:56.127545
++select * from pg_statio_all_tables where relname='alumno3_13';
+
+# 2022-03-10 10:26:56.189211
++select * from pg_statio_all_tables where relname='alumno3_14';
+
+# 2022-03-10 10:26:56.252033
++select * from pg_statio_all_tables where relname='alumno3_15';
+
+# 2022-03-10 10:26:56.314792
++select * from pg_statio_all_tables where relname='alumno3_16';
+
+# 2022-03-10 10:26:56.408711
++select * from pg_statio_all_tables where relname='alumno3_17';
+
+# 2022-03-10 10:26:56.471366
++select * from pg_statio_all_tables where relname='alumno3_18';
+
+# 2022-03-10 10:26:56.533615
++select * from pg_statio_all_tables where relname='alumno3_19';
+
+# 2022-03-10 10:26:56.611371
++select * from pg_statio_all_tables where relname='alumno3_20';
+
+# 2022-03-10 10:26:56.673553
++select * from pg_statio_all_tables where relname='alumno3_21';
+
+# 2022-03-10 10:26:56.736015
++select * from pg_statio_all_tables where relname='alumno3_22';
+
+# 2022-03-10 10:26:56.799355
++select * from pg_statio_all_tables where relname='alumno3_23';
+
+# 2022-03-10 10:26:56.861315
++select * from pg_statio_all_tables where relname='alumno3_24';
+
+# 2022-03-10 10:26:56.939282
++select * from pg_statio_all_tables where relname='alumno3_25';
+
+# 2022-03-10 10:26:57.002261
++select * from pg_statio_all_tables where relname='alumno3_26';
+
+# 2022-03-10 10:26:57.096081
++select * from pg_statio_all_tables where relname='alumno3_27';
+
+# 2022-03-10 10:26:57.158248
++select * from pg_statio_all_tables where relname='alumno3_28';
+
+# 2022-03-10 10:26:57.220831
++select * from pg_statio_all_tables where relname='alumno3_29';
+
+# 2022-03-10 10:26:57.314365
++select pg_stat_reset();
+
+# 2022-03-10 10:26:57.345611
++select * from alumno3 where codigo_de_carrera>10 and codigo_de_carrera<15;
+
+# 2022-03-10 10:26:57.377042
++select * from pg_statio_all_tables where relname='alumno3_0';
+
+# 2022-03-10 10:26:57.455078
++select * from pg_statio_all_tables where relname='alumno3_1';
+
+# 2022-03-10 10:26:57.518076
++select * from pg_statio_all_tables where relname='alumno3_2';
+
+# 2022-03-10 10:26:57.580271
++select * from pg_statio_all_tables where relname='alumno3_3';
+
+# 2022-03-10 10:26:57.626436
++select * from pg_statio_all_tables where relname='alumno3_4';
+
+# 2022-03-10 10:26:57.689466
++select * from pg_statio_all_tables where relname='alumno3_5';
+
+# 2022-03-10 10:26:57.752209
++select * from pg_statio_all_tables where relname='alumno3_6';
+
+# 2022-03-10 10:26:57.814648
++select * from pg_statio_all_tables where relname='alumno3_7';
+
+# 2022-03-10 10:26:57.877199
++select * from pg_statio_all_tables where relname='alumno3_8';
+
+# 2022-03-10 10:26:57.955847
++select * from pg_statio_all_tables where relname='alumno3_9';
+
+# 2022-03-10 10:26:58.033284
++select * from pg_statio_all_tables where relname='alumno3_10';
+
+# 2022-03-10 10:26:58.096060
++select * from pg_statio_all_tables where relname='alumno3_11';
+
+# 2022-03-10 10:26:58.158235
++select * from pg_statio_all_tables where relname='alumno3_12';
+
+# 2022-03-10 10:26:58.220830
++select * from pg_statio_all_tables where relname='alumno3_13';
+
+# 2022-03-10 10:26:58.283487
++select * from pg_statio_all_tables where relname='alumno3_14';
+
+# 2022-03-10 10:26:58.345984
++select * from pg_statio_all_tables where relname='alumno3_15';
+
+# 2022-03-10 10:26:58.408666
++select * from pg_statio_all_tables where relname='alumno3_16';
+
+# 2022-03-10 10:26:58.486403
++select * from pg_statio_all_tables where relname='alumno3_17';
+
+# 2022-03-10 10:26:58.549427
++select * from pg_statio_all_tables where relname='alumno3_18';
+
+# 2022-03-10 10:26:58.611626
++select * from pg_statio_all_tables where relname='alumno3_19';
+
+# 2022-03-10 10:26:58.673904
++select * from pg_statio_all_tables where relname='alumno3_20';
+
+# 2022-03-10 10:26:58.736721
++select * from pg_statio_all_tables where relname='alumno3_21';
+
+# 2022-03-10 10:26:58.798945
++select * from pg_statio_all_tables where relname='alumno3_22';
+
+# 2022-03-10 10:26:58.861523
++select * from pg_statio_all_tables where relname='alumno3_23';
+
+# 2022-03-10 10:26:58.923896
++select * from pg_statio_all_tables where relname='alumno3_24';
+
+# 2022-03-10 10:26:59.017903
++select * from pg_statio_all_tables where relname='alumno3_25';
+
+# 2022-03-10 10:26:59.080433
++select * from pg_statio_all_tables where relname='alumno3_26';
+
+# 2022-03-10 10:26:59.142663
++select * from pg_statio_all_tables where relname='alumno3_27';
+
+# 2022-03-10 10:26:59.204993
++select * from pg_statio_all_tables where relname='alumno3_28';
+
+# 2022-03-10 10:26:59.267299
++select * from pg_statio_all_tables where relname='alumno3_29';
+
+# 2022-03-10 10:27:07.142553
++exit
+
+# 2022-03-10 11:04:03.854861
++\c pl1;
+
+# 2022-03-10 11:04:07.777836
++\d
+
+# 2022-03-10 11:04:16.055852
++exit
+
+# 2022-03-10 11:04:23.319320
++\d
+
+# 2022-03-10 11:04:50.549383
++select * from pgstattupple(alumno);
+
+# 2022-03-10 11:05:23.544138
++select * from pgstattupple('alumno');
+
+# 2022-03-10 11:05:32.895743
++create extension pgstattuple;
+
+# 2022-03-10 11:05:34.782070
++select * from pgstattupple('alumno');
+
+# 2022-03-10 11:05:54.937587
++select * from pgstattuple('alumno');
+
+# 2022-03-10 11:09:58.486223
++exit
+
+# 2022-03-15 08:36:42.879491
++\c pl1;
+
+# 2022-03-15 08:36:45.032437
++\d
+
+# 2022-03-15 08:36:54.383424
++select paco;
+
+# 2022-03-15 08:36:56.941508
++exit
+
+# 2022-03-15 09:37:04.502997
++\c 
+
+# 2022-03-15 09:37:09.065231
++\c pl1;
+
+# 2022-03-15 09:37:10.613539
++\d
+
+# 2022-03-15 09:37:21.612415
++create table estudiantes(
+
+# 2022-03-15 09:38:29.315197
++create table estudiantes(carnet numeric PRIMARY key,nombre text,apellidos text,creditos numeric);
+
+# 2022-03-15 09:39:16.237409
++create table asignaturas(codigo numeric PRIMARY KEY,nombre text,caracter text,creditos numeric);
+
+# 2022-03-15 09:45:21.686079
++create table matriculas(
++carnet_estu numeric,
++codigo_asig numeric,
++nota numeric,
++constraint fk_carnet foreign key(carnet_estu) references estudiantes(carnet) on delete restrict on update restrict,
++constraint fk_codigo foreign key(codigo_asig) references asignatuas(codigo) on delete restrict on update restrict,
++constraint pk_matricula primary key(carnet_estu,codigo_asig));
+
+# 2022-03-15 09:45:32.717894
++create table matriculas(
++carnet_estu numeric,
++codigo_asig numeric,
++nota numeric,
++constraint fk_carnet foreign key(carnet_estu) references estudiantes(carnet) on delete restrict on update restrict,
++constraint fk_codigo foreign key(codigo_asig) references asignaturas(codigo) on delete restrict on update restrict,
++constraint pk_matricula primary key(carnet_estu,codigo_asig));
+
+# 2022-03-15 09:45:49.873915
++select * from matriculas;
+
+# 2022-03-15 09:55:46.072593
++copy estudiantes from 'c:\datos_estudiantes.csv' using delimiters ';';
+
+# 2022-03-15 09:56:31.072780
++copy estudiantes from 'c:\datos_estudiantes.csv' using delimiters ',';
+
+# 2022-03-15 09:58:06.729344
++copy asignaturas from 'c:\datos_asignaturas.csv' using delimiters ',';
+
+# 2022-03-15 09:58:38.698132
++copy matriculas from 'c:\datos_matriculas.csv' using delimiters ',';
+
+# 2022-03-16 15:29:30.800423
++select * from pgclass where relname='estudiantes';
+
+# 2022-03-16 15:29:35.692006
++select * from pg_class where relname='estudiantes';
+
+# 2022-03-16 15:29:47.583053
++\o salida.txt
+
+# 2022-03-16 15:29:53.628707
++select * from pg_class where relname='estudiantes';
+
+# 2022-03-16 15:33:52.082743
++select * from pg_class where relname='estudiantes' or relname='asignaturas' or relname='matriculas';
+
+# 2022-03-16 15:36:34.222368
++select * from pg_stat where relname='estudiantes' or relname='asignaturas' or relname='matriculas';
+
+# 2022-03-16 15:36:55.127853
++\o
+
+# 2022-03-16 15:36:58.346531
++select * from pg_stat where relname='estudiantes' or relname='asignaturas' or relname='matriculas';
+
+# 2022-03-16 15:37:25.644774
++select * from pg_stats where relname='estudiantes' or relname='asignaturas' or relname='matriculas';
+
+# 2022-03-16 15:38:16.721892
++select * from pg_stats where tablename='estudiantes' or tablename='asignaturas' or tablename='matriculas';
+
+# 2022-03-16 15:38:54.770469
++\o salida.txt
+
+# 2022-03-16 15:39:02.348414
++select * from pg_stats where tablename='estudiantes' or tablename='asignaturas' or tablename='matriculas';
+
+# 2022-03-17 11:22:46.559650
++\c pl1;
+
+# 2022-03-17 11:22:49.201219
++\o salida.txt
+
+# 2022-03-17 11:22:52.028601
++explain select count(*) from alumnos where creditos>200;
+
+# 2022-03-17 11:23:17.915951
++explain select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 11:32:32.427251
++exit
+
+# 2022-03-17 11:33:00.195714
++\c pl1;
+
+# 2022-03-17 11:33:07.731579
++\o salida.txt
+
+# 2022-03-17 11:33:09.765296
++explain select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 11:39:09.545065
++\o
+
+# 2022-03-17 11:39:20.613328
++select count(*) from estudiantes;
+
+# 2022-03-17 11:40:02.156513
++select count(*) from estudiantes group by creditos;
+
+# 2022-03-17 11:41:42.882731
++select count(distinct creditos)  from estudiantes; 
+
+# 2022-03-17 11:43:27.165763
++select count(distinct creditos)  from estudiantes where creditos>200; 
+
+# 2022-03-17 11:48:50.197313
++ select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 11:49:58.228348
++explain analyze select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 12:12:46.016523
++ select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 12:15:18.526258
++drop table matriculas;
+
+# 2022-03-17 12:15:50.807865
++ create table matriculas(
++
++   carnet_estu numeric ,
++
++   codigo_asig numeric ,
++
++   nota numeric,
++
++   constraint fk_carnet FOREIGN KEY(carnet_estu) references estudiantes (carnet) on delete restrict on update restrict  ,
++
++   constraint fk_codigo FOREIGN KEY(codigo_asig) references asignaturas(codigo) on delete restrict on update restrict ,
++
++   constraint pk_matriculaPRIMARI KEY(carnet_estu,codigo_asig)
++
++    );
+
+# 2022-03-17 12:16:32.535470
++ create table matriculas(
++
++   carnet_estu numeric ,
++
++   codigo_asig numeric ,
++
++   nota numeric,
++
++   constraint fk_carnet FOREIGN KEY(carnet_estu) references estudiantes (carnet) on delete restrict on update restrict  ,
++
++   constraint fk_codigo FOREIGN KEY(codigo_asig) references asignaturas(codigo) on delete restrict on update restrict ,
++
++   constraint pk_matricula PRIMARy KEY(carnet_estu,codigo_asig)
++
++    );
+
+# 2022-03-17 12:16:46.677731
++copy matriculas from 'C:\datos_matriculas.csv' using delimiters ',';
+
+# 2022-03-17 12:27:32.722297
++ select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 12:27:49.159936
++explain analyze select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 12:30:22.051187
++select * from pg_stats where  tablename='matriculas';
+
+# 2022-03-17 12:30:28.847841
++\o salida.txt
+
+# 2022-03-17 12:30:30.239035
++select * from pg_stats where  tablename='matriculas';
+
+# 2022-03-17 12:30:31.581949
++\o
+
+# 2022-03-17 12:31:43.771196
++select * from pgclass where relname='estudiantes';
+
+# 2022-03-17 12:31:49.146248
++select * from pg_class where relname='estudiantes';
+
+# 2022-03-17 12:31:53.021780
++\o salida.txt
+
+# 2022-03-17 12:31:54.740382
++select * from pg_class where relname='estudiantes';
+
+# 2022-03-17 12:31:55.897716
++\o
+
+# 2022-03-17 12:42:54.584729
++SELECT sum(pg_column_size(t.*)) as filesize, count(*) as filerow FROM estudiantes as t;
+
+# 2022-03-17 12:44:43.461683
++explain analyze select count(*) from estudiantes where creditos>200;
+
+# 2022-03-17 12:48:21.586667
++explain analyze select * from estudiantes ;
+
+# 2022-03-17 12:48:35.492361
++explain analyze select count(*) from estudiantes where creditos<20000;
+
+# 2022-03-17 12:48:51.726585
++explain analyze select count(*) from estudiantes where creditos<99999;
+
+# 2022-03-17 12:55:54.161536
++select nombre from estudiantes join matriculas where creditos=180 and ;
+
+# 2022-03-17 12:56:15.490061
++select * from estudiantes;
+
+# 2022-03-17 12:56:51.897266
++select nombre from estudiantes join matriculas where creditos=180 and carnet=1;
+
+# 2022-03-17 12:58:05.176907
++select nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and carnet=1;
+
+# 2022-03-17 12:58:18.975348
++select nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180;
+
+# 2022-03-17 12:59:26.506987
++select * from matriculas;
+
+# 2022-03-17 12:59:52.724525
++select * from matriculas where carnet_estu=1;
+
+# 2022-03-17 13:00:26.537015
++select nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matticulas.nota<5;
+
+# 2022-03-17 13:00:32.927485
++select nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-17 13:00:48.317570
++select distinct nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-17 13:02:21.630011
++explain analyze select distinct nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-17 13:07:24.474336
++select distinct count(*) from matriculas;
+
+# 2022-03-17 13:07:45.880202
++select distinct count(nota) from matriculas;
+
+# 2022-03-17 13:08:04.413111
++select distinct count(*) from matriculas group by nota;
+
+# 2022-03-17 13:08:21.084582
++select distinct nota from matricula;
+
+# 2022-03-17 13:08:36.614360
++select distinct count(nota) from matricula;
+
+# 2022-03-17 13:08:40.600356
++select distinct count(nota) from matriculas;
+
+# 2022-03-17 13:09:07.224208
++select count(distinct nota) from matriculas;
+
+# 2022-03-17 13:09:24.333443
++select count(distinct carnet_estu) from matriculas;
+
+# 2022-03-17 13:09:54.426937
++select count(distinct creditos) from estudiantes;
+
+# 2022-03-17 13:10:04.129997
++select count(distinct nombre) from estudiantes;
+
+# 2022-03-17 13:10:39.537719
++select count(distinct nota) from matriculas where nota <5;
+
+# 2022-03-17 13:16:38.950978
++select distinct nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-17 13:16:53.132041
++select count(distinct nombre) from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-17 13:37:15.489472
++select distinct nombre from asignaturas inner join estudiantes on estudiantes.creditos = asignaturas.creditos inner join matriculas on matriculas.codigo_asig = asignaturas.codigo  where asignaturas.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:37:43.303727
++select distinct asignaturas.nombre from asignaturas inner join estudiantes on estudiantes.creditos = asignaturas.creditos inner join matriculas on matriculas.codigo_asig = asignaturas.codigo  where asignaturas.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:38:48.786949
++select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where asignaturas.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:39:54.223991
++select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where estudiantes.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:40:26.038217
++explain analyze select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where asignaturas.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:40:48.602493
++select count(distinct asignaturas.nombre) from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where asignaturas.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:42:35.561395
++explain analyze select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where estudiantes.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:42:53.844218
++select count(distinct asignaturas.nombre) from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where estudiantes.creditos=60 and matriculas.nota=8;
+
+# 2022-03-17 13:52:07.003844
++selcet count(distinct codigo_asig) from matriculas;
+
+# 2022-03-17 13:52:13.534289
++select count(distinct codigo_asig) from matriculas;
+
+# 2022-03-17 13:56:14.956558
++select count(distinct codigo) from asignaturas;
+
+# 2022-03-17 13:56:41.895636
++select count(distinct nombre) from asignaturas;
+
+# 2022-03-17 13:57:01.112431
++select count(*) from asignaturas;
+
+# 2022-03-17 13:59:20.269248
++select count(*) from estudiantes;
+
+# 2022-03-17 14:04:42.003141
++select count(distinct creditos) from asignaturas;
+
+# 2022-03-17 14:05:47.987516
++select count(distinct nombre) from asignaturas;
+
+# 2022-03-17 14:10:43.753428
++select count(*) from estudiantes;
+
+# 2022-03-17 14:10:53.159928
++select count(distinct nombre) from asignaturas;
+
+# 2022-03-17 14:11:09.737977
++select count(distinct nombre) from estudiantes;
+
+# 2022-03-17 14:11:21.925973
++select count(distinct carnet) from estudiantes;
+
+# 2022-03-17 14:11:28.738343
++select count(distinct creditos) from estudiantes;
+
+# 2022-03-17 14:13:07.784297
++explain analyze select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where estudiantes.creditos=60 and matriculas.nota=8 and asignaturas.creditos=6;
+
+# 2022-03-17 14:13:33.707142
++ select count(distinct asignaturas.nombre) from asignaturas inner join matriculas on matriculas.codigo_asig = asignaturas.codigo inner join estudiantes ON estudiantes.carnet = matriculas.carnet_estu  where estudiantes.creditos=60 and matriculas.nota=8 and asignaturas.creditos=6;
+
+# 2022-03-20 16:11:07.127856
++\d
+
+# 2022-03-20 16:11:11.518349
++CREATE TABLE public.estudiantes (
++    codigo_estudiante integer NOT NULL,
++        nombre text NOT NULL,
++            apellidos text NOT NULL,
++                direccion text NOT NULL,
++                    pais text NOT NULL,
++                        telefono bigint NOT NULL,
++                            email text NOT NULL,
++                                creditos_aprobados integer NOT NULL,
++                                    codigo_erasmus_universidades integer,
++                                        CONSTRAINT estudiantes_pk PRIMARY KEY (codigo_estudiante)
++                                        );
+
+# 2022-03-20 16:11:30.143576
++CREATE TABLE estudiantes2 (
++    codigo_estudiante integer NOT NULL,
++        nombre text NOT NULL,
++            apellidos text NOT NULL,
++                direccion text NOT NULL,
++                    pais text NOT NULL,
++                        telefono bigint NOT NULL,
++                            email text NOT NULL,
++                                creditos_aprobados integer NOT NULL,
++                                    codigo_erasmus_universidades integer,
++                                        CONSTRAINT estudiantes_pk PRIMARY KEY (codigo_estudiante)
++                                        );
+
+# 2022-03-20 16:12:05.752707
++CREATE TABLE public.universidades (
++    codigo_erasmus integer NOT NULL,
++        nombre text NOT NULL,
++            direccion text NOT NULL,
++                pais text NOT NULL,
++                    telefono bigint NOT NULL,
++                        email text NOT NULL,
++                            CONSTRAINT universidades_pk PRIMARY KEY (codigo_erasmus)
++                            );
+
+# 2022-03-20 16:12:18.128247
++CREATE TABLE public.asignaturas (
++    codigo_asignatura integer NOT NULL,
++        nombre text NOT NULL,
++            creditos integer NOT NULL,
++                tipo text NOT NULL,
++                    universidad integer,
++                        CONSTRAINT asignaturas_pk PRIMARY KEY (codigo_asignatura)
++                        );
+
+# 2022-03-20 16:12:28.612000
++CREATE TABLE asignaturas2 (
++    codigo_asignatura integer NOT NULL,
++        nombre text NOT NULL,
++            creditos integer NOT NULL,
++                tipo text NOT NULL,
++                    universidad integer,
++                        CONSTRAINT asignaturas_pk PRIMARY KEY (codigo_asignatura)
++                        );
+
+# 2022-03-20 16:12:40.081166
++CREATE TABLE public.asignaturas (
++    codigo_asignatura integer NOT NULL,
++        nombre text NOT NULL,
++            creditos integer NOT NULL,
++                tipo text NOT NULL,
++         ;
+
+# 2022-03-20 16:12:58.331056
++CREATE TABLE public.estancias (
++    fecha_inicio date NOT NULL,
++        fecha_fin date NOT NULL,
++            tipo_beca text NOT NULL,
++                duracion char(1) NOT NULL,
++                    cuantia real NOT NULL,
++                        estudiante integer NOT NULL,
++                            universidad integer NOT NULL,
++                                CONSTRAINT estancias_pk PRIMARY KEY (estudiante,universidad)
++                                );
+
+# 2022-03-20 16:13:09.909197
++CREATE TABLE public.convalidaciones (
++    nota_destino char(2) NOT NULL,
++        nota_origen real NOT NULL,
++            fecha date NOT NULL,
++                estudiante_estancias integer NOT NULL,
++                    universidad_estancias integer NOT NULL,
++                        asignatura_origen integer NOT NULL,
++                            asignatura_destino integer NOT NULL,
++                                CONSTRAINT convalidaciones_pk PRIMARY KEY (estudiante_estancias,universidad_estancias,asignatura_origen,asignatura_destino)
++                                );
+
+# 2022-03-20 16:15:24.938550
++copy estudiantes2 from 'C:\estudiantes.csv' using delimiters ',';
+
+# 2022-03-20 16:16:51.735195
++copy universidades from 'C:\universidades.csv' using delimiters ',';
+
+# 2022-03-20 16:17:11.438178
++select * from universidades
++;
+
+# 2022-03-20 16:23:04.389280
++copy universidades from 'C:\universidades.csv' using delimiters ',';
+
+# 2022-03-20 16:25:05.061100
++copy asignaturas2 from 'C:\asignaturas.csv' using delimiters ',';
+
+# 2022-03-20 16:32:06.329879
++copy estancias from 'C:\estancias.csv' using delimiters ',';
+
+# 2022-03-21 11:51:35.154785
++\c pl1;
+
+# 2022-03-21 11:53:20.889121
++select * from pgclass where relname='estudiantes';
+
+# 2022-03-21 11:53:25.747143
++select * from pg_class where relname='estudiantes';
+
+# 2022-03-21 11:53:32.809680
++\o salida.txt
+
+# 2022-03-21 11:53:35.169154
++select * from pg_class where relname='estudiantes';
+
+# 2022-03-21 11:53:36.481687
++\o
+
+# 2022-03-21 11:55:02.699983
++select * from pg_statictics where starelid=25039;
+
+# 2022-03-21 11:55:11.856148
++create extension pg_statictics
+
+# 2022-03-21 11:55:15.404115
++create extension pgstatictics
+
+# 2022-03-21 11:55:52.731441
++select * from pg_stats where starelid=25039;
+
+# 2022-03-21 11:56:16.293961
++select * from pg_stats where tablename='estudiantes';
+
+# 2022-03-21 11:56:19.996983
++\o salida.txt
+
+# 2022-03-21 11:56:21.107425
++select * from pg_stats where tablename='estudiantes';
+
+# 2022-03-21 11:58:54.261344
++
++explain analyze select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig=asignaturas.codigo inner join estudiantes on estudiantes.carnet=matriculas.carnet_estu where estudiantes.creditos=60 and matriculas.nota=8 and asignaturas.creditos=6;
+
+# 2022-03-21 12:02:13.763360
++select * from pg_stats where tablename='matriculas';
+
+# 2022-03-21 12:03:36.191006
++select count(*) from matriculas;
+
+# 2022-03-21 12:08:19.990765
++
++explain analyze select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig=asignaturas.codigo inner join estudiantes on estudiantes.carnet=matriculas.carnet_estu where asignaturas.creditos=6;
+
+# 2022-03-21 12:08:38.995662
++ select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig=asignaturas.codigo inner join estudiantes on estudiantes.carnet=matriculas.carnet_estu where asignaturas.creditos=6;
+
+# 2022-03-21 12:11:53.050911
++ select distinct asignaturas.nombre from asignaturas inner join matriculas on matriculas.codigo_asig=asignaturas.codigo inner join estudiantes on estudiantes.carnet=matriculas.carnet_estu where estudiantes.creditos=60 and matriculas.nota=8 and asignaturas.creditos=6;
+
+# 2022-03-21 18:36:58.690241
++\c pl1;
+
+# 2022-03-21 18:37:00.043857
++\d
+
+# 2022-03-21 18:37:36.470543
++copy estancias from 'C:\convalidaciones.csv' using delimiters ',';
+
+# 2022-03-21 18:39:59.761280
++copy convalidaciones from 'C:\convalidaciones.csv' using delimiters ',';
+
+# 2022-03-21 18:40:11.337867
++select * from convalidaciones;
+
+# 2022-03-21 18:40:30.318728
++exit
+
+# 2022-03-22 08:29:40.913579
++\c pl1;
+
+# 2022-03-22 08:29:54.512021
++explain select distinct asignaturas.nombre 
++        from asignaturas inner join matriculas on matriculas.codigo_asig=asignaturas.codigo
++                                         inner join estudiantes on estudiantes.carnet=matriculas.carnet_estu 
++        where estudiantes.creditos=60 and matriculas.nota=8 and asignaturas.creditos=6;
+
+# 2022-03-22 08:29:59.512443
++\o salida.txt
+
+# 2022-03-22 08:30:01.277594
++explain select distinct asignaturas.nombre 
++        from asignaturas inner join matriculas on matriculas.codigo_asig=asignaturas.codigo
++                                         inner join estudiantes on estudiantes.carnet=matriculas.carnet_estu 
++        where estudiantes.creditos=60 and matriculas.nota=8 and asignaturas.creditos=6;
+
+# 2022-03-22 08:30:04.856494
++\o
+
+# 2022-03-22 08:31:28.570927
++\o salida.txt
+
+# 2022-03-22 08:31:31.618159
++explain analyze select distinct nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-22 08:31:43.095166
++\o
+
+# 2022-03-22 08:32:42.072283
++\o salida.txt
+
+# 2022-03-22 08:32:51.930825
++explain select distinct nombre from estudiantes inner join matriculas on estudiantes.carnet = matriculas.carnet_estu where creditos=180 and matriculas.nota<5;
+
+# 2022-03-22 08:32:54.509414
++\o
+
+# 2022-03-22 08:56:51.897812
++\c pl1;
+
+# 2022-03-22 08:56:56.438914
++\o salida.txt
+
+# 2022-03-22 08:57:13.359964
++select * from pg_stats where tablename='asignaturas';
+
+# 2022-03-22 08:57:14.797897
++\o
+
+# 2022-03-22 08:57:16.549296
++select * from pg_stats where tablename='asignaturas';
+
+# 2022-03-22 08:57:48.758417
++select count(*) from asignaturas;
+
+# 2022-03-22 08:59:30.540381
++\d
+
+# 2022-03-22 08:59:44.291880
++drop table asignaturas;
+
+# 2022-03-22 08:59:50.931981
++drop table asignaturas2;
+
+# 2022-03-22 08:59:58.714305
++drop table estudiantes;
+
+# 2022-03-22 09:00:12.291876
++drop  cascade table estudiantes;
+
+# 2022-03-22 09:00:18.010037
++drop table estudiantes cascade;
+
+# 2022-03-22 09:00:21.683063
++\d
+
+# 2022-03-22 09:00:32.089960
++drop table asignaturas cascade;
+
+# 2022-03-22 09:00:34.761352
++\d
+
+# 2022-03-22 09:00:41.863582
++drom table convalidaciones;
+
+# 2022-03-22 09:00:47.255542
++drop table convalidaciones;
+
+# 2022-03-22 09:00:54.691631
++drop table estancias;
+
+# 2022-03-22 09:01:02.910062
++drop table estudiantes2;
+
+# 2022-03-22 09:01:09.706895
++drop table matriculas;
+
+# 2022-03-22 09:01:12.442292
++\d
+
+# 2022-03-22 09:01:19.985738
++drop table universidades;
+
+# 2022-03-22 09:01:22.143222
++\d
+
+# 2022-03-22 09:07:30.438729
++-- Database generated with pgModeler (PostgreSQL Database Modeler).
+
+# 2022-03-22 09:07:30.470223
++-- pgModeler version: 0.9.4
+
+# 2022-03-22 09:07:30.485859
++-- PostgreSQL version: 13.0
+
+# 2022-03-22 09:07:30.501634
++-- Project Site: pgmodeler.io
+
+# 2022-03-22 09:07:30.517785
++-- Model Author: ---
+
+# 2022-03-22 09:07:30.548375
++-- Database creation must be performed outside a multi lined SQL file. 
+
+# 2022-03-22 09:07:30.579660
++-- These commands were put in this file only as a convenience.
+
+# 2022-03-22 09:07:30.595587
++-- 
+
+# 2022-03-22 09:07:30.610379
++-- object: new_database | type: DATABASE --
+
+# 2022-03-22 09:07:30.642362
++-- DROP DATABASE IF EXISTS new_database;
+
+# 2022-03-22 09:07:30.657950
++CREATE DATABASE new_database;
+
+# 2022-03-22 09:07:32.439784
++-- ddl-end --
+
+# 2022-03-22 09:07:32.485236
++-- object: public.estudiantes | type: TABLE --
+
+# 2022-03-22 09:07:32.501231
++-- DROP TABLE IF EXISTS public.estudiantes CASCADE;
+
+# 2022-03-22 09:07:32.532848
++CREATE TABLE public.estudiantes (
+
+# 2022-03-22 09:07:32.580258
++codigo_estudiante integer NOT NULL,
+
+# 2022-03-22 09:07:32.673820
++nombre text NOT NULL,
+
+# 2022-03-22 09:07:32.688986
++apellidos text NOT NULL,
+
+# 2022-03-22 09:07:32.720013
++direccion text NOT NULL,
+
+# 2022-03-22 09:07:32.736191
++pais text NOT NULL,
+
+# 2022-03-22 09:07:32.751894
++telefono bigint NOT NULL,
+
+# 2022-03-22 09:07:32.767120
++email text NOT NULL,
+
+# 2022-03-22 09:07:32.782533
++creditos_aprobados integer NOT NULL,
+
+# 2022-03-22 09:07:32.814229
++codigo_erasmus_universidades integer,
+
+# 2022-03-22 09:07:32.861503
++CONSTRAINT estudiantes_pk PRIMARY KEY (codigo_estudiante)
+
+# 2022-03-22 09:07:32.876598
++);
+
+# 2022-03-22 09:07:32.892277
++-- ddl-end --
+
+# 2022-03-22 09:07:32.939984
++COMMENT ON TABLE public.estudiantes IS E'Guarda los estudiantes que solicitan becas para realizar estancias en universidades distintas de donde están matriculados.';
+
+# 2022-03-22 09:07:32.954331
++-- ddl-end --
+
+# 2022-03-22 09:07:33.001795
++COMMENT ON COLUMN public.estudiantes.codigo_estudiante IS E'Guarda el código del estudiante.';
+
+# 2022-03-22 09:07:33.017426
++-- ddl-end --
+
+# 2022-03-22 09:07:33.049042
++COMMENT ON COLUMN public.estudiantes.nombre IS E'Guarda el nombre del estudiante';
+
+# 2022-03-22 09:07:33.064040
++-- ddl-end --
+
+# 2022-03-22 09:07:33.095434
++COMMENT ON COLUMN public.estudiantes.apellidos IS E'Guarda los apellidos del estudiante.';
+
+# 2022-03-22 09:07:33.111088
++-- ddl-end --
+
+# 2022-03-22 09:07:33.142190
++COMMENT ON COLUMN public.estudiantes.direccion IS E'Guarda la dirección del estudiante.';
+
+# 2022-03-22 09:07:33.157630
++-- ddl-end --
+
+# 2022-03-22 09:07:33.204771
++COMMENT ON COLUMN public.estudiantes.pais IS E'Guarda el país de nacimiento del estudiante. Hay 50 países Europeos y uno de ellos debe ser España en la base de datos.';
+
+# 2022-03-22 09:07:33.220676
++-- ddl-end --
+
+# 2022-03-22 09:07:33.267384
++COMMENT ON COLUMN public.estudiantes.telefono IS E'uarda el teléfono de contacto del estudiante.';
+
+# 2022-03-22 09:07:33.283226
++-- ddl-end --
+
+# 2022-03-22 09:07:33.314143
++COMMENT ON COLUMN public.estudiantes.email IS E'Guarda el email del estudiante.';
+
+# 2022-03-22 09:07:33.329657
++-- ddl-end --
+
+# 2022-03-22 09:07:33.392785
++COMMENT ON COLUMN public.estudiantes.creditos_aprobados IS E'Guarda el número de créditos conseguidos/aprobados en su carrera. Para disfrutar de una beca deben ser mayores o iguales a 60 ECTS y menores o iguales de 220.';
+
+# 2022-03-22 09:07:33.423480
++-- ddl-end --
+
+# 2022-03-22 09:07:33.439157
++ALTER TABLE public.estudiantes OWNER TO postgres;
+
+# 2022-03-22 09:07:40.267095
++-- ddl-end --
+
+# 2022-03-22 09:07:40.298527
++-- object: public.universidades | type: TABLE --
+
+# 2022-03-22 09:07:40.314111
++-- DROP TABLE IF EXISTS public.universidades CASCADE;
+
+# 2022-03-22 09:07:40.329755
++CREATE TABLE public.universidades (
+
+# 2022-03-22 09:07:40.361126
++codigo_erasmus integer NOT NULL,
+
+# 2022-03-22 09:07:40.376812
++nombre text NOT NULL,
+
+# 2022-03-22 09:07:40.407607
++direccion text NOT NULL,
+
+# 2022-03-22 09:07:40.407607
++pais text NOT NULL,
+
+# 2022-03-22 09:07:40.439091
++telefono bigint NOT NULL,
+
+# 2022-03-22 09:07:40.454594
++email text NOT NULL,
+
+# 2022-03-22 09:07:42.345090
++CONSTRAINT universidades_pk PRIMARY KEY (codigo_er
+
+# 2022-03-22 09:07:57.798892
++-- Database generated with pgModeler (PostgreSQL Database Modeler).
++-- pgModeler version: 0.9.4
++-- PostgreSQL version: 13.0
++-- Project Site: pgmodeler.io
++-- Model Author: ---
++
++-- Database creation must be performed outside a multi lined SQL file. 
++-- These commands were put in this file only as a convenience.
++-- 
++-- object: new_database | type: DATABASE --
++-- DROP DATABASE IF EXISTS new_database;
+
+# 2022-03-22 09:07:57.830135
++CREATE DATABASE new_database;
+
+# 2022-03-22 09:07:57.877022
++-- ddl-end --
++
++
++-- object: public.estudiantes | type: TABLE --
++-- DROP TABLE IF EXISTS public.estudiantes CASCADE;
+
+# 2022-03-22 09:07:58.032947
++CREATE TABLE public.estudiantes (
++    codigo_estudiante integer NOT NULL,
++        nombre text NOT NULL,
++            apellidos text NOT NULL,
++                direccion text NOT NULL,
++                    pais text NOT NULL,
++                        telefono bigint NOT NULL,
++                            email text NOT NULL,
++                                creditos_aprobados integer NOT NULL,
++                                    codigo_erasmus_universidades integer,
++                                        CONSTRAINT estudiantes_pk PRIMARY KEY (codigo_estudiante)
++                                        );
+
+# 2022-03-22 09:07:58.142793
++-- ddl-end --
++COMMENT ON TABLE public.estudiantes IS E'Guarda los estudiantes que solicitan becas para realizar estancias en universidades distintas de donde están matriculados.';
+
+# 2022-03-22 09:07:58.205207
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.codigo_estudiante IS E'Guarda el código del estudiante.';
+
+# 2022-03-22 09:07:58.251886
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.nombre IS E'Guarda el nombre del estudiante';
+
+# 2022-03-22 09:07:58.361102
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.apellidos IS E'Guarda los apellidos del estudiante.';
+
+# 2022-03-22 09:07:58.423639
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.direccion IS E'Guarda la dirección del estudiante.';
+
+# 2022-03-22 09:07:58.470307
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.pais IS E'Guarda el país de nacimiento del estudiante. Hay 50 países Europeos y uno de ellos debe ser España en la base de datos.';
+
+# 2022-03-22 09:07:58.533275
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.telefono IS E'uarda el teléfono de contacto del estudiante.';
+
+# 2022-03-22 09:07:58.564342
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.email IS E'Guarda el email del estudiante.';
+
+# 2022-03-22 09:07:58.642179
++-- ddl-end --
++COMMENT ON COLUMN public.estudiantes.creditos_aprobados IS E'Guarda el número de créditos conseguidos/aprobados en su carrera. Para disfrutar de una beca deben ser mayores o iguales a 60 ECTS y menores o iguales de 220.';
+
+# 2022-03-22 09:07:58.673628
++-- ddl-end --
++ALTER TABLE public.estudiantes OWNER TO postgres;
+
+# 2022-03-22 09:08:02.376178
++-- ddl-end --
++
++-- object: public.universidades | type: TABLE --
++-- DROP TABLE IF EXISTS public.universidades CASCADE;
+
+# 2022-03-22 09:08:14.063425
++CREATE TABLE public.universidades (
++    codigo_erasmus integer NOT NULL,
++        nombre text NOT NULL,
++            direccion text NOT NULL,
++                pais text NOT NULL,
++                    telefono bigint NOT N ;
+
+# 2022-03-22 09:08:40.845085
++\d
+
+# 2022-03-22 09:08:52.722085
++\c pl1;
+
+# 2022-03-22 09:08:54.800713
++\d
+
+# 2022-03-22 09:09:02.455231
++drop table estudiantes;
+
+# 2022-03-22 09:09:30.689746
++CREATE TABLE public.estudiantes (
++    codigo_estudiante integer NOT NULL,
++        nombre text NOT NULL,
++            apellidos text NOT NULL,
++                direccion text NOT NULL,
++                    pais text NOT NULL,
++                        telefono bigint NOT NULL,
++                            email text NOT NULL,
++                                creditos_aprobados integer NOT NULL,
++                                    codigo_erasmus_universidades integer,
++                                        CONSTRAINT estudiantes_pk PRIMARY KEY (codigo_estudiante)
++                                        );
+
+# 2022-03-22 09:09:40.674975
++CREATE TABLE public.universidades (
++    codigo_erasmus integer NOT NULL,
++        nombre text NOT NULL,
++            direccion text NOT NULL,
++                pais text NOT NULL,
++                    telefono bigint NOT NULL,
++                        email text NOT NULL,
++                            CONSTRAINT universidades_pk PRIMARY KEY (codigo_erasmus)
++                            );
+
+# 2022-03-22 09:09:50.674053
++CREATE TABLE public.asignaturas (
++    codigo_asignatura integer NOT NULL,
++        nombre text NOT NULL,
++            creditos integer NOT NULL,
++                tipo text NOT NULL,
++                    universidad integer,
++                        CONSTRAINT asignaturas_pk PRIMARY KEY (codigo_asignatura)
++                        );
+
+# 2022-03-22 09:09:58.877529
++CREATE TABLE public.estancias (
++    fecha_inicio date NOT NULL,
++        fecha_fin date NOT NULL,
++            tipo_beca text NOT NULL,
++                duracion char(1) NOT NULL,
++                    cuantia real NOT NULL,
++                        estudiante integer NOT NULL,
++                            universidad integer NOT NULL,
++                                CONSTRAINT estancias_pk PRIMARY KEY (estudiante,universidad)
++                                );
+
+# 2022-03-22 09:10:08.112125
++CREATE TABLE public.convalidaciones (
++    nota_destino char(2) NOT NULL,
++        nota_origen real NOT NULL,
++            fecha date NOT NULL,
++                estudiante_estancias integer NOT NULL,
++                    universidad_estancias integer NOT NULL,
++                        asignatura_origen integer NOT NULL,
++                            asignatura_destino integer NOT NULL,
++                                CONSTRAINT convalidaciones_pk PRIMARY KEY (estudiante_estancias,universidad_estancias,asignatura_origen,asignatura_destino)
++                                );
+
+# 2022-03-22 09:11:15.299502
++copy estudiantes from 'C:\estudiantes.csv' using delimiters ',';
+
+# 2022-03-22 09:13:36.450728
++copy universidades from 'C:\universidades.csv' using delimiters ',';
+
+# 2022-03-22 09:14:12.857115
++copy asignaturas from 'C:\asignaturas.csv' using delimiters ',';
+
+# 2022-03-22 09:14:51.216381
++copy estancias from 'C:\estancias.csv' using delimiters ',';
+
+# 2022-03-22 09:16:21.826016
++copy convalidaciones from 'C:\convalidaiones.csv' using delimiters ',';
+
+# 2022-03-22 09:17:26.393791
++copy convalidaciones from 'C:\convalidaciones.csv' using delimiters ',';
+
+# 2022-03-22 09:20:48.112651
++\d
+
+# 2022-03-22 09:29:00.237367
++ALTER TABLE public.estudiantes ADD CONSTRAINT universidades_fk FOREIGN KEY (codigo_erasmus_universidades)
++REFERENCES public.universidades (codigo_erasmus) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:29:18.878197
++ALTER TABLE public.asignaturas ADD CONSTRAINT universidades_fk FOREIGN KEY (universidad)
++REFERENCES public.universidades (codigo_erasmus) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:29:32.300229
++ALTER TABLE public.estancias ADD CONSTRAINT estudiantes_fk FOREIGN KEY (estudiante)
++REFERENCES public.estudiantes (codigo_estudiante) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:31:02.954345
++ALTER TABLE public.estancias ADD CONSTRAINT universidades_fk FOREIGN KEY (universidad)
++REFERENCES public.universidades (codigo_erasmus) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:31:13.626476
++ALTER TABLE public.convalidaciones ADD CONSTRAINT estancias_fk FOREIGN KEY (estudiante_estancias,universidad_estancias)
++REFERENCES public.estancias (estudiante,universidad) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:31:23.470090
++ALTER TABLE public.convalidaciones ADD CONSTRAINT asignaturas_fk FOREIGN KEY (asignatura_origen)
++REFERENCES public.asignaturas (codigo_asignatura) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:31:38.079444
++ALTER TABLE public.convalidaciones ADD CONSTRAINT asignaturas_fk1 FOREIGN KEY (asignatura_destino)
++REFERENCES public.asignaturas (codigo_asignatura) MATCH FULL
++ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+# 2022-03-22 09:37:05.691307
++\d
+
+# 2022-03-22 09:37:20.113212
++ALTER TABLE asignaturas DISABLE TRIGGER ALL
+
+# 2022-03-22 09:37:29.565865
++ALTER TABLE convalidaciones DISABLE TRIGGER ALL
+
+# 2022-03-22 09:37:38.066280
++ALTER TABLE estancias DISABLE TRIGGER ALL
+
+# 2022-03-22 09:37:45.362822
++ALTER TABLE estudiantes DISABLE TRIGGER ALL
+
+# 2022-03-22 09:37:54.113915
++ALTER TABLE universidades DISABLE TRIGGER ALL
+
+# 2022-03-23 12:45:25.857768
++\d
+
+# 2022-03-23 13:29:12.277795
++select universidades.nombre from universidades natural join estudiantes natural join asignaturas natural join estancias natural join convalidaciones;
+
+# 2022-03-23 13:31:07.690318
++select universidades.nombre from universidades inner join estudiantes ON estudiantes.codigo_erasmus_universidades = universidades.codigo_erasmus inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_origen = asignaturas.codigo_asignatura inner join estancias ON estancias.estudiante = convalidaciones.estudiante_estancias ;
+
+# 2022-03-23 13:32:55.688888
++\c pl1;
+
+# 2022-03-23 13:32:56.500995
++ls
+
+# 2022-03-23 13:33:17.176637
++select universidades.nombre from universidades inner join estudiantes ON estudiantes.codigo_erasmus_universidades = universidades.codigo_erasmus inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_origen = asignaturas.codigo_asignatura inner join estancias ON estancias.estudiante = convalidaciones.estudiante_estancias where universidades.pais='spain';
+
+# 2022-03-23 13:33:34.770963
++select * from universidades where pais='spain';
+
+# 2022-03-23 13:33:40.599053
++select * from universidades where pais='Spain';
+
+# 2022-03-23 13:33:46.505671
++select universidades.nombre from universidades inner join estudiantes ON estudiantes.codigo_erasmus_universidades = universidades.codigo_erasmus inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_origen = asignaturas.codigo_asignatura inner join estancias ON estancias.estudiante = convalidaciones.estudiante_estancias where universidades.pais='Spain';
+
+# 2022-03-23 13:38:39.052785
++select universidades.nombre, avg(*) from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus where pais='Spain';
+
+# 2022-03-23 13:40:26.755068
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus where pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107');
+
+# 2022-03-23 13:44:18.906826
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante where pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120;
+
+# 2022-03-23 13:44:37.694057
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120;
+
+# 2022-03-23 13:53:08.872775
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120 and estancias.universidad distinct (select * from universidades where pais ='Spain');
+
+# 2022-03-23 13:54:31.233627
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120 and estancias.universidad <> (select * from universidades where pais ='Spain');
+
+# 2022-03-23 13:55:55.326940
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120 and estancias.universidad <> (select uni.codigo_erasmus from universidades as uni where pais ='Spain');
+
+# 2022-03-23 13:59:41.874326
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120 and estancias.universidad <> (select uni.codigo_erasmus from universidades as uni where pais ='Spain');
+
+# 2022-03-23 13:59:53.827410
++select universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120;
+
+# 2022-03-23 14:00:30.468702
++select distinct universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120;
+
+# 2022-03-23 14:03:42.248584
++\o salida.txt
+
+# 2022-03-23 14:03:43.655603
++select distinct universidades.nombre from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura where universidades.pais='Spain' and (estancias.tipo_beca='KA103'or estancias.tipo_beca='KA107') and estudiantes.creditos_aprobados>120;
+
+# 2022-03-23 14:03:55.780160
++\o
+
+# 2022-03-23 14:11:04.795191
++
++select distinct universidades.nombre, (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante  where (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120; )
++from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus 
++inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus
++inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++
++where universidades.pais='Spain' ;
+
+# 2022-03-23 14:11:26.529237
++
++select distinct universidades.nombre, (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante  where (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120)
++from universidades inner join estancias ON estancias.universidad = universidades.codigo_erasmus 
++inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus
++inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++
++where universidades.pais='Spain' ;
+
+# 2022-03-23 14:13:24.342059
++
++select distinct universidades.nombre, (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante  where uni.codigo_erasmus =e.codigo_erasmus_universidades and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120)
++from universidades as uni inner join estancias ON estancias.universidad = universidades.codigo_erasmus 
++inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++inner join asignaturas ON asignaturas.universidad = universidades.codigo_erasmus
++inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++
++where universidades.pais='Spain' ;
++
+
+# 2022-03-23 14:14:16.341706
++
++    select distinct universidades.nombre, (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante  where uni.codigo_erasmus =e.codigo_erasmus_universidades and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120)
++    from universidades as uni inner join estancias ON estancias.universidad = uni.codigo_erasmus 
++    inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++    inner join asignaturas ON asignaturas.universidad = uni.codigo_erasmus
++    inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++    
++    where universidades.pais='Spain' ;
++
+
+# 2022-03-23 14:14:29.185392
++
++    select distinct universidades.nombre, (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante  where uni.codigo_erasmus =e.codigo_erasmus_universidades and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120)
++    from universidades as uni inner join estancias ON estancias.universidad = uni.codigo_erasmus 
++    inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++    inner join asignaturas ON asignaturas.universidad = uni.codigo_erasmus
++    inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++    
++    where universidades.pais='Spain' ;
+
+# 2022-03-23 14:15:04.029291
++select distinct uni.nombre,
++        (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++        where uni.codigo_erasmus =e.codigo_erasmus_universidades and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120)
++    from universidades as uni inner join estancias ON estancias.universidad = uni.codigo_erasmus 
++    inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++    inner join asignaturas ON asignaturas.universidad = uni.codigo_erasmus
++    inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++    
++    where universidades.pais='Spain' ;
+
+# 2022-03-23 14:15:29.263981
++select distinct uni.nombre,
++        (select count(*) from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++        where uni.codigo_erasmus =e.codigo_erasmus_universidades and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') and e.creditos_aprobados>120)
++    from universidades as uni inner join estancias ON estancias.universidad = uni.codigo_erasmus 
++    inner join estudiantes ON estudiantes.codigo_estudiante = estancias.estudiante
++    inner join asignaturas ON asignaturas.universidad = uni.codigo_erasmus
++    inner join convalidaciones ON convalidaciones.asignatura_destino = asignaturas.codigo_asignatura
++    
++    where uni.pais='Spain' ;
+
+# 2022-03-23 14:19:03.784502
++\c pl1;
+
+# 2022-03-23 14:19:06.003433
++
++    select distinct uni.nombre,
++        (select count(*) 
++        from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++        where uni.codigo_erasmus =e.codigo_erasmus_universidades
++                and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++                and e.creditos_aprobados>120)
++                and e2.universidad <>uni.codigo_erasmus 
++    from universidades
++    
++    where uni.pais='Spain' ;
+
+# 2022-03-23 14:19:29.331579
++select distinct uni.nombre,
++        (select count(*) 
++        from estudiantes e inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++        where uni.codigo_erasmus=e.codigo_erasmus_universidades
++                and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++                and e.creditos_aprobados>120)
++                and e2.universidad <>uni.codigo_erasmus 
++    from universidades as uni
++    
++    where uni.pais='Spain' ;
+
+# 2022-03-23 14:20:00.581120
++select distinct uni.nombre,(select count(*) from estudiantes e 
++        inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++        where uni.codigo_erasmus=e.codigo_erasmus_universidades
++                and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++                and e.creditos_aprobados>120)
++                and e2.universidad <>uni.codigo_erasmus 
++    from universidades as uni
++    
++    where uni.pais='Spain' ;
++
+
+# 2022-03-23 14:20:47.971667
++select distinct uni.nombre,(select count(*) from estudiantes e 
++        inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++        where uni.codigo_erasmus=e.codigo_erasmus_universidades
++                and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++                and e.creditos_aprobados>120)
++                
++    from universidades as uni
++    where uni.pais='Spain' ;
+
+# 2022-03-23 14:22:36.983488
++\c pl1;
+
+# 2022-03-23 14:22:38.936537
++select distinct uni.nombre,(select count(*) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad)
++from universidades as uni
++where uni.pais='Spain' ;
+
+# 2022-03-23 14:33:48.401152
++\c pl1;
+
+# 2022-03-23 14:33:51.764826
++explain select distinct uni.nombre,(select count(*) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-23 14:34:07.303685
++\o salida.txt
+
+# 2022-03-23 14:34:10.872176
++explain select distinct uni.nombre,(select count(*) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-23 14:34:14.647068
++\o
+
+# 2022-03-23 14:34:16.157014
++exit
+
+# 2022-03-24 11:13:35.956349
++\c pl1;
+
+# 2022-03-24 11:13:37.158980
++\d
+
+# 2022-03-24 11:13:41.266924
++\o salida.txt
+
+# 2022-03-24 11:13:45.666500
++select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 11:14:16.087455
++\c pl1;
+
+# 2022-03-24 11:14:18.181326
++\o salida.txt
+
+# 2022-03-24 11:14:29.947509
++explain select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 11:14:32.213012
++\o
+
+# 2022-03-24 11:14:33.041264
++exit
+
+# 2022-03-24 18:56:15.265094
++\c pl1;
+
+# 2022-03-24 18:56:16.702353
++\d
+
+# 2022-03-24 18:56:44.999177
++create index indiceUniversidad1 on universidades (nombre);
+
+# 2022-03-24 18:56:46.015226
++create index indiceUniversidad2 on universidades (pais);
+
+# 2022-03-24 18:56:46.327400
++create index indiceUniversidad3 on universidades (codigo_erasmus_universidades);
+
+# 2022-03-24 18:56:46.358570
++create index indiceUniversidad4 on universidades  using hash(nombre);
+
+# 2022-03-24 18:56:46.561667
++create index indiceUniversidad5 on universidades  using hash(pais);
+
+# 2022-03-24 18:56:46.749058
++create index indiceUniversidad6 on universidades  using hash(codigo_erasmus_universidades);
+
+# 2022-03-24 18:56:46.795788
++create index indiceUniversidad7 on universidades  using btree(nombre);
+
+# 2022-03-24 18:56:47.733193
++create index indiceUniversidad8 on universidades  using btree(pais);
+
+# 2022-03-24 18:56:48.077549
++create index indiceUniversidad9 on universidades  using btree(codigo_erasmus_universidades);
+
+# 2022-03-24 18:56:48.140259
++create index indiceUEstudiantes1 on estudiantes  (nombre);
+
+# 2022-03-24 18:57:26.764825
++create index indiceUEstudiantes2 on estudiantes  (codigo_estudiante);
+
+# 2022-03-24 18:59:23.421395
++create index indiceUEstudiantes3 on estudiantes  (pais);
+
+# 2022-03-24 18:59:33.249281
++create index indiceUEstudiantes4 on estudiantes  (creditos_aprobados);
+
+# 2022-03-24 18:59:38.046451
++create index indiceUEstudiantes5 on estudiantes  (codigo_erasmus_universidades);
+
+# 2022-03-24 18:59:41.780992
++create index indiceUEstudiantes6 on estudiantes   using hash(nombre);
+
+# 2022-03-24 18:59:56.327659
++create index indiceUEstudiantes7 on estudiantes   using hash(codigo_estudiante);
+
+# 2022-03-24 19:00:11.889973
++create index indiceUEstudiantes8 on estudiantes   using hash(pais);
+
+# 2022-03-24 19:07:27.109421
++create index indiceUEstudiantes9 on estudiantes   using hash(creditos_aprobados);
+
+# 2022-03-24 19:09:12.843969
++create index indiceUEstudiantes10 on estudiantes   using hash(codigo_erasmus_universidades);
+
+# 2022-03-24 19:09:24.390211
++create index indiceUEstudiantes11 on estudiantes   using btree(nombre);
+
+# 2022-03-24 19:09:59.546197
++create index indiceUEstudiantes12 on estudiantes   using btree(codigo_estudiante);
+
+# 2022-03-24 19:10:02.780334
++create index indiceUEstudiantes13 on estudiantes   using btree(pais);
+
+# 2022-03-24 19:10:12.749266
++create index indiceUEstudiantes14 on estudiantes   using btree(creditos_aprobados);
+
+# 2022-03-24 19:10:16.874315
++create index indiceUEstudiantes15 on estudiantes   using btree(codigo_erasmus_universidades);
+
+# 2022-03-24 19:10:20.467584
++create index indiceUEstancia1 on estancias  (tipo_beca);
+
+# 2022-03-24 19:10:26.749269
++create index indiceUEstancia2 on estancias  (duracion);
+
+# 2022-03-24 19:10:31.342906
++create index indiceUEstancia3 on estancias  (estudiante);
+
+# 2022-03-24 19:10:33.780560
++create index indiceUEstancia4 on estancias  (universidad);
+
+# 2022-03-24 19:10:36.640075
++create index indiceUEstancia5 on estancias using hash (tipo_beca);
+
+# 2022-03-24 19:46:26.336808
++create index indiceUEstancia6 on estancias using hash (duracion);
+
+# 2022-03-24 19:52:04.285893
++\c pl1;
+
+# 2022-03-24 19:52:34.720326
++create index indiceAsignaturas1 on asignaturas  (codigo_asignatura);
+
+# 2022-03-24 19:52:35.948720
++create index indiceAsignaturas4 on asignaturas  (universidad);
+
+# 2022-03-24 19:52:36.521960
++create index indiceAsignaturas5 on asignaturas using hash (codigo_asignatura);
+
+# 2022-03-24 19:52:38.780474
++create index indiceAsignaturas8 on asignaturas using hash (universidad);
+
+# 2022-03-24 19:52:40.520271
++create index indiceAsignaturas9 on asignaturas  using btree (codigo_asignatura);
+
+# 2022-03-24 19:56:06.246103
++create index indiceAsignaturas12 on asignaturas  using btree (universidad);
+
+# 2022-03-24 19:56:27.699547
++\d universidades
+
+# 2022-03-24 19:56:47.417529
++create index indiceUniversidad3 on universidades (codigo_erasmus);
+
+# 2022-03-24 19:56:47.605519
++create index indiceUniversidad6 on universidades  using hash(codigo_erasmus);
+
+# 2022-03-24 19:56:49.026187
++create index indiceUniversidad9 on universidades  using btree(codigo_erasmus);
+
+# 2022-03-24 19:57:11.542456
++create index indiceConvalidaciones1 on convalidaciones (nota_destino);
+
+# 2022-03-24 19:57:50.058025
++create index indiceConvalidaciones2 on convalidaciones (nota_origen);
+
+# 2022-03-24 19:58:13.401810
++create index indiceConvalidaciones3 on convalidaciones (estudiante_estancias);
+
+# 2022-03-24 19:58:23.214062
++create index indiceConvalidaciones4 on convalidaciones (universidad_estancias);
+
+# 2022-03-24 19:58:36.541951
++create index indiceConvalidaciones5 on convalidaciones (asignatura_origen);
+
+# 2022-03-24 19:58:49.995626
++create index indiceConvalidaciones6 on convalidaciones (asignatura_destino);
+
+# 2022-03-24 19:59:38.386446
++create index indiceConvalidaciones13 on convalidaciones using btree(nota_destino);
+
+# 2022-03-24 20:00:10.620697
++create index indiceConvalidaciones14 on convalidaciones using btree(nota_origen);
+
+# 2022-03-24 20:00:27.151579
++create index indiceConvalidaciones15 on convalidaciones using btree(estudiante_estancias);
+
+# 2022-03-24 20:00:34.307456
++create index indiceConvalidaciones16 on convalidaciones using btree(universidad_estancias);
+
+# 2022-03-24 20:00:46.417093
++create index indiceConvalidaciones17 on convalidaciones using btree(asignatura_origen);
+
+# 2022-03-24 20:00:57.886215
++create index indiceConvalidaciones18 on convalidaciones using btree(asignatura_destino);
+
+# 2022-03-24 20:01:10.948327
++create index indiceUEstudiantes2 on estudiantes  (codigo_estudiante);
+
+# 2022-03-24 20:01:10.979753
++create index indiceUEstudiantes5 on estudiantes  (codigo_erasmus_universidades);
+
+# 2022-03-24 20:01:11.027344
++create index indiceUEstudiantes7 on estudiantes   using hash(codigo_estudiante);
+
+# 2022-03-24 20:01:11.057839
++create index indiceUEstudiantes10 on estudiantes   using hash(codigo_erasmus_universidades);
+
+# 2022-03-24 20:01:11.105051
++create index indiceUEstudiantes12 on estudiantes   using btree(codigo_estudiante);
+
+# 2022-03-24 20:01:41.104618
++create index indiceUEstudiantes15 on estudiantes   using btree(codigo_erasmus_universidades);
+
+# 2022-03-24 20:01:57.792361
++\o salida.txt
+
+# 2022-03-24 20:02:07.448331
++explain select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 20:02:09.401314
++\o
+
+# 2022-03-24 20:02:10.573413
++exit
+
+# 2022-03-24 20:27:42.716789
++\c pl1;
+
+# 2022-03-24 20:29:32.363585
++select count(*) from universidades;
+
+# 2022-03-24 20:30:26.858659
++\d universidades
+
+# 2022-03-24 20:32:57.394087
++DELETE FROM universidades WHERE codigo_erasmus IN (SELECT codigo_erasmus FROM universidades ORDER BY random() LIMIT 40000);
++
++ 
+
+# 2022-03-24 20:33:31.900459
++\d estudiantes
+
+# 2022-03-24 20:35:07.657751
++ DELETE FROM estudiantes WHERE codigo_erasmus_universidades NOT IN (SELECT codigo_erasmus FROM universidades );
++
++ 
+
+# 2022-03-24 20:36:32.516937
++\d asignaturas
+
+# 2022-03-24 20:36:49.231355
++ DELETE FROM asignaturas WHERE universidad NOT IN (SELECT codigo_erasmus FROM universidades);
+
+# 2022-03-24 20:37:08.352660
++\d estudiantes
+
+# 2022-03-24 20:37:12.316182
++\d estancias
+
+# 2022-03-24 20:37:27.191589
++ DELETE FROM estancias WHERE universidad NOT IN (SELECT codigo_erasmus FROM universidades);
+
+# 2022-03-24 20:37:48.858784
++\d convalidaciones
+
+# 2022-03-24 20:38:39.246958
++ DELETE FROM convalidaciones WHERE universidad_estancias NOT IN (SELECT codigo_erasmus FROM universidades);
+
+# 2022-03-24 20:40:42.424530
++ DELETE FROM estudiantes WHERE codigo_erasmus_universidades NOT IN (SELECT codigo_erasmus FROM universidades);
++
++ DELETE FROM asignaturas WHERE universidad NOT IN (SELECT codigo_erasmus FROM universidades);
++
++ DELETE FROM estancias WHERE universidad NOT IN (SELECT codigo_erasmus FROM universidades);
++
++ DELETE FROM convalidaciones WHERE universidad_estancias NOT IN (SELECT codigo_erasmus FROM universidades);
+
+# 2022-03-24 20:43:25.453380
++ DELETE FROM convalidaciones WHERE asignatura_origen NOT IN (SELECT codigo_asignatura FROM asignaturas);
++
++ DELETE FROM convalidaciones WHERE asignatura_destino NOT IN (SELECT codigo_asignatura FROM asignaturas);
+
+# 2022-03-24 21:10:14.783988
++\c pl1;
+
+# 2022-03-24 21:10:49.774545
++select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 21:11:12.730080
++\c pl1;
+
+# 2022-03-24 21:11:20.619907
++\o salida.txt
+
+# 2022-03-24 21:11:24.213685
++select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 21:11:38.047646
++explain select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 21:11:43.282375
++exit
+
+# 2022-03-24 21:14:40.821917
++\c pl1;
+
+# 2022-03-24 21:14:45.104248
++\o salida2.txt
+
+# 2022-03-24 21:15:36.072942
++explain select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
++
+
+# 2022-03-24 21:15:39.494326
++exit
+
+# 2022-03-25 08:35:58.732309
++\c pl1;
+
+# 2022-03-25 08:36:10.407817
++vacuum
+
+# 2022-03-25 08:36:12.532426
++:
+
+# 2022-03-25 08:36:21.032793
++\d
+
+# 2022-03-25 08:36:26.284978
++\d asignaturas
+
+# 2022-03-25 08:36:40.206592
++reindex index indiceasignaturas1
+
+# 2022-03-25 09:11:31.861975
++\c pl1;
+
+# 2022-03-25 09:11:45.768508
++reindex index indiceasignaturas5;
+
+# 2022-03-25 09:21:23.637931
++\c pl1;
+
+# 2022-03-25 09:21:26.763062
++\d asignaturas
+
+# 2022-03-25 10:47:15.863090
++\c pl1;
+
+# 2022-03-25 10:47:18.209210
++\o salida2.txt
+
+# 2022-03-25 10:47:41.927927
++explain select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++        and e.creditos_aprobados>120
++        and uni.codigo_erasmus<>e2.universidad
++        and (a.tipo='obligatoria' or a.tipo='básica')
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++from universidades as uni
++where uni.pais='Spain' ;
+
+# 2022-03-25 10:48:36.646881
++\c pl1;
+
+# 2022-03-25 10:49:09.888825
++create index indiceasignaturas22 on asignaturas using hash(sodigo_asignatura);
+
+# 2022-03-25 16:45:13.384231
++exit
+
+# 2022-03-25 16:46:31.242660
++\c pl1;
+
+# 2022-03-25 16:46:32.976221
++\d 
+
+# 2022-03-25 16:46:39.570310
++\d asignaturas
+
+# 2022-03-25 21:02:16.753845
++vacuum;
+
+# 2022-03-25 21:18:23.404
++reindex index indiceasignaturas5;
+
+# 2022-03-25 21:20:11.003
++reindex index indiceconvalidaciones3;
+
+# 2022-03-25 21:26:58.094
++reindex index indiceuestancia3;
+
+# 2022-03-25 21:30:01.882 
++reindex index indiceuestudiantes10;
+
+# 2022-03-25 21:35:43.222
++reindex index indiceuestudiantes15;
+
+# 2022-03-25 21:38:13.375 
++reindex index indiceuniversidad8;
+
+# 2022-03-29 08:41:15.846805
++\c pl1;
+
+# 2022-03-29 08:41:17.394415
++\d
+
+# 2022-03-29 08:42:20.907016
++explain select uni.nombre,((select count( distinct e.codigo_estudiante) from estudiantes e 
++
++    inner join estancias e2 on  e.codigo_estudiante = e2.estudiante 
++
++    inner join convalidaciones c on c.estudiante_estancias =e2.estudiante 
++
++    inner join asignaturas a on a.codigo_asignatura =c.asignatura_origen 
++
++    where uni.codigo_erasmus=e.codigo_erasmus_universidades
++
++        and (e2.tipo_beca='KA103'or e2.tipo_beca='KA107') 
++
++        and e.creditos_aprobados>120
++
++        and uni.codigo_erasmus<>e2.universidad
++
++        and (a.tipo='obligatoria' or a.tipo='básica')
++
++        and (c.nota_destino='B+' or c.nota_destino='B' or c.nota_destino='B-') 
++
++        )*100 / (select count(*) from estudiantes e3 where e3.codigo_erasmus_universidades = uni.codigo_erasmus ) )as porcentajeAlumnos
++
++from universidades as uni
++
++where uni.pais='Spain' ;
+
+# 2022-03-29 08:43:58.083668
++select * from pg_stats where tablename='estudiantes';
+
+# 2022-03-29 08:44:05.629542
++select * from pg_stats where tablename='asignaturas';
+
+# 2022-03-29 08:44:12.912080
++select * from pg_stats where tablename='convalidaciones';
+
+# 2022-03-29 08:44:19.458642
++select * from pg_stats where tablename='universidades';
+
+# 2022-03-29 08:44:23.333697
++exit

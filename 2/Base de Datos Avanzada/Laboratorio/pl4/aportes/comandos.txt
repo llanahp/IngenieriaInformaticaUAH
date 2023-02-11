@@ -1,0 +1,94 @@
+
+//En becas1 5432
+CREATE foreign TABLE public.estudiantes2 (
+	codigo_estudiante integer NOT NULL,
+	nombre text NOT NULL,
+	apellidos text NOT NULL,
+	direccion text NOT NULL,
+	pais text NOT NULL,
+	telefono bigint NOT NULL,
+	email text NOT NULL,
+	creditos_aprobados integer NOT NULL,
+	codigo_erasmus_universidades integer
+)server s1;
+CREATE foreign TABLE public.universidades2 (
+	codigo_erasmus integer NOT NULL,
+	nombre text NOT NULL,
+	direccion text NOT NULL,
+	pais text NOT NULL,
+	telefono bigint NOT NULL,
+	email text NOT NULL
+)server s1;
+CREATE foreign TABLE public.asignaturas2 (
+	codigo_asignatura integer NOT NULL,
+	nombre text NOT NULL,
+	creditos integer NOT NULL,
+	tipo text NOT NULL,
+	universidad integer
+)server s1;
+CREATE foreign TABLE public.estancias2 (
+	fecha_inicio date NOT NULL,
+	fecha_fin date NOT NULL,
+	tipo_beca text NOT NULL,
+	duracion char(1) NOT NULL,
+	cuantia real NOT NULL,
+	estudiante integer NOT NULL,
+	universidad integer NOT NULL
+)server s1;
+CREATE foreign TABLE public.convalidaciones2 (
+	nota_destino char(2) NOT NULL,
+	nota_origen real NOT NULL,
+	fecha date NOT NULL,
+	estudiante_estancias integer NOT NULL,
+	universidad_estancias integer NOT NULL,
+	asignatura_origen integer NOT NULL,
+	asignatura_destino integer NOT NULL
+)server s1;
+
+
+
+//en becas2 5433
+CREATE foreign  TABLE public.estudiantes (
+	codigo_estudiante integer NOT NULL,
+	nombre text NOT NULL,
+	apellidos text NOT NULL,
+	direccion text NOT NULL,
+	pais text NOT NULL,
+	telefono bigint NOT NULL,
+	email text NOT NULL,
+	creditos_aprobados integer NOT NULL,
+	codigo_erasmus_universidades integer
+)server s2;
+CREATE foreign TABLE public.universidades (
+	codigo_erasmus integer NOT NULL,
+	nombre text NOT NULL,
+	direccion text NOT NULL,
+	pais text NOT NULL,
+	telefono bigint NOT NULL,
+	email text NOT NULL
+)server s2;
+CREATE foreign TABLE public.asignaturas (
+	codigo_asignatura integer NOT NULL,
+	nombre text NOT NULL,
+	creditos integer NOT NULL,
+	tipo text NOT NULL,
+	universidad integer
+)server s2;
+CREATE foreign  TABLE public.estancias (
+	fecha_inicio date NOT NULL,
+	fecha_fin date NOT NULL,
+	tipo_beca text NOT NULL,
+	duracion char(1) NOT NULL,
+	cuantia real NOT NULL,
+	estudiante integer NOT NULL,
+	universidad integer NOT NULL
+)server s2;
+CREATE foreign TABLE public.convalidaciones (
+	nota_destino char(2) NOT NULL,
+	nota_origen real NOT NULL,
+	fecha date NOT NULL,
+	estudiante_estancias integer NOT NULL,
+	universidad_estancias integer NOT NULL,
+	asignatura_origen integer NOT NULL,
+	asignatura_destino integer NOT NULL
+)server s2;

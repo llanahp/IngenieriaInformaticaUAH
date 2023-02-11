@@ -1,0 +1,890 @@
+
+# 2022-03-08 09:40:09.867403
++exit
+
+# 2022-03-08 09:50:54.295886
++select pg_reload_conf();
+
+# 2022-03-08 09:50:57.734761
++exit
+
+# 2022-03-08 09:51:54.639702
++\d
+
+# 2022-03-08 09:51:56.125444
++exit
+
+# 2022-03-08 09:53:20.560009
++hola;
+
+# 2022-03-08 09:53:22.060053
++exit
+
+# 2022-03-08 09:54:10.387934
++create table paco(texto text);
+
+# 2022-03-08 09:54:12.341489
++exit
+
+# 2022-03-09 09:22:26.378070
++\c pl1;
+
+# 2022-03-09 09:22:29.097018
++\d
+
+# 2022-03-09 09:22:30.080216
++asdf
+
+# 2022-03-09 09:22:33.221366
++exit
+
+# 2022-03-09 09:23:50.177201
++hola paco que tal;
+
+# 2022-03-09 09:23:51.739102
++exit
+
+# 2022-03-09 09:47:21.483838
++\c pl1;
+
+# 2022-03-09 09:47:38.967858
++select * from alumno where carnet ='paoc';
+
+# 2022-03-09 09:47:45.140970
++select * from alumno where carnet ='22';
+
+# 2022-03-09 09:47:47.139964
++exit
+
+# 2022-03-09 11:38:44.097334
++\c pl1;
+
+# 2022-03-09 11:38:45.286628
++\d
+
+# 2022-03-09 11:38:52.253651
++drop table alumno;
+
+# 2022-03-09 11:38:59.051154
++drop table alumno3;
+
+# 2022-03-09 11:39:01.769772
++\d
+
+# 2022-03-09 11:55:34.927418
++exit
+
+# 2022-03-10 10:03:51.002275
++create table alumno (
+
+# 2022-03-10 10:03:51.049627
++carnet integer primary key,
+
+# 2022-03-10 10:03:51.065312
++nombre text,
+
+# 2022-03-10 10:03:51.096303
++codigo_de_carrera integer,
+
+# 2022-03-10 10:03:51.111998
++edad integer,
+
+# 2022-03-10 10:03:51.127370
++puntuacion integer
+
+# 2022-03-10 10:04:02.627317
++create table alumno (
+
+# 2022-03-10 10:04:29.017640
++create table alumno (carnet integer primary key,nombre text,codigo_de_carrera integer,edad integer,puntuacion integer);
+
+# 2022-03-10 10:04:36.002112
++copy alumno from 'C:\datos_alumno.txt' using delimiters ';';
+
+# 2022-03-10 10:07:11.861436
++create index indicearbolcarnet on alumno(carnet);
+
+# 2022-03-10 10:07:23.986873
++select * from pg_relpages('indicearbolcarnet'::regclass);
+
+# 2022-03-10 10:07:24.159360
++select * from pgstatindex('indicearbolcarnet');
+
+# 2022-03-10 10:08:36.904445
++create extension pgstattuple;
+
+# 2022-03-10 10:08:50.078486
++select * from pg_relpages('indicearbolcarnet'::regclass);
+
+# 2022-03-10 10:08:55.438823
++select * from pgstatindex('indicearbolcarnet');
+
+# 2022-03-10 10:08:56.970318
++select oid from pg_class where relname='indicearbolcarnet';
+
+# 2022-03-10 10:09:17.071150
++
++
+
+# 2022-03-10 10:09:26.467038
++select * from bt_page_stats('indicearbolcarnet',290);
+
+# 2022-03-10 10:09:26.529404
++select * from bt_page_stats('indicearbolcarnet',289);
+
+# 2022-03-10 10:09:26.576887
++select * from bt_page_stats('indicearbolcarnet',280);
+
+# 2022-03-10 10:10:03.699937
++create extension pageinspect;
+
+# 2022-03-10 10:10:30.834535
++select * from bt_page_stats('indicearbolcarnet',290);
+
+# 2022-03-10 10:10:34.317614
++select * from bt_page_stats('indicearbolcarnet',289);
+
+# 2022-03-10 10:10:39.411917
++select * from bt_page_stats('indicearbolcarnet',280);
+
+# 2022-03-10 10:10:43.958525
++select * from bt_page_stats('indicearbolcarnet',290);
+
+# 2022-03-10 10:11:03.115527
++-- This routine converts the hexadecimal data of an btree item in an integer number
++create or replace function hex_to_int(hexval varchar) returns bigint as $$
++DECLARE
++    result  bigint;
++    lenght int;
++    ciclos int;
++    hexval_invertido varchar;
++    hexval_no_spaces varchar;
++    carchar(2);
++BEGIN
++    SELECT replace(hexval,' ','') into hexval_no_spaces;
++--RAISE NOTICE 'hexval_no_invertido %',hexval_no_spaces;
++    lenght:=  char_length (hexval_no_spaces);
++    ciclos:= lenght/2;
++    if ciclos = 0 then
++        return null;
++    end if;
++    FOR i IN 1..ciclos LOOP
++        SELECT substr(hexval_no_spaces, (ciclos-i)*2+1, 2) into car;
++--RAISE NOTICE 'hexval_invertido %',car;
++        select concat(hexval_invertido,car) into hexval_invertido;
++    END LOOP;
++--RAISE NOTICE 'hexval_invertido %',hexval_invertido;
++    EXECUTE 'SELECT x' || quote_literal(hexval_invertido) || '::bigint' INTO result;
++    RETURN result;
++END;
++$$ language 'plpgsql';
+
+# 2022-03-10 10:11:22.479396
++-- This routine converts the hexadecimal data of an btree item in an integer number
++create or replace function hex_to_int(hexval varchar) returns bigint as $$
++DECLARE
++    result  bigint;
++    lenght int;
++    ciclos int;
++    hexval_invertido varchar;
++    hexval_no_spaces varchar;
++    car char(2);
++BEGIN
++    SELECT replace(hexval,' ','') into hexval_no_spaces;
++--RAISE NOTICE 'hexval_no_invertido %',hexval_no_spaces;
++    lenght:=  char_length (hexval_no_spaces);
++    ciclos:= lenght/2;
++    if ciclos = 0 then
++        return null;
++    end if;
++    FOR i IN 1..ciclos LOOP
++        SELECT substr(hexval_no_spaces, (ciclos-i)*2+1, 2) into car;
++--RAISE NOTICE 'hexval_invertido %',car;
++        select concat(hexval_invertido,car) into hexval_invertido;
++    END LOOP;
++--RAISE NOTICE 'hexval_invertido %',hexval_invertido;
++    EXECUTE 'SELECT x' || quote_literal(hexval_invertido) || '::bigint' INTO result;
++    RETURN result;
++END;
++$$ language 'plpgsql';
+
+# 2022-03-10 10:11:33.430466
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',290);
+
+# 2022-03-10 10:11:44.929808
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',38195);
+
+# 2022-03-10 10:11:56.430343
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',38212);
+
+# 2022-03-10 10:12:27.481448
++select * from pg_relpages('indicearbolpuntuacion'::regclass);
+
+# 2022-03-10 10:12:27.497161
++select * from pgstatindex('indicearbolpuntuacion');
+
+# 2022-03-10 10:13:09.119411
++create index indicearbolpuntuacionon alumno(puntuacion);
+
+# 2022-03-10 10:13:21.807006
++create index indicearbolpuntuacionon on alumno(puntuacion);
+
+# 2022-03-10 10:13:46.030434
++select * from pg_relpages('indicearbolpuntuacion'::regclass);
+
+# 2022-03-10 10:13:46.061556
++select * from pgstatindex('indicearbolpuntuacion');
+
+# 2022-03-10 10:14:01.898629
++create index indicearbolpuntuacion on alumno(puntuacion);
+
+# 2022-03-10 10:14:21.001392
++drop index indicearbolpuntuacionon
+
+# 2022-03-10 10:14:29.799850
++select * from pg_relpages('indicearbolpuntuacion'::regclass);
+
+# 2022-03-10 10:14:29.831690
++select * from pgstatindex('indicearbolpuntuacion');
+
+# 2022-03-10 10:14:31.253019
++select oid from pg_class where relname='indicearbolpuntuacion';
+
+# 2022-03-10 10:14:46.770124
++select * from bt_page_stats('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:14:46.832980
++select * from bt_page_stats('indicearbolpuntuacion',213);
+
+# 2022-03-10 10:14:46.895263
++select * from bt_page_stats('indicearbolpuntuacion',210);
+
+# 2022-03-10 10:14:48.348644
++select * form bt_page_items('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:15:32.170024
++select * from bt_page_items('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:15:50.091872
++select *,hex_to_int(data) from bt_page_items('indicearbolpuntuacion',215);
+
+# 2022-03-10 10:15:52.295546
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',424);
+
+# 2022-03-10 10:15:54.045049
++select *,hex_to_int(data) from bt_page_items('indicearbolcarnet',16);
+
+# 2022-03-10 10:17:13.217726
++create index indicehashcarnet using hash(carnet);
+
+# 2022-03-10 10:17:22.966683
++create index indicehashcarnet on hash(carnet);
+
+# 2022-03-10 10:18:11.588933
++create index indicehashcarnet on hash (carnet);
+
+# 2022-03-10 10:18:32.589510
++create index indicehashcarnet on alumno using hash (carnet);
+
+# 2022-03-10 10:19:09.478909
++select oid from pg_class where='indicehashcarnet';
+
+# 2022-03-10 10:19:39.176020
++select oid from pg_class where relname='indicehashcarnet';
+
+# 2022-03-10 10:19:56.897683
++select relpages from pg_class where='indicehashcarnet';
+
+# 2022-03-10 10:19:56.929391
++select pg_relation_size='indicehashcarnet';
+
+# 2022-03-10 10:19:56.945246
++select * from pgstathashindex(24883);
+
+# 2022-03-10 10:20:19.926799
++select * from hash_page_stats(get_raw_page('indicehashcarnet',2));
+
+# 2022-03-10 10:21:05.910585
++select pg_relation_size ('indicehashcarnet');
+
+# 2022-03-10 10:21:18.708944
++create index indicehashpuntuacion on alumno using hash(puntuacion);
+
+# 2022-03-10 10:22:03.115117
++select oid from pg_class where relname='indicehashpuntuacion';
+
+# 2022-03-10 10:22:03.146640
++select relpages from pg_class where relname='indicehashpuntuacion';
+
+# 2022-03-10 10:22:04.209465
++select pg_relation_size('indicehashpuntuacion');
+
+# 2022-03-10 10:22:19.396430
++select * from pgstathashindex(24884);
+
+# 2022-03-10 10:22:21.803739
++select * from hash_page_stats(get_raw_page('indicehashpuntuacion',300));
+
+# 2022-03-10 10:22:44.646496
++create table alumno3(carnet integer,nombre text,codigo_de_carrera integer,edad integer,puntuacion integer) PARTITION BY HASH (codigo_de_carrera);
+
+# 2022-03-10 10:22:54.881695
++CREATE TABLE alumno3_0 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 0);
+
+# 2022-03-10 10:22:54.928015
++CREATE TABLE alumno3_1 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 1);
+
+# 2022-03-10 10:22:54.975801
++CREATE TABLE alumno3_2 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 2);
+
+# 2022-03-10 10:22:55.022474
++CREATE TABLE alumno3_3 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 3);
+
+# 2022-03-10 10:22:55.052882
++CREATE TABLE alumno3_4 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 4);
+
+# 2022-03-10 10:22:55.100015
++CREATE TABLE alumno3_5 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 5);
+
+# 2022-03-10 10:22:55.146860
++CREATE TABLE alumno3_6 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 6);
+
+# 2022-03-10 10:22:55.178076
++CREATE TABLE alumno3_7 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 7);
+
+# 2022-03-10 10:22:55.240414
++CREATE TABLE alumno3_8 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 8);
+
+# 2022-03-10 10:22:55.287357
++CREATE TABLE alumno3_9 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 9);
+
+# 2022-03-10 10:22:55.318561
++CREATE TABLE alumno3_10 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 10);
+
+# 2022-03-10 10:22:55.381506
++CREATE TABLE alumno3_11 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 11);
+
+# 2022-03-10 10:22:55.443790
++CREATE TABLE alumno3_12 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 12);
+
+# 2022-03-10 10:22:55.506179
++CREATE TABLE alumno3_13 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 13);
+
+# 2022-03-10 10:22:55.568461
++CREATE TABLE alumno3_14 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 14);
+
+# 2022-03-10 10:22:55.646584
++CREATE TABLE alumno3_15 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 15);
+
+# 2022-03-10 10:22:55.740708
++CREATE TABLE alumno3_16 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 16);
+
+# 2022-03-10 10:22:55.866128
++CREATE TABLE alumno3_17 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 17);
+
+# 2022-03-10 10:22:55.927989
++CREATE TABLE alumno3_18 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 18);
+
+# 2022-03-10 10:22:56.053377
++CREATE TABLE alumno3_19 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 19);
+
+# 2022-03-10 10:22:56.116449
++CREATE TABLE alumno3_20 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 20);
+
+# 2022-03-10 10:22:56.193871
++CREATE TABLE alumno3_21 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 21);
+
+# 2022-03-10 10:22:56.256582
++CREATE TABLE alumno3_22 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 22);
+
+# 2022-03-10 10:22:56.319563
++CREATE TABLE alumno3_23 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 23);
+
+# 2022-03-10 10:22:56.412593
++CREATE TABLE alumno3_24 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 24);
+
+# 2022-03-10 10:22:56.521980
++CREATE TABLE alumno3_25 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 25);
+
+# 2022-03-10 10:22:56.584451
++CREATE TABLE alumno3_26 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 26);
+
+# 2022-03-10 10:22:56.725238
++CREATE TABLE alumno3_27 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 27);
+
+# 2022-03-10 10:22:56.803010
++CREATE TABLE alumno3_28 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 28);
+
+# 2022-03-10 10:23:09.474577
++CREATE TABLE alumno3_29 PARTITION OF alumno3 FOR VALUES WITH (modulus 30, remainder 29);
+
+# 2022-03-10 10:23:11.146590
++create index indicehashcarnet on alumno using hash(carnet);
+
+# 2022-03-10 10:23:11.178627
++create index indicehashpuntuacion on alumno using hash(puntuacion);
+
+# 2022-03-10 10:23:17.508885
++create index indicearbolpuntuacion on alumno using btree(puntuacion);
+
+# 2022-03-10 10:23:28.197009
++select pg_stat_reset();
+
+# 2022-03-10 10:23:28.227950
++select * from alumno where carnet='23234566';
+
+# 2022-03-10 10:23:29.679903
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:23:36.617635
++select * from pg_statio_all_tables where relname="alumno";
+
+# 2022-03-10 10:23:40.898640
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:22.215337
++select pg_stat_reset();
+
+# 2022-03-10 10:24:22.231081
++select * from alumno where carnet='23234566';
+
+# 2022-03-10 10:24:22.262320
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:24:22.293451
++select pg_stat_reset();
+
+# 2022-03-10 10:24:22.309883
++select * from alumno where puntuacion='3550';
+
+# 2022-03-10 10:24:22.575076
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:22.653034
++select pg_stat_reset();
+
+# 2022-03-10 10:24:22.684013
++select * from alumno where puntuacion<'300';
+
+# 2022-03-10 10:24:26.012169
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:26.090969
++select pg_stat_reset();
+
+# 2022-03-10 10:24:26.121956
++select * from alumno where nombre like '%135678%';
+
+# 2022-03-10 10:24:27.902466
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:27.980951
++select pg_stat_reset();
+
+# 2022-03-10 10:24:28.012677
++update alumno set puntuacion='2' where carnet='23567890';
+
+# 2022-03-10 10:24:34.293962
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:34.372080
++select pg_stat_reset();
+
+# 2022-03-10 10:24:34.403201
++select * from alumno where carnet='23567890' or carnet='21557891';
+
+# 2022-03-10 10:24:34.450481
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:34.512451
++select pg_stat_reset();
+
+# 2022-03-10 10:24:34.544092
++insert into alumno values( '99999999','alumnoXXXXXXXX','20','35','6529');
+
+# 2022-03-10 10:24:49.314998
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:24:53.674492
++drop index indicehashcarnet;
+
+# 2022-03-10 10:24:55.595872
++drop index indicehashpuntuacion;
+
+# 2022-03-10 10:24:57.720475
++drop index indicearbolpuntuacion;
+
+# 2022-03-10 10:25:03.392405
++create index indicemulti on alumno using btree(carnet,puntuacion);
+
+# 2022-03-10 10:25:34.173392
++select pg_stat_reset();
+
+# 2022-03-10 10:25:34.205498
++select * from alumno where carnet='13933295' or nombre='alumno25';
+
+# 2022-03-10 10:25:34.814496
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:25:34.846367
++select pg_stat_reset();
+
+# 2022-03-10 10:25:34.861612
++select * from alumno where carnet='19886862' and puntuacion='50';
+
+# 2022-03-10 10:25:34.892940
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:34.970920
++select pg_stat_reset();
+
+# 2022-03-10 10:25:35.002037
++select * from alumno where carnet='19886862' or puntuacion='50';
+
+# 2022-03-10 10:25:37.392411
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:37.454989
++select pg_stat_reset();
+
+# 2022-03-10 10:25:37.486541
++select * from alumno where puntuacion='60';
+
+# 2022-03-10 10:25:39.892196
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:41.454621
++select pg_stat_reset();
+
+# 2022-03-10 10:25:41.470893
++select * from alumno where carnet='13933295' or nombre='alumno25';
+
+# 2022-03-10 10:25:42.079972
++select * from pg_statio_all_tables where relname=alumno;
+
+# 2022-03-10 10:25:42.112316
++select pg_stat_reset();
+
+# 2022-03-10 10:25:42.143056
++select * from alumno where carnet='19886862' and puntuacion='50';
+
+# 2022-03-10 10:25:42.174052
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:42.252489
++select pg_stat_reset();
+
+# 2022-03-10 10:25:42.283739
++select * from alumno where carnet='19886862' or puntuacion='50';
+
+# 2022-03-10 10:25:44.454625
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:25:44.533222
++select pg_stat_reset();
+
+# 2022-03-10 10:25:44.548948
++select * from alumno where puntuacion='60';
+
+# 2022-03-10 10:25:47.204932
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:26:10.409061
++select pg_stat_reset();
+
+# 2022-03-10 10:26:10.439890
++select * from alumno where carnet='13933295' or nombre='alumno25';
+
+# 2022-03-10 10:26:11.048659
++select * from pg_statio_all_tables where relname='alumno';
+
+# 2022-03-10 10:26:43.392388
++select pg_stat_reset();
+
+# 2022-03-10 10:26:43.423688
++select * from alumno3 where codigo_de_carrera>12;
+
+# 2022-03-10 10:26:43.455709
++select * from pg_statio_all_tables where relname='alumno3_0';
+
+# 2022-03-10 10:26:43.548983
++select * from pg_statio_all_tables where relname='alumno3_1';
+
+# 2022-03-10 10:26:43.611280
++select * from pg_statio_all_tables where relname='alumno3_2';
+
+# 2022-03-10 10:26:43.673712
++select * from pg_statio_all_tables where relname='alumno3_3';
+
+# 2022-03-10 10:26:43.751517
++select * from pg_statio_all_tables where relname='alumno3_4';
+
+# 2022-03-10 10:26:43.814611
++select * from pg_statio_all_tables where relname='alumno3_5';
+
+# 2022-03-10 10:26:43.893174
++select * from pg_statio_all_tables where relname='alumno3_6';
+
+# 2022-03-10 10:26:43.955506
++select * from pg_statio_all_tables where relname='alumno3_7';
+
+# 2022-03-10 10:26:44.033386
++select * from pg_statio_all_tables where relname='alumno3_8';
+
+# 2022-03-10 10:26:44.111950
++select * from pg_statio_all_tables where relname='alumno3_9';
+
+# 2022-03-10 10:26:44.173690
++select * from pg_statio_all_tables where relname='alumno3_10';
+
+# 2022-03-10 10:26:44.236126
++select * from pg_statio_all_tables where relname='alumno3_11';
+
+# 2022-03-10 10:26:44.314833
++select * from pg_statio_all_tables where relname='alumno3_12';
+
+# 2022-03-10 10:26:44.392938
++select * from pg_statio_all_tables where relname='alumno3_13';
+
+# 2022-03-10 10:26:44.454853
++select * from pg_statio_all_tables where relname='alumno3_14';
+
+# 2022-03-10 10:26:44.533476
++select * from pg_statio_all_tables where relname='alumno3_15';
+
+# 2022-03-10 10:26:44.610993
++select * from pg_statio_all_tables where relname='alumno3_16';
+
+# 2022-03-10 10:26:44.673767
++select * from pg_statio_all_tables where relname='alumno3_17';
+
+# 2022-03-10 10:26:44.752365
++select * from pg_statio_all_tables where relname='alumno3_18';
+
+# 2022-03-10 10:26:44.814520
++select * from pg_statio_all_tables where relname='alumno3_19';
+
+# 2022-03-10 10:26:44.877231
++select * from pg_statio_all_tables where relname='alumno3_20';
+
+# 2022-03-10 10:26:44.939145
++select * from pg_statio_all_tables where relname='alumno3_21';
+
+# 2022-03-10 10:26:45.001541
++select * from pg_statio_all_tables where relname='alumno3_22';
+
+# 2022-03-10 10:26:45.096015
++select * from pg_statio_all_tables where relname='alumno3_23';
+
+# 2022-03-10 10:26:45.174509
++select * from pg_statio_all_tables where relname='alumno3_24';
+
+# 2022-03-10 10:26:45.236291
++select * from pg_statio_all_tables where relname='alumno3_25';
+
+# 2022-03-10 10:26:45.299029
++select * from pg_statio_all_tables where relname='alumno3_26';
+
+# 2022-03-10 10:26:45.361206
++select * from pg_statio_all_tables where relname='alumno3_27';
+
+# 2022-03-10 10:26:45.440574
++select * from pg_statio_all_tables where relname='alumno3_28';
+
+# 2022-03-10 10:26:47.394061
++select * from pg_statio_all_tables where relname='alumno3_29';
+
+# 2022-03-10 10:26:55.189112
++select pg_stat_reset();
+
+# 2022-03-10 10:26:55.220855
++select * from alumno3 where codigo_de_carrera=12 or codigo_de_carrera=6;
+
+# 2022-03-10 10:26:55.252172
++select * from pg_statio_all_tables where relname='alumno3_0';
+
+# 2022-03-10 10:26:55.330073
++select * from pg_statio_all_tables where relname='alumno3_1';
+
+# 2022-03-10 10:26:55.392455
++select * from pg_statio_all_tables where relname='alumno3_2';
+
+# 2022-03-10 10:26:55.455057
++select * from pg_statio_all_tables where relname='alumno3_3';
+
+# 2022-03-10 10:26:55.517362
++select * from pg_statio_all_tables where relname='alumno3_4';
+
+# 2022-03-10 10:26:55.580728
++select * from pg_statio_all_tables where relname='alumno3_5';
+
+# 2022-03-10 10:26:55.642261
++select * from pg_statio_all_tables where relname='alumno3_6';
+
+# 2022-03-10 10:26:55.705158
++select * from pg_statio_all_tables where relname='alumno3_7';
+
+# 2022-03-10 10:26:55.767265
++select * from pg_statio_all_tables where relname='alumno3_8';
+
+# 2022-03-10 10:26:55.862018
++select * from pg_statio_all_tables where relname='alumno3_9';
+
+# 2022-03-10 10:26:55.923795
++select * from pg_statio_all_tables where relname='alumno3_10';
+
+# 2022-03-10 10:26:55.985995
++select * from pg_statio_all_tables where relname='alumno3_11';
+
+# 2022-03-10 10:26:56.065255
++select * from pg_statio_all_tables where relname='alumno3_12';
+
+# 2022-03-10 10:26:56.127545
++select * from pg_statio_all_tables where relname='alumno3_13';
+
+# 2022-03-10 10:26:56.189211
++select * from pg_statio_all_tables where relname='alumno3_14';
+
+# 2022-03-10 10:26:56.252033
++select * from pg_statio_all_tables where relname='alumno3_15';
+
+# 2022-03-10 10:26:56.314792
++select * from pg_statio_all_tables where relname='alumno3_16';
+
+# 2022-03-10 10:26:56.408711
++select * from pg_statio_all_tables where relname='alumno3_17';
+
+# 2022-03-10 10:26:56.471366
++select * from pg_statio_all_tables where relname='alumno3_18';
+
+# 2022-03-10 10:26:56.533615
++select * from pg_statio_all_tables where relname='alumno3_19';
+
+# 2022-03-10 10:26:56.611371
++select * from pg_statio_all_tables where relname='alumno3_20';
+
+# 2022-03-10 10:26:56.673553
++select * from pg_statio_all_tables where relname='alumno3_21';
+
+# 2022-03-10 10:26:56.736015
++select * from pg_statio_all_tables where relname='alumno3_22';
+
+# 2022-03-10 10:26:56.799355
++select * from pg_statio_all_tables where relname='alumno3_23';
+
+# 2022-03-10 10:26:56.861315
++select * from pg_statio_all_tables where relname='alumno3_24';
+
+# 2022-03-10 10:26:56.939282
++select * from pg_statio_all_tables where relname='alumno3_25';
+
+# 2022-03-10 10:26:57.002261
++select * from pg_statio_all_tables where relname='alumno3_26';
+
+# 2022-03-10 10:26:57.096081
++select * from pg_statio_all_tables where relname='alumno3_27';
+
+# 2022-03-10 10:26:57.158248
++select * from pg_statio_all_tables where relname='alumno3_28';
+
+# 2022-03-10 10:26:57.220831
++select * from pg_statio_all_tables where relname='alumno3_29';
+
+# 2022-03-10 10:26:57.314365
++select pg_stat_reset();
+
+# 2022-03-10 10:26:57.345611
++select * from alumno3 where codigo_de_carrera>10 and codigo_de_carrera<15;
+
+# 2022-03-10 10:26:57.377042
++select * from pg_statio_all_tables where relname='alumno3_0';
+
+# 2022-03-10 10:26:57.455078
++select * from pg_statio_all_tables where relname='alumno3_1';
+
+# 2022-03-10 10:26:57.518076
++select * from pg_statio_all_tables where relname='alumno3_2';
+
+# 2022-03-10 10:26:57.580271
++select * from pg_statio_all_tables where relname='alumno3_3';
+
+# 2022-03-10 10:26:57.626436
++select * from pg_statio_all_tables where relname='alumno3_4';
+
+# 2022-03-10 10:26:57.689466
++select * from pg_statio_all_tables where relname='alumno3_5';
+
+# 2022-03-10 10:26:57.752209
++select * from pg_statio_all_tables where relname='alumno3_6';
+
+# 2022-03-10 10:26:57.814648
++select * from pg_statio_all_tables where relname='alumno3_7';
+
+# 2022-03-10 10:26:57.877199
++select * from pg_statio_all_tables where relname='alumno3_8';
+
+# 2022-03-10 10:26:57.955847
++select * from pg_statio_all_tables where relname='alumno3_9';
+
+# 2022-03-10 10:26:58.033284
++select * from pg_statio_all_tables where relname='alumno3_10';
+
+# 2022-03-10 10:26:58.096060
++select * from pg_statio_all_tables where relname='alumno3_11';
+
+# 2022-03-10 10:26:58.158235
++select * from pg_statio_all_tables where relname='alumno3_12';
+
+# 2022-03-10 10:26:58.220830
++select * from pg_statio_all_tables where relname='alumno3_13';
+
+# 2022-03-10 10:26:58.283487
++select * from pg_statio_all_tables where relname='alumno3_14';
+
+# 2022-03-10 10:26:58.345984
++select * from pg_statio_all_tables where relname='alumno3_15';
+
+# 2022-03-10 10:26:58.408666
++select * from pg_statio_all_tables where relname='alumno3_16';
+
+# 2022-03-10 10:26:58.486403
++select * from pg_statio_all_tables where relname='alumno3_17';
+
+# 2022-03-10 10:26:58.549427
++select * from pg_statio_all_tables where relname='alumno3_18';
+
+# 2022-03-10 10:26:58.611626
++select * from pg_statio_all_tables where relname='alumno3_19';
+
+# 2022-03-10 10:26:58.673904
++select * from pg_statio_all_tables where relname='alumno3_20';
+
+# 2022-03-10 10:26:58.736721
++select * from pg_statio_all_tables where relname='alumno3_21';
+
+# 2022-03-10 10:26:58.798945
++select * from pg_statio_all_tables where relname='alumno3_22';
+
+# 2022-03-10 10:26:58.861523
++select * from pg_statio_all_tables where relname='alumno3_23';
+
+# 2022-03-10 10:26:58.923896
++select * from pg_statio_all_tables where relname='alumno3_24';
+
+# 2022-03-10 10:26:59.017903
++select * from pg_statio_all_tables where relname='alumno3_25';
+
+# 2022-03-10 10:26:59.080433
++select * from pg_statio_all_tables where relname='alumno3_26';
+
+# 2022-03-10 10:26:59.142663
++select * from pg_statio_all_tables where relname='alumno3_27';
+
+# 2022-03-10 10:26:59.204993
++select * from pg_statio_all_tables where relname='alumno3_28';
+
+# 2022-03-10 10:26:59.267299
++select * from pg_statio_all_tables where relname='alumno3_29';
+
+# 2022-03-10 10:27:07.142553
++exit
