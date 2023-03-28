@@ -1,0 +1,8 @@
+en el código arduino (archivo.ino): sólo faltaría en las líneas 224 y 225 poner el ssid y la contraseña de tu red wifi
+
+en la IDE arduino: 
+  - es necesario importar el board manager de la ESP32, debería funcionar esto: https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/
+  - librerías que tienes que añadir a la IDE de Arduino (la de PubSub y ESP32Servo, en este directorio), siguiendo los botones:     Sketch -> Include Library -> Add .zip Library
+  - cuando vayas a cargar el programa, tardará un poco en compilar, y luego saldrá en output, connecting ..._... en ese momento     tienes que mantener pulsado el botón BOOT de la placa ESP (al lado de donde se le conecta el usb, creo que es el botón a la     derecha), hasta que empiezan a salir bastantes líneas en el output
+
+
