@@ -1,0 +1,15 @@
+problem_1,2,2,jshop2
+problem_2,3,3,jshop2
+problem_3,5,4,jshop2
+problem_4,7,5,jshop2
+problem_5,9,6,jshop2
+problem_6,10,7,jshop2
+problem_7,12,8,jshop2
+problem_8,14,9,jshop2
+problem_9,15,10,jshop2
+problem_10,17,11,jshop2
+problem_11,19,12,jshop2
+problem_12,21,13,jshop2
+problem_13,23,14,jshop2
+problem_14,24,15,jshop2
+problem_15,27,16,jshop2

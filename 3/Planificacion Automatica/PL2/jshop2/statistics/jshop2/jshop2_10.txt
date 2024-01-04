@@ -1,0 +1,6 @@
+problem_1,2,2,jshop2
+problem_2,3,3,jshop2
+problem_3,5,4,jshop2
+problem_4,7,5,jshop2
+problem_5,9,6,jshop2
+problem_6,11,7,jshop2

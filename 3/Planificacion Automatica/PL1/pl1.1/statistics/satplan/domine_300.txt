@@ -1,0 +1,7 @@
+drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl,0,2,satplan
+drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl,0,3,satplan
+drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl,0,4,satplan
+drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl,1,5,satplan
+drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl,13,6,satplan
+drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl,109,7,satplan
+drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl,370,8,satplan

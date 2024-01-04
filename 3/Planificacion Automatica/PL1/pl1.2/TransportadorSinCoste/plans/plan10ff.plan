@@ -1,0 +1,82 @@
+
+ff: parsing domain file
+domain 'GRIPPER-STRIPS-TYPING' defined
+ ... done.
+ff: parsing problem file
+problem 'STRIPS-GRIPPER-X-1' defined
+ ... done.
+
+
+
+Cueing down from goal distance:   20 into depth [1]
+                                  19            [1][2][3]
+                                  18            [1]
+                                  17            [1][2][3]
+                                  16            [1]
+                                  15            [1][2][3]
+                                  14            [1]
+                                  13            [1][2][3]
+                                  12            [1]
+                                  11            [1][2]
+                                  10            [1][2]
+                                   9            [1]
+                                   8            [1][2][3]
+                                   7            [1]
+                                   6            [1][2][3]
+                                   5            [1]
+                                   4            [1][2][3]
+                                   3            [1]
+                                   2            [1][2][3][4]
+                                   1            [1]
+                                   0            
+
+ff: found legal plan as follows
+
+step    0: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX1
+        1: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC7
+        2: LET-BOX-TO-PERSON LOC7 GRIPPER_1_LEFT BOX1 PERSON1 FOOD
+        3: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC7 LOCATION_DEPOSITO
+        4: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX3
+        5: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC4
+        6: LET-BOX-TO-PERSON LOC4 GRIPPER_1_LEFT BOX3 PERSON3 FOOD
+        7: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC4 LOCATION_DEPOSITO
+        8: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX5
+        9: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC1
+       10: LET-BOX-TO-PERSON LOC1 GRIPPER_1_LEFT BOX5 PERSON7 FOOD
+       11: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC1 LOCATION_DEPOSITO
+       12: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX7
+       13: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC2
+       14: LET-BOX-TO-PERSON LOC2 GRIPPER_1_LEFT BOX7 PERSON9 FOOD
+       15: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC2 LOCATION_DEPOSITO
+       16: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX9
+       17: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC3
+       18: LET-BOX-TO-PERSON LOC3 GRIPPER_1_LEFT BOX9 PERSON5 FOOD
+       19: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC3 LOCATION_DEPOSITO
+       20: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX2
+       21: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC6
+       22: LET-BOX-TO-PERSON LOC6 GRIPPER_1_LEFT BOX2 PERSON4 MEDICINE
+       23: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC6 LOCATION_DEPOSITO
+       24: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX4
+       25: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC9
+       26: LET-BOX-TO-PERSON LOC9 GRIPPER_1_LEFT BOX4 PERSON6 MEDICINE
+       27: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC9 LOCATION_DEPOSITO
+       28: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX6
+       29: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC8
+       30: LET-BOX-TO-PERSON LOC8 GRIPPER_1_LEFT BOX6 PERSON8 MEDICINE
+       31: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC8 LOCATION_DEPOSITO
+       32: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX8
+       33: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC3
+       34: LET-BOX-TO-PERSON LOC3 GRIPPER_1_LEFT BOX8 PERSON2 MEDICINE
+       35: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOC3 LOCATION_DEPOSITO
+       36: TAKE-BOX-FROM-FLOOR LOCATION_DEPOSITO GRIPPER_1_LEFT BOX10
+       37: MOVER-SIN-TRANSPORTADOR GRIPPER_1_LEFT TRANSPORTADOR LOCATION_DEPOSITO LOC3
+       38: LET-BOX-TO-PERSON LOC3 GRIPPER_1_LEFT BOX10 PERSON10 MEDICINE
+     
+
+time spent:    0.00 seconds instantiating 1354 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 91 facts and 1204 actions
+               0.00 seconds creating final representation with 80 relevant facts
+               0.00 seconds building connectivity graph
+               0.00 seconds searching, evaluating 161 states, to a max depth of 4
+               0.00 seconds total time
+

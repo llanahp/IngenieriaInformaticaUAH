@@ -1,0 +1,87 @@
+from pyhop import hop
+
+
+#Definimos los operadores
+def move(state, loc_actual,  to):
+    if loc_actual != to:
+        if state.loc['drone'] == loc_actual:
+            state.loc['drone'] = to
+            return state
+        else:
+            return False
+    else:
+        return False
+    
+def take_box(state, box):
+    if state.loc[box] == state.loc['drone']:
+        if state.free['gripper_l']:
+            state.free['gripper_l'] = False
+            state.carry['gripper_l'] = box
+            state.loc[box] = 'gripper_l'
+            return state
+        elif state.free['gripper_r']:
+            state.free['gripper_l'] = False
+            state.carry['gripper_l'] = box
+            state.loc[box] = 'gripper_l'
+            return state
+        else:
+            return False
+    else:
+        return False
+    
+def put_box(state, person):
+    if state.loc['drone'] == state.loc[person]:
+        if state.type[state.carry['gripper_l']] == state.doesnt_have[person]:
+            box = state.carry['gripper_l']
+            state.free['gripper_l'] = True
+            state.carry['gripper_l'] = None
+            state.loc[box] = state.loc[person]
+            state.doesnt_have[person] = None
+            state.has[person] = box
+            return state
+        elif state.type[state.carry['gripper_r']] == state.doesnt_have[person]:
+            box = state.carry['gripper_r']
+            state.free['gripper_r'] = True
+            state.carry['gripper_r'] = None
+            state.loc[box] = state.loc[person]
+            state.doesnt_have[person] = None
+            state.has[person] = box
+            return state
+        else:
+            return False  
+    else:
+        return False
+
+#Registramos los operadores
+hop.declare_operators(move, take_box, put_box)
+print('')
+hop.print_operators(hop.get_operators())
+
+
+#Definimos los metodos
+def le_falta(state, person, box):
+    if state.doesnt_have[person] == state.type[box]:
+        if state.loc[box] != state.loc['drone'] and state.loc[box] != state.loc[person]:
+            return [('move', state.loc['drone'], state.loc[box]), ('take_box', box), ('move', state.loc[box], state.loc[person]), ('put_box', person)]
+        elif state.loc[box] != state.loc['drone']:
+            return [('move', state.loc['drone'], state.loc[box]), ('take_box', box), ('put_box', person)]
+        elif state.loc[box] != state.loc[person]:
+            return [('take_box', box), ('move', state.loc[box], state.loc[person]), ('put_box', person)]
+        else:
+            return []
+    else:
+        return []
+
+
+#Registramos los metodos
+hop.declare_methods('le_falta', le_falta)
+
+
+print('')
+hop.print_methods(hop.get_methods())
+
+#Definimos el estado inicial
+state1 = hop.State('state1')
+state1.free = {"gripper_l":True, "gripper_r":True}
+state1.carry = {"gripper_l":None, "gripper_r":None}
+

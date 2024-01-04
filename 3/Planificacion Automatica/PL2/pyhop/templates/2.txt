@@ -1,0 +1,25 @@
+
+print("\n-----Estado inicial-----\n")
+print("Localizaciones: ", state1.loc)
+print("Cajas: " ,state1.type)
+print("Libres: " ,state1.free)
+print("Carga: " ,state1.carry)
+print("No tiene :" ,state1.doesnt_have)
+print("Tiene :" ,state1.has)
+
+print("\n-----Generar plan-----\n")
+
+
+def enviar_todo(state):
+    posibilidades = []
+    for person in state.doesnt_have.keys():
+        needed_type= state.doesnt_have.get(person)
+        for box in state.type.keys():
+            if state.type.get(box) == needed_type:
+                posibilidades.append(('le_falta', person, box))
+    plan = hop.plan(state, posibilidades,
+    hop.get_operators(),hop.get_methods())
+
+    return plan
+
+print(enviar_todo(state1))

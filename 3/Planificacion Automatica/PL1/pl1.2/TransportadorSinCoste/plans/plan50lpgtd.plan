@@ -1,0 +1,36 @@
+
+
+NUMERIC_THREATS_MODE: 0
+
+; Command line: planners/lpg-td -o ./T/domine.pddl -f ./T/problems/drone_problem_d1_r0_l50_p50_c50_g50_ct2.pddl -n 1   
+
+
+Parsing domain file:  domain 'GRIPPER-STRIPS-TYPING' defined ... done.
+Parsing problem file:  problem 'STRIPS-GRIPPER-X-1' defined ... done.
+
+
+
+Modality: Incremental Planner
+
+Number of actions             :   27004
+Number of conditional actions :       0
+Number of facts               :     360
+
+
+Analyzing Planning Problem:
+	Temporal Planning Problem: NO
+	Numeric Planning Problem: NO
+	Problem with Timed Initial Literals: NO
+	Problem with Derived Predicates: NO
+
+Evaluation function weights:
+     Action duration 0.00; Action cost 1.00
+
+
+Computing mutex... done
+
+Preprocessing total time: 1.97 seconds
+
+Searching ('.' = every 50 search steps):
+........... search limit exceeded. Restart using null plan
+............. search limit exceeded. Restart using null plan

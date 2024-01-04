@@ -1,0 +1,44 @@
+(defproblem problem drone
+	(
+	(gripper gripper_1_left)
+	(gripper gripper_1_right)
+
+	(transportador transportador1)
+	(capacidadtrans transportador1 10)
+	(transportador-at transportador1 location_deposito)
+
+	(nboxes-at transportador1 food 0)
+	(nboxes-at transportador1 medicine 0)
+	(location location_deposito)
+	(location loc1)
+	(location loc2)
+
+	(nboxes-at location_deposito food 75)
+	(nboxes-at location_deposito medicine 75)
+	(nboxes-at loc1 food 0)
+	(nboxes-at loc1 medicine 0)
+	(nboxes-at loc2 food 0)
+	(nboxes-at loc2 medicine 0)
+	(type food)
+	(type medicine)
+
+	(ncajas food 75)
+	(ncajas medicine 75)
+	(supply-needed food loc1 25)
+	(supply-needed medicine loc1 25)
+	(supply-needed food loc2 50)
+	(supply-needed medicine loc2 50)
+	(gripper-at gripper_1_left location_deposito)
+	(gripper-at gripper_1_right location_deposito)
+
+	(free gripper_1_left)
+	(free gripper_1_right)
+
+	(gripper-pair gripper_1_right gripper_1_left)
+	(gripper-pair gripper_1_left gripper_1_right)
+
+	)
+	(:unordered
+		(enviar-todo)
+	)
+)

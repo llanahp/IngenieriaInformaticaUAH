@@ -1,0 +1,85 @@
+(defdomain drone (
+		(:operator  (!mover ?gripper_l ?gripper_r ?from ?to)
+			((location ?from) (location ?to) (gripper ?gripper_l) (gripper ?gripper_r) 
+			(different ?from ?to) (gripper-pair ?gripper_l ?gripper_r) (gripper-at ?gripper_l ?from) (gripper-at ?gripper_r ?from))
+			((gripper-at ?gripper_l ?from) (gripper-at ?gripper_r ?from))
+			((gripper-at ?gripper_l ?to) (gripper-at ?gripper_r ?to))
+		)
+
+		(:operator  (!take-box ?gripper ?location ?box)
+			((location ?location) (gripper ?gripper) (box ?box)
+				(gripper-at ?gripper ?location) (box-at ?box ?location) (free ?gripper))
+			((box-at ?box ?location) (free ?gripper))
+			((carry ?gripper ?box))
+		)
+
+		(:operator  (!let-box ?location ?gripper ?box ?person ?tipo)
+			((location ?location) (gripper ?gripper) (box ?box) (person ?person) (box ?box)
+			(gripper-at ?gripper ?location) (person-at ?person ?location) (carry ?gripper ?box)
+			(person-dont-have ?person ?tipo) (box-type ?box ?tipo))
+
+			((person-dont-have ?person ?tipo)(carry ?gripper ?box))
+			((person-have ?person ?tipo) (free ?gripper))
+		)
+
+		(:method (le-falta ?person ?tipo)
+			((person ?person) (type ?tipo) (person-dont-have ?person ?tipo) (gripper ?g_l) (gripper ?g_r) (location ?loc)
+			 (gripper-at ?g_l ?loc) (person-at ?person ?loc) (box ?box) (box-type ?box ?tipo) (carry ?g_l ?box))
+			(
+				(let-box ?loc ?g_l ?box ?person ?tipo)
+			)		
+
+			((person ?person) (type ?tipo) (person-dont-have ?person ?tipo) (gripper ?g_l) (gripper ?g_r) (location ?loc) (location ?loc2)
+			 (gripper-at ?g_l ?loc) (person-at ?person ?loc2) (box ?box) (box-type ?box ?tipo) (carry ?g_l ?box))
+			(
+				(!mover ?g_l ?g_r ?loc ?loc2)
+				(let-box ?loc ?g_l ?box ?person ?tipo)
+			)
+
+			; cargar  mover dejar
+			((person ?person) (type ?tipo) (person-dont-have ?person ?tipo) (gripper ?g_l) (gripper ?g_r) (location ?loc) (location ?loc2) (box ?box)
+			 (gripper-at ?g_l ?loc) (box-at ?box ?loc) (person-at ?person ?loc2) (box-type ?box ?tipo) (not(carry ?g_l ?box)))
+			(
+				(!take-box ?g_l ?loc ?box)
+				(!mover ?g_l ?g_r ?loc ?loc2)
+				(!let-box ?loc2 ?g_l ?box ?person ?tipo)
+			)
+
+			;mover cargar  mover dejar
+			((person ?person) (type ?tipo) (person-dont-have ?person ?tipo) (gripper ?g_l) (gripper ?g_r) (location ?loc) (location ?loc2) (location ?loc_dep) (box ?box)
+			 (gripper-at ?g_l ?loc) (box-at ?box ?loc_dep) (person-at ?person ?loc2) (box-type ?box ?tipo) )
+			(
+				(!mover ?g_l ?g_r ?loc ?loc_dep)
+				(!take-box ?g_l ?loc_dep ?box)
+				(!mover ?g_l ?g_r ?loc_dep ?loc2)
+				(!let-box ?loc2 ?g_l ?box ?person ?tipo)
+			)
+
+			((person ?person) (person ?person2) (type ?tipo) (type ?tipo2) (person-dont-have ?person ?tipo) (person-dont-have ?person2 ?tipo2)
+			 (gripper ?g_l) (gripper ?g_r) (location ?loc) (location ?loc2) (box ?box) (box ?box2) (different ?box ?box2)
+			 (gripper-at ?g_l ?loc)(gripper-at ?g_r ?loc) (box-at ?box ?loc) (box-at ?box2 ?loc) (person-at ?person ?loc2)
+			  (box-type ?box2 ?tipo2)  (box-type ?box ?tipo) (free ?g_l) (free ?g_r))
+			(
+				(!take-box ?g_r ?loc ?box2)
+				(!take-box ?g_l ?loc ?box)
+				(!mover ?g_l ?g_r ?loc ?loc2)
+				(!let-box ?loc2 ?g_l ?box ?person ?tipo)
+			)
+		)
+
+		(:method (enviar-todo)
+			((person ?person) (type ?tipo) (person-dont-have ?person ?tipo)
+				(person ?person2) (type ?tipo2) (person-dont-have ?person2 ?tipo2) (different ?person ?person2))
+			(
+				(le-falta ?person ?tipo)
+				(enviar-todo)
+			)
+
+			((person ?person) (type ?tipo) (person-dont-have ?person ?tipo))
+			((le-falta ?person ?tipo))
+		)
+
+		(:- (same ?x ?x) nil)
+   		(:- (different ?x ?y) ((not (same ?x ?y))))
+	)
+)

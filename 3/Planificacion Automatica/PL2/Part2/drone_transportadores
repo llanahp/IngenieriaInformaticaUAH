@@ -1,0 +1,248 @@
+(defdomain drone (
+
+	
+	; OPERATORS
+
+		(:operator  (!mover ?gripper_l ?gripper_r ?from ?to)
+			;pre
+			((location ?from) (location ?to) (gripper ?gripper_l) (gripper ?gripper_r) 
+			(different ?from ?to) (gripper-pair ?gripper_l ?gripper_r) (gripper-at ?gripper_l ?from) (gripper-at ?gripper_r ?from))
+			;delete
+			((gripper-at ?gripper_l ?from) (gripper-at ?gripper_r ?from))
+			;add
+			((gripper-at ?gripper_l ?to) (gripper-at ?gripper_r ?to))
+		)
+
+		;cambiar call por eval
+		(:operator  (!take-box ?gripper ?location ?type)
+			;pre
+			((location ?location) (gripper ?gripper) (type ?type)
+			(gripper-at ?gripper ?location) (ncajas ?type ?nc) (nboxes-at ?location ?type ?bl) (call > ?bl 0) (free ?gripper))
+			;delete
+			((nboxes-at ?location ?type ?bl) (free ?gripper))
+			;add
+			((nboxes-at ?location ?type (call - ?nc 1)) (carry ?gripper ?type))
+		)
+
+		(:operator  (!let-box ?location ?gripper ?type)
+			;pre
+			((location ?location) (gripper ?gripper) (type ?type)
+			(gripper-at ?gripper ?location) (carry ?gripper ?type) (nboxes-at ?location ?type ?bl)
+			(supply-needed ?type ?location ?bn) (call > ?bn 0))
+			;delete
+			((nboxes-at ?location ?type ?bl) (supply-needed ?type ?location ?bn) (carry ?gripper ?type))
+			;add
+			((nboxes-at ?location ?type (call + ?bl 1)) (supply-needed ?type ?location (call - ?bn 1)) (free ?gripper))
+		)
+
+
+
+		(:operator  (!mover-con-transportador ?gripper_l ?gripper_r ?transportador ?from ?to)	
+			;pre
+			((location ?from) (location ?to) (gripper ?gripper_l) (gripper ?gripper_r) (transportador ?transportador)
+			(different ?from ?to) (gripper-pair ?gripper_l ?gripper_r) (gripper-at ?gripper_l ?from) (gripper-at ?gripper_r ?from) 
+			(carry ?g_l ?transportador) )
+			;delete
+			((gripper-at ?gripper_l ?from) (gripper-at ?gripper_r ?from) )
+			;add
+			((gripper-at ?gripper_l ?to) (gripper-at ?gripper_r ?to) )
+		)
+
+	
+		(:operator  (!take-box-from-transportador ?gripper ?transportador ?location ?type)
+			;pre
+			((location ?location) (gripper ?gripper) (gripper ?g_r) (transportador ?transportador) (type ?type)
+			 (gripper-at ?gripper ?from) (gripper-at ?g_r ?from) (gripper-pair ?gripper ?g_r) 
+
+			 (gripper-at ?gripper ?location) (carry ?g_r ?transportador)
+			 (nboxes-at ?transportador ?type ?cajas_en_transportador) (call > ?cajas_en_transportador 0) (free ?gripper))
+			;delete
+			((free ?gripper) (nboxes-at ?transportador ?type ?cajas_en_transportador))
+			;add
+			((nboxes-at ?transportador ?type (call - ?cajas_en_transportador 1)) (carry ?gripper ?type))
+		)
+
+		(:operator  (!let-box-in-transportador ?location ?gripper ?transportador ?type)
+			;pre
+			((location ?location) (gripper ?gripper) (transportador ?transportador) (type ?type)
+			 (gripper-at ?gripper ?location) (transportador-at ?transportador ?location) (nboxes-at ?transportador ?type ?bt)
+			 (capacidadtrans ?transportador ?ct) (call < ?bt ?ct) (carry ?gripper ?type)  (nboxes-at ?location ?type ?cajas_en_loc) (call > ?cajas_en_loc 0))
+			;delete
+			((carry ?gripper ?type)   (nboxes-at ?location ?type ?cajas_en_loc)  (nboxes-at ?transportador ?type ?bt))
+			;add
+			((nboxes-at ?transportador ?type (call + ?bt 1)) (free ?gripper)     (nboxes-at ?location ?type (call - ?cajas_en_loc 1)))
+		)
+
+		(:operator  (!take-transportador ?gripper ?location ?transportador)
+			;pre
+			((location ?location) (gripper ?gripper) (transportador ?transportador)
+			(gripper-at ?gripper ?location) (transportador-at ?transportador ?location) (free ?gripper))
+			;delete
+			((transportador-at ?transportador ?location) (free ?gripper))
+			;add
+			((carry ?gripper ?transportador))
+		)
+
+		(:operator  (!let-transportador ?location ?gripper ?transportador)
+			;pre
+			((location ?location) (gripper ?gripper) (transportador ?transportador)
+			(gripper-at ?gripper ?location) (carry ?gripper ?transportador))
+			;delete
+			((carry ?gripper ?transportador))
+			;add
+			((transportador-at ?transportador ?location) (free ?gripper))
+		)
+
+	; METHODS
+
+		(:method (enviar-todo)
+
+			
+
+
+			((type ?type) (location ?from) (location ?to) (location ?to2) 
+				(different ?from ?to) (ncajas ?type ?nc) 	(different ?to ?to2) 
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l) (nboxes-at ?from ?type ?bl) (supply-needed ?type ?to ?bn) (supply-needed ?type ?to2 ?bn2) 
+				(call > ?bl 0) (call = ?bn 1) (call > ?bn2 0) (call > ?nc 0))
+			(
+				(!take-box ?g_l ?from ?type)
+				(!mover ?g_l ?g_r ?from ?to)
+				(!let-box ?to ?g_l ?type)
+				(!mover ?g_l ?g_r ?to ?from)
+				(enviar-todo)
+			)
+
+
+
+			((type ?type) (type ?type2)  (location ?from) (location ?to)
+				(different ?from ?to) (ncajas ?type ?nc) (different ?type ?type2) 
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l) (nboxes-at ?from ?type ?bl) (supply-needed ?type ?to ?bn) (supply-needed ?type2 ?to ?bn2) 
+				(call > ?bl 0) (call = ?bn 1) (call > ?bn2 0) (call > ?nc 0))
+			(
+				(!take-box ?g_l ?from ?type)
+				(!mover ?g_l ?g_r ?from ?to)
+				(!let-box ?to ?g_l ?type)
+				(!mover ?g_l ?g_r ?to ?from)
+				(enviar-todo)
+			)
+
+			((type ?type) (type ?type2) (location ?from) (location ?to) (location ?to2) 
+				(different ?from ?to) (ncajas ?type ?nc) (different ?to ?to2) (different ?type ?type2) 
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l) (nboxes-at ?from ?type ?bl) (supply-needed ?type ?to ?bn) (supply-needed ?type2 ?to2 ?bn2) 
+				(call > ?bl 0) (call = ?bn 1) (call > ?bn2 0) (call > ?nc 0))
+			(
+				(!take-box ?g_l ?from ?type)
+				(!mover ?g_l ?g_r ?from ?to)
+				(!let-box ?to ?g_l ?type)
+				(!mover ?g_l ?g_r ?to ?from)
+				(enviar-todo)
+			)
+
+	;-----------------------------------
+
+			((type ?type) (location ?from) (transportador ?transportador) (location ?to)
+				
+				(different ?from ?to) 
+				(carry ?g_r ?transportador)
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l)
+				(nboxes-at ?transportador ?type ?cajas_en_transportador)
+				(supply-needed ?type ?from ?bn) (call > ?bn 1)
+				(call > ?cajas_en_transportador 0))
+			(
+				(!take-box-from-transportador ?g_l ?transportador ?from ?type)
+				(!let-box ?from ?g_l ?type)
+				(!mover-con-transportador ?g_l ?g_r ?transportador ?from ?to)
+				(!let-transportador ?to ?g_r ?transportador)
+
+				(enviar-todo)
+			)
+
+			((type ?type) (location ?from) (transportador ?transportador)
+				(carry ?g_r ?transportador)
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l)
+				(nboxes-at ?transportador ?type ?cajas_en_transportador)
+				(supply-needed ?type ?from ?bn) (call > ?bn 1)
+				(call > ?cajas_en_transportador 0))
+			(
+				(!take-box-from-transportador ?g_l ?transportador ?from ?type)
+				(!let-box ?from ?g_l ?type)
+				(enviar-todo)
+			)
+
+		
+			((type ?type) (location ?from) (location ?to) (transportador ?transportador)
+
+				(transportador-at ?transportador ?from)
+				(different ?from ?to) 
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l)
+				(nboxes-at ?transportador ?type ?cajas_en_transportador)
+				(supply-needed ?type ?to ?bn) 
+				(call > ?bn 1)  (call > ?cajas_en_transportador 0))
+			(
+				(!take-transportador ?g_l ?from ?transportador)
+				(!mover-con-transportador ?g_l ?g_r ?transportador ?from ?to)
+				(enviar-todo)
+			)
+
+			
+			
+			((type ?type) (location ?from) (location ?to) (transportador ?transportador) (transportador ?transportador2) (transportador ?transportador3)
+				(different ?transportador ?transportador2) (different ?transportador ?transportador3) (different ?transportador2 ?transportador3)
+				 (capacidadtrans ?transportador2 ?capacidad_transportador2) (capacidadtrans ?transportador3 ?capacidad_transportador3) 
+				
+				(different ?from ?to) (ncajas ?type ?nc) 
+				(transportador-at ?transportador ?from) 
+				(capacidadtrans ?transportador ?capacidad_transportador)
+				(nboxes-at ?transportador ?type ?cajas_en_trasportador)
+				(nboxes-at ?from ?type ?bl)
+				(gripper ?g_l) (gripper-at ?g_l ?from)
+				(free ?g_l)  (supply-needed ?type ?to ?bn)
+				(call > ?bl 0) (call > ?bn 1) (call > ?nc 0)   
+				(call > ?capacidad_transportador ?cajas_en_trasportador)  (call < ?cajas_en_trasportador ?bn)
+
+				 (call <= ?capacidad_transportador3 ?capacidad_transportador) (call <= ?capacidad_transportador2 ?capacidad_transportador)
+			)
+			(
+				(!take-box ?g_l ?from ?type)
+				(!let-box-in-transportador ?from ?g_l ?transportador ?type)
+				(enviar-todo)
+			)
+
+
+			((type ?type) (location ?from) (location ?to) (different ?from ?to) 
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l)
+				(nboxes-at ?from ?type ?bl)
+			    (supply-needed ?type ?to ?bn) (call > ?bl 0) (call = ?bn 1))
+			(
+				(!take-box ?g_l ?from ?type)
+				(!mover ?g_l ?g_r ?from ?to)
+				(!let-box ?to ?g_l ?type)
+			)
+
+
+			((type ?type) (location ?from) (transportador ?transportador) 
+				(transportador-at ?transportador ?from)
+				(gripper ?g_l) (gripper ?g_r) (gripper-at ?g_l ?from) (gripper-at ?g_r ?from) (gripper-pair ?g_l ?g_r) 
+				(free ?g_l)
+				(nboxes-at ?transportador ?type ?cajas_en_transportador)
+				(supply-needed ?type ?from ?bn) (call = ?bn 1)
+				(call > ?cajas_en_transportador 0))
+			(
+				(!take-box-from-transportador ?g_l ?transportador ?from ?type)
+				(!let-box ?from ?g_l ?type)			
+			)	
+		)
+
+	; AXIOMS
+
+		(:- (same ?x ?x) nil)
+   		(:- (different ?x ?y) ((not (same ?x ?y))))
+	)
+)

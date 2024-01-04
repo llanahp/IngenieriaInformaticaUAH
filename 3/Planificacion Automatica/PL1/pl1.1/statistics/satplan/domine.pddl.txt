@@ -1,0 +1,1 @@
+drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl,0,2

@@ -1,0 +1,70 @@
+nº transportadores
+nº localizaciones
+capacidad de los transportadores
+numero de cajas en cada sitio
+
+(defproblem problem drone
+	(
+
+/*
+		(location location_deposito)
+		(location loc1)
+		(location loc2)
+
+		(transportador transportador1)
+		(transportador transportador2)
+		(transportador transportador3)
+
+		(capacidadtrans transportador1 10)
+		(capacidadtrans transportador2 20)
+		(capacidadtrans transportador3 30)
+
+		(transportador-at transportador1 location_deposito)
+		(transportador-at transportador2 location_deposito)
+		(transportador-at transportador3 location_deposito)
+
+		(type food)
+		(type medicine)
+
+		(ncajas food 15)
+		(ncajas medicine 15)
+
+		(gripper gripper_1_left)
+		(gripper gripper_1_right)
+
+		(gripper-at gripper_1_left location_deposito)
+		(gripper-at gripper_1_right location_deposito)
+
+		(free gripper_1_left)
+		(free gripper_1_right)
+
+		(gripper-pair gripper_1_right gripper_1_left)
+		(gripper-pair gripper_1_left gripper_1_right)
+
+		(nboxes-at location_deposito food 15)
+		(nboxes-at location_deposito medicine 15)
+		(nboxes-at loc1 food 0)
+		(nboxes-at loc1 medicine 0)
+		(nboxes-at loc2 food 0)
+		(nboxes-at loc2 medicine 0)
+
+		(nboxes-at transportador1 food 0)
+		(nboxes-at transportador1 medicine 0)
+		(nboxes-at transportador2 food 0)
+		(nboxes-at transportador2 medicine 0)
+		(nboxes-at transportador3 food 0)
+		(nboxes-at transportador3 medicine 0)
+*/
+		(supply-needed food loc1 10)
+		(supply-needed food loc2 5)
+		(supply-needed medicine loc1 10)
+		(supply-needed medicine loc2 5)
+
+	 )
+
+	;GOAL
+	(:unordered
+		(enviar-todo)
+	)
+
+)

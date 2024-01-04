@@ -1,0 +1,47 @@
+(defproblem problem drone
+	(
+		(person person1)
+		(person person2)
+
+		(location location_deposito)
+		(location loc1)
+		(location loc2)
+
+		(box box1)
+		(box box2)
+
+		(type food)
+		(type medicine)
+
+		(gripper gripper_1_left)
+		(gripper gripper_1_right)
+
+
+		(gripper-at gripper_1_left location_deposito)
+		(gripper-at gripper_1_right location_deposito)
+
+		(free gripper_1_left)
+		(free gripper_1_right)
+
+		(gripper-pair gripper_1_right gripper_1_left)
+		(gripper-pair gripper_1_left gripper_1_right)
+
+		(box-type box1 food)
+		(box-type box2 medicine)
+
+		(box-at box1 location_deposito)
+		(box-at box2 location_deposito)
+
+		(person-at person1 loc1)
+		(person-at person2 loc2)
+
+		(person-dont-have person1 food)
+		(person-have person1 medicine)
+
+		;(person-dont-have person2 medicine)
+		(person-have person2 food)
+	)
+	(:unordered
+		(enviar-todo)
+	)
+)
