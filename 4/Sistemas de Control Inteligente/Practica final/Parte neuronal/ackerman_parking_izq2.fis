@@ -1,0 +1,131 @@
+[System]
+Name='ackerman_parking_izq2'
+Type='mamdani'
+Version=2.0
+NumInputs=12
+NumOutputs=2
+NumRules=1
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='sonar_0'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input2]
+Name='sonar_1'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-1.01 -0.00657 1.91403238242097]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input3]
+Name='sonar_2'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input4]
+Name='sonar_3'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input5]
+Name='sonar_4'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input6]
+Name='sonar_5'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input7]
+Name='sonar_6'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input8]
+Name='sonar_7'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input9]
+Name='sonar_8'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input10]
+Name='sonar_9'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input11]
+Name='sonar_10'
+Range=[0 5]
+NumMFs=3
+MF1='peq':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Input12]
+Name='sonar_11'
+Range=[0 5]
+NumMFs=3
+MF1='ped':'trimf',[-2.083 0 2.083]
+MF2='med':'trimf',[1.5 2.5 3.5]
+MF3='gran':'trimf',[2.917 5 7.083]
+
+[Output1]
+Name='steering_wheel_angle'
+Range=[-90 90]
+NumMFs=3
+MF1='negativo':'trimf',[-165 -89.7 -4.30223592906704]
+MF2='Cero':'trimf',[-0.1 0 0.1]
+MF3='positivo':'trimf',[2.77563608326911 90.3 165]
+
+[Output2]
+Name='linear_vel_ackerman_kmh'
+Range=[-30 30]
+NumMFs=7
+MF1='neg_gran':'trimf',[-40 -30 -20]
+MF2='neg_med':'trimf',[-30 -20 -10]
+MF3='neg_peq':'trimf',[-20 -10 0]
+MF4='cero':'gaussmf',[0.6286 -2.22e-16]
+MF5='pos_peq':'trimf',[0 10 20]
+MF6='pos_med':'trimf',[10 20 30]
+MF7='pos_gran':'trimf',[20 30 40]
+
+[Rules]
+1 1 0 0 0 0 0 0 0 0 1 1, 2 0 (1) : 1

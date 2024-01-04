@@ -1,0 +1,28 @@
+
+% Sensores 0 - 11
+inputs = transpose(training_data(:, [1:12]));
+inputs(isinf(inputs)) = 5.0;
+% Velocidad y ángulo del volante
+outputs = transpose(training_data(:, [18, 19]));
+
+if (true)
+    net = feedforwardnet([6, 6, 6], 'trainbfg');
+    net.trainParam.epochs = 
+    net = configure(net, inputs, outputs);
+    net = train(net, inputs, outputs);
+
+    gensim(net, 0.1);
+else 
+    hiddenLayerSize = 12;
+    net = fitnet(hiddenLayerSize, 'trainbfg');
+    
+    % División del conjunto de datos para entrenamiento, validación y test
+    net.divideParam.trainRatio = 70/100;
+    net.divideParam.valRatio = 15/100;
+    net.divideParam.testRatio = 15/100;
+    
+    % Entrenamiento de la red
+    [net,tr] = train(net,inputs,outputs);
+    
+    gensim(net, 0.1);
+end
